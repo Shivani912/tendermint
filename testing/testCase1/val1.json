@@ -1,0 +1,9 @@
+{
+    "address": "8F9F7019F4FB43F16BE3F1F89509164BC72EEE42",
+    "pub_key": {
+        "type":"tendermint/PubKeyEd25519",
+        "value":"AT/+aaL1eB0477Mud9JMm8Sh8BIvOYlPGC9KkIUmFaE="
+    },
+    "voting_power": "1",
+    "proposer_priority": "-2"
+}
