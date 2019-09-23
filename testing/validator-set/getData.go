@@ -15,18 +15,21 @@ import (
 
 type Merkle struct {
 	MerkleRoot      string `json:"merkle_root"`
-	NumOfValidators int    `json:"num_of_validators"`
+	// NumOfValidators int    `json:"num_of_validators"`
 }
 
-func getData(folder string) (*types.ValidatorSet, string) {
+func getData(folder string) (*types.ValidatorSet, string, int) {
 
 	var merkle Merkle
-	file := fmt.Sprintf("%smerkle_root.json", folder)
-	merklleJson := getJsonFrom(file)
+	file := fmt.Sprintf("%s/merkle_root.json", folder)
+	merklleJson, err := getJsonFrom(file)
+	if err == 1 {
+		return nil, "", err
+	}
 	json.Unmarshal(merklleJson, &merkle)
-	ValSet := getValidatorSet(merkle.NumOfValidators, folder)
+	ValSet := getValidatorSet( folder)
 
-	return ValSet, merkle.MerkleRoot
+	return ValSet, merkle.MerkleRoot, 0
 }
 func Equal(a, b []byte) bool {
 
@@ -41,11 +44,18 @@ func Equal(a, b []byte) bool {
 	return true
 }
 
-func getJsonFrom(file string) []byte {
+func getJsonFrom(file string) ([]byte, int) {
 	jsonFile, err := os.Open(file)
 
 	if err != nil {
-		fmt.Println(err)
+
+		errStatement := "open "+file+": no such file or directory"
+	
+		if err.Error() == errStatement {
+			return nil, 1
+		}else{
+			fmt.Println(err)
+		}
 	}
 
 	defer jsonFile.Close()
@@ -56,7 +66,7 @@ func getJsonFrom(file string) []byte {
 		fmt.Printf("error: %v", err)
 	}
 
-	return dat
+	return dat, 0
 }
 
 func UnmarshalValidator(dat []byte) *types.Validator {
@@ -79,14 +89,18 @@ func toHex(mr []byte) []byte {
 	return dst
 }
 
-func getValidatorSet(num int, folder string) *types.ValidatorSet {
+func getValidatorSet( folder string) *types.ValidatorSet {
 
 	var file string
 	var vals []*types.Validator
-	for i := 1; i <= num; i++ {
-		file = fmt.Sprintf("%sval%d.json", folder, i)
+	for i := 1;; i++ {
+		file = fmt.Sprintf("%s/val%d.json", folder, i)
 
-		dat := getJsonFrom(file)
+		dat, err := getJsonFrom(file)
+		if err == 1 {
+			// fmt.Println("error 1")
+			break
+		}
 		val := UnmarshalValidator(dat)
 
 		vals = append(vals, val)
