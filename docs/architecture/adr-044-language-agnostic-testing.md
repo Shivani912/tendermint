@@ -10,7 +10,7 @@ As we are planning to move forward with building Tendermint in Rust and eventual
 
 Language Agnostic Test Suites using JSON files and verifying those against different versions of code will help test Tendermint's functionality and compatibility across different implementations.
 
-![Test flow diagram](img/Language-Agnostic-Testing.png)
+![Test flow diagram](img/language-agnostic-testing.png)
 
 Generators in Go and Rust will produce json test files. These files can then be passed through tests to check whether different implementations result into same result given the same condition.
 
