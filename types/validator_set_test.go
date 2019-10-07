@@ -11,7 +11,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/tendermint/tendermint/crypto"
 	"github.com/tendermint/tendermint/crypto/ed25519"
 	cmn "github.com/tendermint/tendermint/libs/common"
 	tmtime "github.com/tendermint/tendermint/types/time"
@@ -264,49 +263,6 @@ func TestProposerSelection3(t *testing.T) {
 	}
 }
 
-func newValidator(address []byte, power int64) *Validator {
-	return &Validator{Address: address, VotingPower: power}
-}
-
-func randPubKey() crypto.PubKey {
-	var pubKey [32]byte
-	copy(pubKey[:], cmn.RandBytes(32))
-	return ed25519.PubKeyEd25519(pubKey)
-}
-
-func randValidator_(totalVotingPower int64) *Validator {
-	// this modulo limits the ProposerPriority/VotingPower to stay in the
-	// bounds of MaxTotalVotingPower minus the already existing voting power:
-	val := NewValidator(randPubKey(), int64(cmn.RandUint64()%uint64((MaxTotalVotingPower-totalVotingPower))))
-	val.ProposerPriority = cmn.RandInt64() % (MaxTotalVotingPower - totalVotingPower)
-	return val
-}
-
-func randValidatorSet(numValidators int) *ValidatorSet {
-	validators := make([]*Validator, numValidators)
-	totalVotingPower := int64(0)
-	for i := 0; i < numValidators; i++ {
-		validators[i] = randValidator_(totalVotingPower)
-		totalVotingPower += validators[i].VotingPower
-	}
-	return NewValidatorSet(validators)
-}
-
-func (valSet *ValidatorSet) toBytes() []byte {
-	bz, err := cdc.MarshalBinaryLengthPrefixed(valSet)
-	if err != nil {
-		panic(err)
-	}
-	return bz
-}
-
-func (valSet *ValidatorSet) fromBytes(b []byte) {
-	err := cdc.UnmarshalBinaryLengthPrefixed(b, &valSet)
-	if err != nil {
-		// DATA HAS BEEN CORRUPTED OR THE SPEC HAS CHANGED
-		panic(err)
-	}
-}
 
 //-------------------------------------------------------------------
 
@@ -645,45 +601,6 @@ func TestUpdatesForNewValidatorSet(t *testing.T) {
 	assert.Panics(t, func() { NewValidatorSet(valList) })
 
 }
-
-type testVal struct {
-	name  string
-	power int64
-}
-
-func permutation(valList []testVal) []testVal {
-	if len(valList) == 0 {
-		return nil
-	}
-	permList := make([]testVal, len(valList))
-	perm := cmn.RandPerm(len(valList))
-	for i, v := range perm {
-		permList[v] = valList[i]
-	}
-	return permList
-}
-
-func createNewValidatorList(testValList []testVal) []*Validator {
-	valList := make([]*Validator, 0, len(testValList))
-	for _, val := range testValList {
-		valList = append(valList, newValidator([]byte(val.name), val.power))
-	}
-	return valList
-}
-
-func createNewValidatorSet(testValList []testVal) *ValidatorSet {
-	return NewValidatorSet(createNewValidatorList(testValList))
-}
-
-func valSetTotalProposerPriority(valSet *ValidatorSet) int64 {
-	sum := int64(0)
-	for _, val := range valSet.Validators {
-		// mind overflow
-		sum = safeAddClip(sum, val.ProposerPriority)
-	}
-	return sum
-}
-
 func verifyValidatorSet(t *testing.T, valSet *ValidatorSet) {
 	// verify that the capacity and length of validators is the same
 	assert.Equal(t, len(valSet.Validators), cap(valSet.Validators))
@@ -707,27 +624,6 @@ func verifyValidatorSet(t *testing.T, valSet *ValidatorSet) {
 		"expected priority distance < %d. Got %d", PriorityWindowSizeFactor*tvp, dist)
 }
 
-func toTestValList(valList []*Validator) []testVal {
-	testList := make([]testVal, len(valList))
-	for i, val := range valList {
-		testList[i].name = string(val.Address)
-		testList[i].power = val.VotingPower
-	}
-	return testList
-}
-
-func testValSet(nVals int, power int64) []testVal {
-	vals := make([]testVal, nVals)
-	for i := 0; i < nVals; i++ {
-		vals[i] = testVal{fmt.Sprintf("v%d", i+1), power}
-	}
-	return vals
-}
-
-type valSetErrTestCase struct {
-	startVals  []testVal
-	updateVals []testVal
-}
 
 func executeValSetErrTestCase(t *testing.T, idx int, tt valSetErrTestCase) {
 	// create a new set and apply updates, keeping copies for the checks
@@ -1200,46 +1096,7 @@ func verifyValSetUpdatePriorityOrder(t *testing.T, valSet *ValidatorSet, cfg tes
 }
 
 //---------------------
-// Sort validators by priority and address
-type validatorsByPriority []*Validator
 
-func (valz validatorsByPriority) Len() int {
-	return len(valz)
-}
-
-func (valz validatorsByPriority) Less(i, j int) bool {
-	if valz[i].ProposerPriority < valz[j].ProposerPriority {
-		return true
-	}
-	if valz[i].ProposerPriority > valz[j].ProposerPriority {
-		return false
-	}
-	return bytes.Compare(valz[i].Address, valz[j].Address) < 0
-}
-
-func (valz validatorsByPriority) Swap(i, j int) {
-	it := valz[i]
-	valz[i] = valz[j]
-	valz[j] = it
-}
-
-//-------------------------------------
-// Sort testVal-s by address.
-type testValsByAddress []testVal
-
-func (tvals testValsByAddress) Len() int {
-	return len(tvals)
-}
-
-func (tvals testValsByAddress) Less(i, j int) bool {
-	return bytes.Compare([]byte(tvals[i].name), []byte(tvals[j].name)) == -1
-}
-
-func (tvals testValsByAddress) Swap(i, j int) {
-	it := tvals[i]
-	tvals[i] = tvals[j]
-	tvals[j] = it
-}
 
 //-------------------------------------
 // Benchmark tests

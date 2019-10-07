@@ -1,0 +1,27 @@
+{
+	"version": {
+		"block": 0,
+		"app": 0
+	},
+	"chain_id": "",
+	"height": 0,
+	"time": "2019-10-04T12:05:09.696062055-04:00",
+	"num_txs": 0,
+	"total_txs": 9,
+	"last_block_id": {
+		"hash": "E9E2A7A0E8CD4679EC14AA2A5E504D90C47AE4566B406EC14BB6D5842581A4EF",
+		"parts": {
+			"total": 123,
+			"hash": "4C974C3840734ECB8D057ECF50F612415A317F64A8F1E59F07ADEF093F0D4837"
+		}
+	},
+	"last_commit_hash": "",
+	"data_hash": "",
+	"validators_hash": "34",
+	"next_validators_hash": "35",
+	"consensus_hash": "",
+	"app_hash": "",
+	"last_results_hash": "",
+	"evidence_hash": "",
+	"proposer_address": ""
+}

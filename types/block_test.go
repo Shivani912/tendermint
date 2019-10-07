@@ -3,7 +3,7 @@ package types
 import (
 	// it is ok to use math/rand here: we do not need a cryptographically secure random
 	// number generator here and we can run the tests a bit faster
-	"crypto/rand"
+	
 	"math"
 	"os"
 	"testing"
@@ -161,25 +161,6 @@ func TestBlockString(t *testing.T) {
 	assert.NotEqual(t, "nil-Block", block.StringShort())
 }
 
-func makeBlockIDRandom() BlockID {
-	blockHash := make([]byte, tmhash.Size)
-	partSetHash := make([]byte, tmhash.Size)
-	rand.Read(blockHash)   //nolint: gosec
-	rand.Read(partSetHash) //nolint: gosec
-	blockPartsHeader := PartSetHeader{123, partSetHash}
-	return BlockID{blockHash, blockPartsHeader}
-}
-
-func makeBlockID(hash []byte, partSetSize int, partSetHash []byte) BlockID {
-	return BlockID{
-		Hash: hash,
-		PartsHeader: PartSetHeader{
-			Total: partSetSize,
-			Hash:  partSetHash,
-		},
-	}
-
-}
 
 var nilBytes []byte
 
@@ -275,16 +256,6 @@ func TestMaxHeaderBytes(t *testing.T) {
 	assert.EqualValues(t, MaxHeaderBytes, len(bz))
 }
 
-func randCommit() *Commit {
-	lastID := makeBlockIDRandom()
-	h := int64(3)
-	voteSet, _, vals := randVoteSet(h-1, 1, PrecommitType, 10, 1)
-	commit, err := MakeCommit(lastID, h-1, 1, voteSet, vals)
-	if err != nil {
-		panic(err)
-	}
-	return commit
-}
 
 func TestBlockMaxDataBytes(t *testing.T) {
 	testCases := []struct {
