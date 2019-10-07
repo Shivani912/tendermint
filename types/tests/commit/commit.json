@@ -1,0 +1,75 @@
+{
+	"block_id": {
+		"hash": "B54A957CC3CDCC1FEEA2F55910BA07BD01B79ED587B7710E6929DD2029C0C2C4",
+		"parts": {
+			"total": 123,
+			"hash": "0580BE3CEA9AAC7E682C12455F7B5EFA69792048AFBE5DDACBE681C783BA558E"
+		}
+	},
+	"precommits": [
+		{
+			"type": 2,
+			"height": 4,
+			"round": 1,
+			"block_id": {
+				"hash": "B54A957CC3CDCC1FEEA2F55910BA07BD01B79ED587B7710E6929DD2029C0C2C4",
+				"parts": {
+					"total": 123,
+					"hash": "0580BE3CEA9AAC7E682C12455F7B5EFA69792048AFBE5DDACBE681C783BA558E"
+				}
+			},
+			"timestamp": "2019-10-01T20:37:45.069033272Z",
+			"validator_address": "35CC8A34B99206A9D02DCB640A7A9C55E12FF3EB",
+			"validator_index": 0,
+			"signature": "UC6NEKkQra6ytSjv9gQlWApbn4ZPaBwpP4hr/T7vfuKrl64d21ggbCKCWTq+37CffXfskQok6IbYpg5JAXe1Ag=="
+		},
+		{
+			"type": 2,
+			"height": 4,
+			"round": 1,
+			"block_id": {
+				"hash": "B54A957CC3CDCC1FEEA2F55910BA07BD01B79ED587B7710E6929DD2029C0C2C4",
+				"parts": {
+					"total": 123,
+					"hash": "0580BE3CEA9AAC7E682C12455F7B5EFA69792048AFBE5DDACBE681C783BA558E"
+				}
+			},
+			"timestamp": "2019-10-01T20:37:45.06931863Z",
+			"validator_address": "6C79A2DDA7BEC821E729F50AC892D2B87C50556B",
+			"validator_index": 1,
+			"signature": "/1DJtZ4r7g0PSbCgtvyY4mdF9ZGb8+r9wYMWMqQqLqX5p8zdFQcUNANAd2Y+UFj6sMfK8Aiem9QDoRjc7GPkAQ=="
+		},
+		{
+			"type": 2,
+			"height": 4,
+			"round": 1,
+			"block_id": {
+				"hash": "B54A957CC3CDCC1FEEA2F55910BA07BD01B79ED587B7710E6929DD2029C0C2C4",
+				"parts": {
+					"total": 123,
+					"hash": "0580BE3CEA9AAC7E682C12455F7B5EFA69792048AFBE5DDACBE681C783BA558E"
+				}
+			},
+			"timestamp": "2019-10-01T20:37:45.069547792Z",
+			"validator_address": "AA8C398E584D7CACCC5E736A075838B457D04104",
+			"validator_index": 2,
+			"signature": "EvYQXEy+lEATjbDoFYdgEHGfYEBxtrp9lYP3XR0032c3T4a1Z5MvcARtUaJbs5lxgtkR5OBuoNbI07QMYpk7DQ=="
+		},
+		{
+			"type": 2,
+			"height": 4,
+			"round": 1,
+			"block_id": {
+				"hash": "B54A957CC3CDCC1FEEA2F55910BA07BD01B79ED587B7710E6929DD2029C0C2C4",
+				"parts": {
+					"total": 123,
+					"hash": "0580BE3CEA9AAC7E682C12455F7B5EFA69792048AFBE5DDACBE681C783BA558E"
+				}
+			},
+			"timestamp": "2019-10-01T20:37:45.069781876Z",
+			"validator_address": "FA83FF40922FC51C7E4B93F0063C6F0C53136B2F",
+			"validator_index": 3,
+			"signature": "fQXx5dcwch51uJS4u/lQLioNhXHFAFDPIjHUJVS2EcC22CYvfdio4HLtGHbiisvMudT/1Mu8nNFwf18hoPD+Dw=="
+		}
+	]
+}

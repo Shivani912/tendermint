@@ -760,28 +760,6 @@ func verifyValidatorSet(t *testing.T, valSet *ValidatorSet) {
 		"expected priority distance < %d. Got %d", PriorityWindowSizeFactor*tvp, dist)
 }
 
-func toTestValList(valList []*Validator) []testVal {
-	testList := make([]testVal, len(valList))
-	for i, val := range valList {
-		testList[i].name = string(val.Address)
-		testList[i].power = val.VotingPower
-	}
-	return testList
-}
-
-func testValSet(nVals int, power int64) []testVal {
-	vals := make([]testVal, nVals)
-	for i := 0; i < nVals; i++ {
-		vals[i] = testVal{fmt.Sprintf("v%d", i+1), power}
-	}
-	return vals
-}
-
-type valSetErrTestCase struct {
-	startVals  []testVal
-	updateVals []testVal
-}
-
 func executeValSetErrTestCase(t *testing.T, idx int, tt valSetErrTestCase) {
 	// create a new set and apply updates, keeping copies for the checks
 	valSet := createNewValidatorSet(tt.startVals)
@@ -1325,46 +1303,6 @@ func TestValSetUpdateOverflowRelated(t *testing.T) {
 }
 
 //---------------------
-// Sort validators by priority and address
-type validatorsByPriority []*Validator
-
-func (valz validatorsByPriority) Len() int {
-	return len(valz)
-}
-
-func (valz validatorsByPriority) Less(i, j int) bool {
-	if valz[i].ProposerPriority < valz[j].ProposerPriority {
-		return true
-	}
-	if valz[i].ProposerPriority > valz[j].ProposerPriority {
-		return false
-	}
-	return bytes.Compare(valz[i].Address, valz[j].Address) < 0
-}
-
-func (valz validatorsByPriority) Swap(i, j int) {
-	it := valz[i]
-	valz[i] = valz[j]
-	valz[j] = it
-}
-
-//-------------------------------------
-// Sort testVal-s by address.
-type testValsByAddress []testVal
-
-func (tvals testValsByAddress) Len() int {
-	return len(tvals)
-}
-
-func (tvals testValsByAddress) Less(i, j int) bool {
-	return bytes.Compare([]byte(tvals[i].name), []byte(tvals[j].name)) == -1
-}
-
-func (tvals testValsByAddress) Swap(i, j int) {
-	it := tvals[i]
-	tvals[i] = tvals[j]
-	tvals[j] = it
-}
 
 //-------------------------------------
 // Benchmark tests
