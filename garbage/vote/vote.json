@@ -1,0 +1,16 @@
+{
+	"type": 1,
+	"height": 12345,
+	"round": 2,
+	"block_id": {
+		"hash": "8B01023386C371778ECB6368573E539AFC3CC860EC3A2F614E54FE5652F4FC80",
+		"parts": {
+			"total": 1000000,
+			"hash": "72DB3D959635DFF1BB567BEDAA70573392C5159666A3F8CAF11E413AAC52207A"
+		}
+	},
+	"timestamp": "2017-12-25T03:00:01.234Z",
+	"validator_address": "6AF1F4111082EFB388211BC72C55BCD61E9AC3D5",
+	"validator_index": 56789,
+	"signature": "qNWbOJeQiPaAUzsWg9sksNgeBq35Pluesw87g/qRF0IiMAqWcVXhk1x2/WE+wfWDJEI5T1DlmLNbRIZVkA14CA=="
+}
