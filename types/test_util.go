@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"crypto/rand"
 	"time"
+	"encoding/hex"
 
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	"github.com/tendermint/tendermint/crypto"
@@ -368,4 +369,24 @@ func randCommit() *Commit {
 		panic(err)
 	}
 	return commit
+}
+
+// Exposed functions for testing purpose
+
+func ExamplePrevote() *Vote{
+	return examplePrevote()
+}
+
+func ExamplePrecommit() *Vote{
+	return examplePrecommit()
+}
+
+// ---- generator utils ----
+
+func toHex(mr []byte) []byte {
+	src := mr
+
+	dst := make([]byte, hex.EncodedLen(len(src)))
+	hex.Encode(dst, src)
+	return dst
 }
