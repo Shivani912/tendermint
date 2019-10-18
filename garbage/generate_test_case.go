@@ -2,6 +2,7 @@ package garbage
 
 import (
 	"fmt"
+	"sort"
 	"io/ioutil"
 
 	"github.com/tendermint/tendermint/types"
@@ -12,19 +13,17 @@ import (
 )
 
 var state st.State
-
+var testCase types.TestCase
 var blockSlice []*types.Block
 var liteBlocks []*types.LiteBlock
-var currentPrivVal []types.PrivValidator
+var currentPrivVal types.PrivValidatorsByAddress
 
 func GenerateTestCase() {
 
+	GenerateName("verify_header")
 	GenerateFirstBlock()
-
 	GenerateNextBlockWithNextValsUpdate(4, 7)
-
 	GenerateNextBlock()
-
 	GenerateJSON()
 }
 
@@ -63,7 +62,6 @@ func GenerateFirstBlock() {
 	}
 
 	liteBlocks = append(liteBlocks, lb)
-	// blockSlice = append(blockSlice, block)
 
 }
 
@@ -72,7 +70,13 @@ func updateState(blockID types.BlockID, privVal []types.PrivValidator) {
 	state.LastValidators = state.Validators.Copy()
 	state.Validators = state.NextValidators.Copy()
 	state.LastBlockID = blockID
-	currentPrivVal = privVal
+	if len(currentPrivVal) != len(privVal) {
+		for i:=0; i<len(privVal);i++ {
+			currentPrivVal = append(currentPrivVal, privVal[i])
+		}
+		sort.Sort(currentPrivVal)
+	}
+	
 }
 
 func GenerateNextBlockWithNextValsUpdate(numVals int, votingPower int64) {
@@ -105,7 +109,6 @@ func GenerateNextBlock() {
 
 	txs := types.GenerateTxs()
 	evidences := types.GenerateEvidences()
-	fmt.Printf("\nVALIDATORS---- \n %v \nPRIVVAL \n %v", state.Validators, currentPrivVal)
 	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, liteBlocks[state.LastBlockHeight-1].SignedHeader.Commit, evidences, state.Validators.Proposer.Address)
 	commit := types.GenerateCommit(block.Header, partSet, *state.Validators, currentPrivVal)
 
@@ -123,9 +126,7 @@ func GenerateNextBlock() {
 }
 
 func GenerateJSON() {
-	testCase := &types.TestCase{
-		LiteBlocks: liteBlocks,
-	}
+	testCase.Input = liteBlocks
 
 	var cdc = amino.NewCodec()
 	cryptoAmino.RegisterAmino(cdc)
@@ -139,4 +140,8 @@ func GenerateJSON() {
 	file := "./test_case.json"
 	_ = ioutil.WriteFile(file, b, 0644)
 
+}
+
+func GenerateName(name string) {
+	testCase.Name = name
 }
