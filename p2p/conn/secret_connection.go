@@ -188,7 +188,7 @@ func (sc *SecretConnection) Write(data []byte) (n int, err error) {
 			return n, err
 		}
 	}
-	return
+	return n, err
 }
 
 // CONTRACT: data smaller than dataMaxSize is read atomically.
@@ -234,7 +234,7 @@ func (sc *SecretConnection) Read(data []byte) (n int, err error) {
 		sc.recvBuffer = make([]byte, len(chunk)-n)
 		copy(sc.recvBuffer, chunk[n:])
 	}
-	return
+	return n, err
 }
 
 // Implements net.Conn
@@ -262,7 +262,7 @@ func genEphKeys() (ephPub, ephPriv *[32]byte) {
 	return
 }
 
-func shareEphPubKey(conn io.ReadWriteCloser, locEphPub *[32]byte) (remEphPub *[32]byte, err error) {
+func shareEphPubKey(conn io.ReadWriter, locEphPub *[32]byte) (remEphPub *[32]byte, err error) {
 
 	// Send our pubkey and receive theirs in tandem.
 	var trs, _ = cmn.Parallel(
@@ -416,7 +416,7 @@ type authSigMessage struct {
 	Sig []byte
 }
 
-func shareAuthSignature(sc *SecretConnection, pubKey crypto.PubKey, signature []byte) (recvMsg authSigMessage, err error) {
+func shareAuthSignature(sc io.ReadWriter, pubKey crypto.PubKey, signature []byte) (recvMsg authSigMessage, err error) {
 
 	// Send our info and receive theirs in tandem.
 	var trs, _ = cmn.Parallel(

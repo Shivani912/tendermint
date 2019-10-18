@@ -1,8 +1,9 @@
-## v0.32.3
+## v0.32.5
 
 \*\*
 
 Special thanks to external contributors on this release:
+@erikgrinaker
 
 Friendly reminder, we have a [bug bounty
 program](https://hackerone.com/tendermint).
@@ -19,10 +20,8 @@ program](https://hackerone.com/tendermint).
 
 ### IMPROVEMENTS:
 
-- [privval] \#3370 Refactors and simplifies validator/kms connection handling. Please refer to thttps://github.com/tendermint/tendermint/pull/3370#issue-257360971
-- [consensus] \#3839 Reduce "Error attempting to add vote" message severity (Error -> Info)
-- [mempool] \#3877 Make `max_tx_bytes` configurable instead of `max_msg_bytes`
+- [tools] [\#4023](https://github.com/tendermint/tendermint/issues/4023) Improved `tm-monitor` formatting of start time and avg tx throughput
 
 ### BUG FIXES:
 
-- [config] \#3868 move misplaced `max_msg_bytes` into mempool section
+- [tools] [\#4023](https://github.com/tendermint/tendermint/issues/4023) Refresh `tm-monitor` health when validator count is updated
