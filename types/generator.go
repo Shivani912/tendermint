@@ -3,7 +3,11 @@ package types
 import "fmt"
 
 type TestCase struct {
-	LiteBlocks []*LiteBlock `json:"lite_blocks"`
+	Name 		string 				`json:"name"`
+	// Initial		Client				`json:"initial"`
+	Input		[]*LiteBlock 		`json:"input"`
+	// Wanted
+	// Expected
 }
 
 type LiteBlock struct {
