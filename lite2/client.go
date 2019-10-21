@@ -28,8 +28,8 @@ type TrustOptions struct {
 	// submission synchrony bound.
 	Period time.Duration
 
-	// Height and Hash must both be provided to force the trusting of a
-	// particular height and hash.
+	// Header's Height and Hash must both be provided to force the trusting of a
+	// particular header.
 	Height int64
 	Hash   []byte
 }
@@ -177,25 +177,37 @@ func (c *Client) SetLogger(l log.Logger) {
 // header exist. It returns an error if there are some issues with the trusted
 // store, although that should not happen normally. TODO mention how many
 // headers will be kept by the light client.
+//
+// 0 - the latest.
+// height must be >= 0.
 func (c *Client) TrustedHeader(height int64) (*types.SignedHeader, error) {
+	if height < 0 {
+		return errors.New("negative height")
+	}
+
+	if height == 0 {
+		var err error
+		height, err = c.LastTrustedHeight()
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	return c.trustedStore.SignedHeader(height)
 }
 
 // LastTrustedHeight returns a last trusted height.
 func (c *Client) LastTrustedHeight() (int64, error) {
-	h, err := c.trustedStore.LastSignedHeader()
-	if err != nil {
-		return 0, err
-	}
-	return h.Height, nil
+	return c.trustedStore.LastSignedHeaderHeight()
 }
 
 // VerifyHeaderAtHeight fetches the header and validators at the given height
 // and calls VerifyHeader.
+//
+// If the trusted header is more recent than one here, an error is returned.
 func (c *Client) VerifyHeaderAtHeight(height int64, now time.Time) error {
-	// Skip verification if we're at more recent height.
 	if c.trustedHeader.Height >= height {
-		return nil
+		return errors.Errorf("height #%d is already trusted (last: #%d)", height, c.trustedHeader.Height)
 	}
 
 	// Request the header and the vals.
@@ -218,10 +230,11 @@ func (c *Client) VerifyHeaderAtHeight(height int64, now time.Time) error {
 // headers are not adjacent, bisection is performed and necessary (not all)
 // intermediate headers will be requested. See the specification for the
 // algorithm.
+//
+// If the trusted header is more recent than one here, an error is returned.
 func (c *Client) VerifyHeader(newHeader *types.SignedHeader, newVals *types.ValidatorSet, now time.Time) error {
-	// Skip verification if we're at more recent height.
 	if c.trustedHeader.Height >= newHeader.Height {
-		return nil
+		return errors.Errorf("height #%d is already trusted (last: #%d)", newHeader.Height, c.trustedHeader.Height)
 	}
 
 	var err error
@@ -297,12 +310,6 @@ func (c *Client) bisection(
 	switch err.(type) {
 	case nil:
 		return nil
-	case ErrNewHeaderTooFarIntoFuture:
-		// continue bisection if not adjacent
-		// otherwise fail
-		if lastHeader.Height == newHeader.Height+1 {
-			return errors.Wrapf(err, "failed to verify the header #%d", newHeader.Height)
-		}
 	case types.ErrTooMuchChange:
 		// continue bisection
 	default:
