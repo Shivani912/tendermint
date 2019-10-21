@@ -6,24 +6,39 @@ import (
 	"io/ioutil"
 
 	"github.com/tendermint/tendermint/types"
+	"github.com/tendermint/tendermint/lite2"
+
 
 	amino "github.com/tendermint/go-amino"
 	cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	st "github.com/tendermint/tendermint/state"
+
 )
 
 var state st.State
-var testCase types.TestCase
-var blockSlice []*types.Block
-var liteBlocks []*types.LiteBlock
+var testCase TestCase
+var liteBlocks []*LiteBlock
 var currentPrivVal types.PrivValidatorsByAddress
+
+type TestCase struct {
+	Name 			string 				`json:"name"`
+	Initial			*LiteBlock			`json:"initial"`
+	Input			[]*LiteBlock 		`json:"input"`
+	ExpectedOutput	lite2.error			`json:"expected_output"`
+}
+
+type LiteBlock struct {
+	SignedHeader *types.SignedHeader `json:"signed_header"`
+	ValidatorSet types.ValidatorSet  `josn:"validator_set"`
+}
 
 func GenerateTestCase() {
 
-	GenerateName("verify_header")
+	GenerateName("verify")
 	GenerateFirstBlock()
-	GenerateNextBlockWithNextValsUpdate(4, 7)
+	GenerateNextBlockWithNextValsUpdate(1, 10)
 	GenerateNextBlock()
+	GenerateExpectedOutput()
 	GenerateJSON()
 }
 
@@ -53,7 +68,7 @@ func GenerateFirstBlock() {
 
 	updateState(commit.BlockID, privVal)
 
-	lb := &types.LiteBlock{
+	lb := &LiteBlock{
 		SignedHeader: &types.SignedHeader{
 			Header: &block.Header,
 			Commit: commit,
@@ -61,6 +76,7 @@ func GenerateFirstBlock() {
 		ValidatorSet: *valSet,
 	}
 
+	testCase.Initial = lb
 	liteBlocks = append(liteBlocks, lb)
 
 }
@@ -69,6 +85,7 @@ func updateState(blockID types.BlockID, privVal []types.PrivValidator) {
 	state.LastBlockHeight += 1
 	state.LastValidators = state.Validators.Copy()
 	state.Validators = state.NextValidators.Copy()
+	state.Validators.IncrementProposerPriority(1)
 	state.LastBlockID = blockID
 	if len(currentPrivVal) != len(privVal) {
 		for i:=0; i<len(privVal);i++ {
@@ -86,6 +103,7 @@ func GenerateNextBlockWithNextValsUpdate(numVals int, votingPower int64) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	state.NextValidators.IncrementProposerPriority(1)
 
 	txs := types.GenerateTxs()
 	evidences := types.GenerateEvidences()
@@ -93,7 +111,7 @@ func GenerateNextBlockWithNextValsUpdate(numVals int, votingPower int64) {
 	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, liteBlocks[state.LastBlockHeight-1].SignedHeader.Commit, evidences, state.Validators.Proposer.Address)
 	commit := types.GenerateCommit(block.Header, partSet, *state.Validators, currentPrivVal)
 
-	lb := &types.LiteBlock{
+	lb := &LiteBlock{
 		SignedHeader: &types.SignedHeader{
 			Header: &block.Header,
 			Commit: commit,
@@ -112,7 +130,7 @@ func GenerateNextBlock() {
 	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, liteBlocks[state.LastBlockHeight-1].SignedHeader.Commit, evidences, state.Validators.Proposer.Address)
 	commit := types.GenerateCommit(block.Header, partSet, *state.Validators, currentPrivVal)
 
-	lb := &types.LiteBlock{
+	lb := &LiteBlock{
 		SignedHeader: &types.SignedHeader{
 			Header: &block.Header,
 			Commit: commit,
@@ -126,7 +144,7 @@ func GenerateNextBlock() {
 }
 
 func GenerateJSON() {
-	testCase.Input = liteBlocks
+	testCase.Input = liteBlocks[1:]
 
 	var cdc = amino.NewCodec()
 	cryptoAmino.RegisterAmino(cdc)
@@ -144,4 +162,8 @@ func GenerateJSON() {
 
 func GenerateName(name string) {
 	testCase.Name = name
+}
+
+func GenerateExpectedOutput() {
+	testCase.ExpectedOutput = nil
 }

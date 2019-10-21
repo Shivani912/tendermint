@@ -2,18 +2,6 @@ package types
 
 import "fmt"
 
-type TestCase struct {
-	Name 		string 				`json:"name"`
-	// Initial		Client				`json:"initial"`
-	Input		[]*LiteBlock 		`json:"input"`
-	// Wanted
-	// Expected
-}
-
-type LiteBlock struct {
-	SignedHeader *SignedHeader `json:"signed_header"`
-	ValidatorSet ValidatorSet  `josn:"validator_set"`
-}
 
 func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVal []PrivValidator) *Commit {
 	blockID := &BlockID{
