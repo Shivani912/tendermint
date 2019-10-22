@@ -3,7 +3,7 @@ package types
 import "fmt"
 
 
-func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVal []PrivValidator) *Commit {
+func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVal []PrivValidator, chainID string) *Commit {
 	blockID := &BlockID{
 		Hash: header.Hash(),
 		PartsHeader: PartSetHeader{
@@ -12,7 +12,7 @@ func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVa
 		},
 	}
 
-	voteSet := NewVoteSet("test_chain_id", header.Height, 1, SignedMsgType(byte(PrecommitType)), &valSet)
+	voteSet := NewVoteSet(chainID, header.Height, 1, SignedMsgType(byte(PrecommitType)), &valSet)
 
 	commit, err := MakeCommit(*blockID, header.Height, 1, voteSet, privVal)
 	if err != nil {
