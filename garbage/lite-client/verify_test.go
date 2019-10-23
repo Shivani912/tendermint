@@ -1,8 +1,7 @@
-package main 
+package main
 
 import (
 	"fmt"
-	"time"
 	"testing"
 
 	amino "github.com/tendermint/go-amino"
@@ -11,8 +10,12 @@ import (
 	lite "github.com/tendermint/tendermint/lite2"
 )
 
-func TestVerify(t *testing.T) {
-	data, err := getJsonFrom("./test_case.json")
+var cases generator.TestCases
+var testCase generator.TestCase
+
+func TestCase(t *testing.T) {
+
+	data, err := getJsonFrom("./test_lite_client.json")
 	if err != 0 {
 		fmt.Println(err)
 	}
@@ -21,15 +24,34 @@ func TestVerify(t *testing.T) {
 	cryptoAmino.RegisterAmino(cdc)
 	cdc.RegisterInterface((*error)(nil), nil)
 
-	var testCase generator.TestCase
-	er := cdc.UnmarshalJSON(data, &testCase)
+	er := cdc.UnmarshalJSON(data, &cases)
 	if er != nil {
 		fmt.Printf("error: %v", er)
 	}
 
-	e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Input[0].ValidatorSet, testCase.Input[0].SignedHeader, &testCase.Input[0].ValidatorSet, 3 * time.Hour, time.Now(), lite.DefaultTrustLevel)
-	
+	for _, tc := range cases.TC {
+
+		testCase = tc
+
+		switch testCase.Test {
+
+		case "verify":
+			t.Run("verify", TestVerify)
+			// case "negative":
+			// 	t.Run("Negative Case", NegativeCase)
+		default:
+			fmt.Println("No such test found: ", testCase.Test)
+
+		}
+	}
+
+}
+
+func TestVerify(t *testing.T) {
+
+	e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, testCase.Input[0].SignedHeader, &testCase.Input[0].ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
+
 	if e != testCase.ExpectedOutput {
-		t.Errorf("\n Error: %v", e)
+		t.Errorf("\n Failing test: %s \n Error: %v", testCase.Description, e)
 	}
 }
