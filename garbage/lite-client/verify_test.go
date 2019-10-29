@@ -37,8 +37,6 @@ func TestCase(t *testing.T) {
 
 		case "verify":
 			t.Run("verify", TestVerify)
-			// case "negative":
-			// 	t.Run("Negative Case", NegativeCase)
 		default:
 			fmt.Println("No such test found: ", testCase.Test)
 
@@ -51,7 +49,10 @@ func TestVerify(t *testing.T) {
 
 	e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, testCase.Input[0].SignedHeader, &testCase.Input[0].ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
 
-	if e != testCase.ExpectedOutput {
-		t.Errorf("\n Failing test: %s \n Error: %v", testCase.Description, e)
+	if e != nil {
+		if e.Error() != testCase.ExpectedOutput {
+			t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, testCase.ExpectedOutput)
+		}
 	}
+
 }
