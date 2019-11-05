@@ -44,7 +44,7 @@ func (pvs PrivValidatorsByAddress) Swap(i, j int) {
 // MockPV implements PrivValidator without any safety or persistence.
 // Only use it for testing.
 type MockPV struct {
-	privKey              crypto.PrivKey
+	PrivKey              crypto.PrivKey
 	breakProposalSigning bool
 	breakVoteSigning     bool
 }
@@ -62,7 +62,7 @@ func NewMockPVWithParams(privKey crypto.PrivKey, breakProposalSigning, breakVote
 
 // Implements PrivValidator.
 func (pv *MockPV) GetPubKey() crypto.PubKey {
-	return pv.privKey.PubKey()
+	return pv.PrivKey.PubKey()
 }
 
 // Implements PrivValidator.
@@ -72,7 +72,7 @@ func (pv *MockPV) SignVote(chainID string, vote *Vote) error {
 		useChainID = "incorrect-chain-id"
 	}
 	signBytes := vote.SignBytes(useChainID)
-	sig, err := pv.privKey.Sign(signBytes)
+	sig, err := pv.PrivKey.Sign(signBytes)
 	if err != nil {
 		return err
 	}
@@ -87,7 +87,7 @@ func (pv *MockPV) SignProposal(chainID string, proposal *Proposal) error {
 		useChainID = "incorrect-chain-id"
 	}
 	signBytes := proposal.SignBytes(useChainID)
-	sig, err := pv.privKey.Sign(signBytes)
+	sig, err := pv.PrivKey.Sign(signBytes)
 	if err != nil {
 		return err
 	}
