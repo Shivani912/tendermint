@@ -2,7 +2,6 @@ package types
 
 import "fmt"
 
-
 func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVal []PrivValidator, chainID string) *Commit {
 	blockID := &BlockID{
 		Hash: header.Hash(),
@@ -11,7 +10,6 @@ func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVa
 			Total: partSet.Total(),
 		},
 	}
-
 	voteSet := NewVoteSet(chainID, header.Height, 1, SignedMsgType(byte(PrecommitType)), &valSet)
 
 	commit, err := MakeCommit(*blockID, header.Height, 1, voteSet, privVal)
