@@ -1,23 +1,23 @@
 package types
 
 import (
-	"fmt"
 	"bytes"
 	"crypto/rand"
-	"time"
 	"encoding/hex"
+	"fmt"
+	"time"
 
-	"github.com/tendermint/tendermint/crypto/tmhash"
 	"github.com/tendermint/tendermint/crypto"
 	"github.com/tendermint/tendermint/crypto/ed25519"
+	"github.com/tendermint/tendermint/crypto/tmhash"
 
-	tmtime "github.com/tendermint/tendermint/types/time"
 	cmn "github.com/tendermint/tendermint/libs/common"
-
 )
 
+// var now, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:05Z")
+
 func MakeCommit(blockID BlockID, height int64, round int,
-	voteSet *VoteSet, validators []PrivValidator) (*Commit, error) {
+	voteSet *VoteSet, validators []PrivValidator, now time.Time) (*Commit, error) {
 
 	// all sign
 	for i := 0; i < len(validators); i++ {
@@ -29,7 +29,7 @@ func MakeCommit(blockID BlockID, height int64, round int,
 			Round:            round,
 			Type:             PrecommitType,
 			BlockID:          blockID,
-			Timestamp:        tmtime.Now(),
+			Timestamp:        now, //tmtime.Now(),
 		}
 
 		_, err := signAddVote(validators[i], vote, voteSet)
@@ -49,7 +49,7 @@ func signAddVote(privVal PrivValidator, vote *Vote, voteSet *VoteSet) (signed bo
 	return voteSet.AddVote(vote)
 }
 
-func MakeVote(height int64, blockID BlockID, valSet *ValidatorSet, privVal PrivValidator, chainID string) (*Vote, error) {
+func MakeVote(height int64, blockID BlockID, valSet *ValidatorSet, privVal PrivValidator, chainID string, now time.Time) (*Vote, error) {
 	addr := privVal.GetPubKey().Address()
 	idx, _ := valSet.GetByAddress(addr)
 	vote := &Vote{
@@ -57,7 +57,7 @@ func MakeVote(height int64, blockID BlockID, valSet *ValidatorSet, privVal PrivV
 		ValidatorIndex:   idx,
 		Height:           height,
 		Round:            0,
-		Timestamp:        tmtime.Now(),
+		Timestamp:        now, //tmtime.Now(),
 		Type:             PrecommitType,
 		BlockID:          blockID,
 	}
@@ -85,7 +85,6 @@ func MakeBlock(height int64, txs []Tx, lastCommit *Commit, evidence []Evidence) 
 	block.fillHeader()
 	return block
 }
-
 
 // ----- Vote_set test utils -----
 
@@ -171,9 +170,7 @@ func exampleVote(t byte) *Vote {
 	}
 }
 
-
 // ----- Validator set test utils -----
-
 
 func newValidator(address []byte, power int64) *Validator {
 	return &Validator{Address: address, VotingPower: power}
@@ -257,8 +254,6 @@ func valSetTotalProposerPriority(valSet *ValidatorSet) int64 {
 	return sum
 }
 
-
-
 func toTestValList(valList []*Validator) []testVal {
 	testList := make([]testVal, len(valList))
 	for i, val := range valList {
@@ -322,7 +317,6 @@ func (tvals testValsByAddress) Swap(i, j int) {
 	tvals[j] = it
 }
 
-
 // ----- tx test utils -----
 
 func makeTxs(cnt, size int) Txs {
@@ -360,11 +354,11 @@ func makeBlockID(hash []byte, partSetSize int, partSetHash []byte) BlockID {
 
 }
 
-func randCommit() *Commit {
+func randCommit(now time.Time) *Commit {
 	lastID := makeBlockIDRandom()
 	h := int64(3)
 	voteSet, _, vals := randVoteSet(h-1, 1, PrecommitType, 10, 1)
-	commit, err := MakeCommit(lastID, h-1, 1, voteSet, vals)
+	commit, err := MakeCommit(lastID, h-1, 1, voteSet, vals, now)
 	if err != nil {
 		panic(err)
 	}
@@ -373,11 +367,11 @@ func randCommit() *Commit {
 
 // Exposed functions for testing purpose
 
-func ExamplePrevote() *Vote{
+func ExamplePrevote() *Vote {
 	return examplePrevote()
 }
 
-func ExamplePrecommit() *Vote{
+func ExamplePrecommit() *Vote {
 	return examplePrecommit()
 }
 

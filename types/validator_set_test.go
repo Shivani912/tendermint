@@ -263,7 +263,6 @@ func TestProposerSelection3(t *testing.T) {
 	}
 }
 
-
 //-------------------------------------------------------------------
 
 func TestValidatorSetTotalVotingPowerPanicsOnOverflow(t *testing.T) {
@@ -623,7 +622,6 @@ func verifyValidatorSet(t *testing.T, valSet *ValidatorSet) {
 	assert.True(t, dist <= PriorityWindowSizeFactor*tvp,
 		"expected priority distance < %d. Got %d", PriorityWindowSizeFactor*tvp, dist)
 }
-
 
 func executeValSetErrTestCase(t *testing.T, idx int, tt valSetErrTestCase) {
 	// create a new set and apply updates, keeping copies for the checks
@@ -1096,7 +1094,6 @@ func verifyValSetUpdatePriorityOrder(t *testing.T, valSet *ValidatorSet, cfg tes
 }
 
 //---------------------
-
 
 //-------------------------------------
 // Benchmark tests
