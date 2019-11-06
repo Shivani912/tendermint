@@ -4,6 +4,8 @@ import (
 	"time"
 )
 
+// var now, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:05Z")
+
 func MakeCommit(blockID BlockID, height int64, round int,
 	voteSet *VoteSet, validators []PrivValidator, now time.Time) (*Commit, error) {
 

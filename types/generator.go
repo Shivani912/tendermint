@@ -1,8 +1,11 @@
 package types
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVal []PrivValidator, chainID string) *Commit {
+func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVal []PrivValidator, chainID string, now time.Time) *Commit {
 	blockID := &BlockID{
 		Hash: header.Hash(),
 		PartsHeader: PartSetHeader{
@@ -12,7 +15,7 @@ func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVa
 	}
 	voteSet := NewVoteSet(chainID, header.Height, 1, SignedMsgType(byte(PrecommitType)), &valSet)
 
-	commit, err := MakeCommit(*blockID, header.Height, 1, voteSet, privVal)
+	commit, err := MakeCommit(*blockID, header.Height, 1, voteSet, privVal, now)
 	if err != nil {
 		fmt.Println(err)
 	}
