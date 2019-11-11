@@ -206,14 +206,13 @@ func GenerateJSON(testCases *TestCases) {
 	var cdc = amino.NewCodec()
 	cryptoAmino.RegisterAmino(cdc)
 	cdc.RegisterInterface((*types.Evidence)(nil), nil)
-	// cdc.RegisterInterface((*error)(nil), nil)
 
 	b, err := cdc.MarshalJSONIndent(testCases, " ", "	")
 	if err != nil {
 		fmt.Printf("error: %v", err)
 	}
 
-	file := "./test_lite_client.json"
+	file := "./tests/json/test_lite_client.json"
 	_ = ioutil.WriteFile(file, b, 0644)
 
 }

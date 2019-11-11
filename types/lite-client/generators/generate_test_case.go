@@ -8,10 +8,10 @@ import (
 
 var now, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:05Z")
 
-func GenerateTestCase(valsJsonFile string) {
+func GenerateTestCase(jsonValList string) {
 
 	var testCases *TestCases = &TestCases{}
-	valList := GetValList(valsJsonFile)
+	valList := GetValList(jsonValList)
 
 	CaseVerifyValidatorSetOf1(testCases, valList)
 	CaseVerifyValidatorSetOf8(testCases, valList)
