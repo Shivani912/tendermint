@@ -15,7 +15,7 @@ var testCase generator.TestCase
 
 func TestCase(t *testing.T) {
 
-	data := generator.GetJsonFrom("./test_lite_client.json")
+	data := generator.GetJsonFrom("./json/test_lite_client.json")
 
 	var cdc = amino.NewCodec()
 	cryptoAmino.RegisterAmino(cdc)

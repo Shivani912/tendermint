@@ -115,11 +115,13 @@ func updateState(state *st.State, blockID types.BlockID, privVal types.PrivValid
 	}
 
 	if len(privVal) > len(state.Validators.Validators) {
-		for i, pv := range privVal {
-			_, val := state.Validators.GetByAddress(pv.GetPubKey().Address())
+		for i := 0; i < len(privVal); i++ {
+			_, val := state.Validators.GetByAddress(privVal[i].GetPubKey().Address())
 			if val == nil {
 				privVal = append(privVal[:i], privVal[i+1:]...)
+				i = i - 1
 			}
+
 		}
 	}
 
@@ -275,7 +277,7 @@ func GetJsonFrom(file string) []byte {
 	return dat
 }
 
-func GetValList(file string) *ValList {
+func GetValList(file string) ValList {
 	data := GetJsonFrom(file)
 	var valList ValList
 
@@ -289,5 +291,5 @@ func GetValList(file string) *ValList {
 		fmt.Printf("error: %v", er)
 	}
 
-	return &valList
+	return valList
 }
