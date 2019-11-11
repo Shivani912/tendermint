@@ -6,5 +6,5 @@ import (
 
 func main() {
 
-	generators.GenerateTestCase("./val_list.json")
+	generators.GenerateTestCase("./tests/json/val_list.json")
 }
