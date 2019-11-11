@@ -20,17 +20,17 @@ The structure of a test case looks like this:
 }
 ```
 
-- name: it tells which function this case is intended to test
-- description: a brief explanation of the the test case
-- initial: an initial state to begin with, sets the context of the test
-- input: input parameters that creates the test condition, can be an invalid/balid header for example
-- expected_output: in terms of current tests, it tells whether or not to expect an error. It represents an error string and so, where no error is expected, it is empty.
+- **name**: it tells which function this case is intended to test
+- **description**: a brief explanation of the the test case
+- **initial**: an initial state to begin with, sets the context of the test
+- **input**: input parameters that creates the test condition, can be an invalid/balid header for example
+- **expected_output**: in terms of current tests, it tells whether or not to expect an error. It represents an error string and so, where no error is expected, it is empty.
 
 The val_list.json file contains a list of 128 sorted validators and priv_vals to be used by generators.
 
 ### Directory Structure (For Now)
 
-![Directory Structure](img/directory-structure.png)
+<img src="img/directory-structure.png" width="300" alt="Directory Structure">
 
 This will change when the code is merged with the main repo. Will be updated then!
 
