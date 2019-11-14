@@ -30,7 +30,7 @@ type TestCase struct {
 	Description    string       `json:"description"`
 	Initial        Initial      `json:"initial"`
 	Input          []*LiteBlock `json:"input"`
-	ExpectedOutput string       `json:"expected_output"`
+	ExpectedOutput []string     `json:"expected_output"`
 }
 
 type LiteBlock struct {
@@ -236,12 +236,12 @@ func GenerateExpectedOutput(testCase *TestCase) {
 		if i == 0 {
 			e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
 			if e != nil {
-				testCase.ExpectedOutput = e.Error()
+				testCase.ExpectedOutput = append(testCase.ExpectedOutput, e.Error())
 			}
 		} else {
 			e := lite.Verify(testCase.Input[i-1].SignedHeader.Header.ChainID, testCase.Input[i-1].SignedHeader, &testCase.Input[i-1].NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
 			if e != nil {
-				testCase.ExpectedOutput = e.Error()
+				testCase.ExpectedOutput = append(testCase.ExpectedOutput, e.Error())
 			}
 		}
 

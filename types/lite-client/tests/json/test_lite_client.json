@@ -189,7 +189,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -793,7 +793,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -8477,7 +8477,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -9000,7 +9000,9 @@
  					}
  				}
  			],
- 			"expected_output": "expected new header validators () to match those that were supplied (3128D928A81EDA549632784FCE54BB0073F63FDDB37BBF97D16DA35DDDA4C32D)"
+ 			"expected_output": [
+ 				"expected new header validators () to match those that were supplied (3128D928A81EDA549632784FCE54BB0073F63FDDB37BBF97D16DA35DDDA4C32D)"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -9472,7 +9474,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -9958,7 +9960,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -10437,7 +10439,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -11009,7 +11011,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -11488,7 +11490,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -12153,7 +12155,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -12725,7 +12727,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -13297,7 +13299,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -13606,7 +13608,7 @@
  					}
  				}
  			],
- 			"expected_output": ""
+ 			"expected_output": null
  		},
  		{
  			"name": "verify",
@@ -13915,7 +13917,9 @@
  					}
  				}
  			],
- 			"expected_output": "expected our validators (9119FA9ADED96047540185FEEF96430A383152E0530137CB6165666CAB493423) to match those from new header (A6F1A36E8895EC84E86DCD70D04E6D8A014009590CFD3BD4386A753DFCEA6B8E)"
+ 			"expected_output": [
+ 				"expected our validators (9119FA9ADED96047540185FEEF96430A383152E0530137CB6165666CAB493423) to match those from new header (A6F1A36E8895EC84E86DCD70D04E6D8A014009590CFD3BD4386A753DFCEA6B8E)"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -14166,7 +14170,9 @@
  					}
  				}
  			],
- 			"expected_output": "h2.ValidateBasic failed: signedHeader missing commit (precommit votes)"
+ 			"expected_output": [
+ 				"h2.ValidateBasic failed: signedHeader missing commit (precommit votes)"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -14475,7 +14481,9 @@
  					}
  				}
  			],
- 			"expected_output": "h2.ValidateBasic failed: signedHeader commit signs block 77726F6E672068656164657220686173682121, header is block 6F57D5E287C4EF34691234F260FEF11CFDBDD074A25392AAFAF7470D705EA8E4"
+ 			"expected_output": [
+ 				"h2.ValidateBasic failed: signedHeader commit signs block 77726F6E672068656164657220686173682121, header is block 6F57D5E287C4EF34691234F260FEF11CFDBDD074A25392AAFAF7470D705EA8E4"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -14784,7 +14792,9 @@
  					}
  				}
  			],
- 			"expected_output": "invalid commit -- insufficient old voting power: got 0.00, needed more than 100.00"
+ 			"expected_output": [
+ 				"invalid commit -- insufficient old voting power: got 0.00, needed more than 100.00"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -15093,7 +15103,9 @@
  					}
  				}
  			],
- 			"expected_output": "invalid commit -- insufficient old voting power: got 0.00, needed more than 100.00"
+ 			"expected_output": [
+ 				"invalid commit -- insufficient old voting power: got 0.00, needed more than 100.00"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -15402,7 +15414,9 @@
  					}
  				}
  			],
- 			"expected_output": "h2.ValidateBasic failed: commit.ValidateBasic failed during SignedHeader.ValidateBasic: Invalid commit vote. Expected precommit, got 1"
+ 			"expected_output": [
+ 				"h2.ValidateBasic failed: commit.ValidateBasic failed during SignedHeader.ValidateBasic: Invalid commit vote. Expected precommit, got 1"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -15711,7 +15725,9 @@
  					}
  				}
  			],
- 			"expected_output": "h2.ValidateBasic failed: signedHeader header and commit height mismatch: 2 vs 1"
+ 			"expected_output": [
+ 				"h2.ValidateBasic failed: signedHeader header and commit height mismatch: 2 vs 1"
+ 			]
  		},
  		{
  			"name": "verify",
@@ -16020,7 +16036,9 @@
  					}
  				}
  			],
- 			"expected_output": "h2.ValidateBasic failed: commit.ValidateBasic failed during SignedHeader.ValidateBasic: Invalid commit precommit round. Expected 0, got 1"
+ 			"expected_output": [
+ 				"h2.ValidateBasic failed: commit.ValidateBasic failed during SignedHeader.ValidateBasic: Invalid commit precommit round. Expected 0, got 1"
+ 			]
  		}
  	]
  }

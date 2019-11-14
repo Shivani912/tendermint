@@ -43,11 +43,21 @@ func TestCase(t *testing.T) {
 
 func TestVerify(t *testing.T) {
 
-	e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, testCase.Input[0].SignedHeader, &testCase.Input[0].ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
-
-	if e != nil {
-		if e.Error() != testCase.ExpectedOutput {
-			t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, testCase.ExpectedOutput)
+	for i, input := range testCase.Input {
+		if i == 0 {
+			e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
+			if e != nil {
+				if e.Error() != testCase.ExpectedOutput[0] {
+					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, testCase.ExpectedOutput[0])
+				}
+			}
+		} else {
+			e := lite.Verify(testCase.Input[i-1].SignedHeader.Header.ChainID, testCase.Input[i-1].SignedHeader, &testCase.Input[i-1].NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
+			if e != nil {
+				if e.Error() != testCase.ExpectedOutput[i] {
+					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, testCase.ExpectedOutput[i])
+				}
+			}
 		}
 	}
 }
