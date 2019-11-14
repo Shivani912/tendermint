@@ -16,6 +16,10 @@ import (
 )
 
 var genTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
+var now, _ = time.Parse(time.RFC3339, "2019-11-02T15:05:00Z")
+var firstBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
+var secondBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
+var thirdBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
 
 type TestCases struct {
 	TC []TestCase `json:"test_cases"`
@@ -30,8 +34,9 @@ type TestCase struct {
 }
 
 type LiteBlock struct {
-	SignedHeader *types.SignedHeader `json:"signed_header"`
-	ValidatorSet types.ValidatorSet  `json:"validator_set"`
+	SignedHeader     *types.SignedHeader `json:"signed_header"`
+	ValidatorSet     types.ValidatorSet  `json:"validator_set"`
+	NextValidatorSet types.ValidatorSet  `json:"next_validator_set"`
 }
 
 type Initial struct {
@@ -79,7 +84,6 @@ func GenerateFirstBlock(testCase *TestCase, valz []*types.Validator, privVal typ
 	txs := types.GenerateTxs()
 	evidences := types.GenerateEvidences()
 
-	// valSet, newPrivVal := types.RandValidatorSet(numVals, votingPower)
 	valSet := types.NewValidatorSet(valz)
 	state.Validators = valSet
 	state.NextValidators = valSet
@@ -147,7 +151,7 @@ func GenerateInitial(testCase *TestCase, nextValidatorSet types.ValidatorSet, tr
 
 }
 
-func GenerateNextBlockWithNextValsUpdate(testCase *TestCase, state *st.State, privVal types.PrivValidatorsByAddress, lastCommit *types.Commit, newVals []*types.Validator, newPrivVal types.PrivValidatorsByAddress, delete int) types.PrivValidatorsByAddress {
+func GenerateNextBlockWithNextValsUpdate(testCase *TestCase, state *st.State, privVal types.PrivValidatorsByAddress, lastCommit *types.Commit, newVals []*types.Validator, newPrivVal types.PrivValidatorsByAddress, delete int, now time.Time) types.PrivValidatorsByAddress {
 
 	if delete > 0 {
 		for i := 0; i < delete; i++ {
@@ -172,7 +176,8 @@ func GenerateNextBlockWithNextValsUpdate(testCase *TestCase, state *st.State, pr
 			Header: &block.Header,
 			Commit: commit,
 		},
-		ValidatorSet: *state.Validators,
+		ValidatorSet:     *state.Validators.Copy(),
+		NextValidatorSet: *state.NextValidators.Copy(),
 	}
 	testCase.Input = append(testCase.Input, liteBlock)
 	state, uPrivVal := updateState(state, commit.BlockID, privVal, newPrivVal)
@@ -193,7 +198,8 @@ func GenerateNextBlock(state *st.State, testCase *TestCase, privVal types.PrivVa
 			Header: &block.Header,
 			Commit: commit,
 		},
-		ValidatorSet: *state.Validators,
+		ValidatorSet:     *state.Validators.Copy(),
+		NextValidatorSet: *state.NextValidators.Copy(),
 	}
 
 	testCase.Input = append(testCase.Input, liteBlock)
@@ -226,11 +232,21 @@ func GenerateTestNameAndDescription(testCase *TestCase, testName string, descrip
 }
 
 func GenerateExpectedOutput(testCase *TestCase) {
-	e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, testCase.Input[0].SignedHeader, &testCase.Input[0].ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
+	for i, input := range testCase.Input {
+		if i == 0 {
+			e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
+			if e != nil {
+				testCase.ExpectedOutput = e.Error()
+			}
+		} else {
+			e := lite.Verify(testCase.Input[i-1].SignedHeader.Header.ChainID, testCase.Input[i-1].SignedHeader, &testCase.Input[i-1].NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
+			if e != nil {
+				testCase.ExpectedOutput = e.Error()
+			}
+		}
 
-	if e != nil {
-		testCase.ExpectedOutput = e.Error()
 	}
+
 }
 
 func GenerateValList(numVals int, votingPower int64) {
