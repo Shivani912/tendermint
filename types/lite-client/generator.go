@@ -1,10 +1,8 @@
 package main
 
-import (
-	generators "github.com/tendermint/tendermint/types/lite-client/generators"
-)
+import "github.com/tendermint/tendermint/types/lite-client/generator"
 
 func main() {
 
-	generators.GenerateTestCase("./tests/json/val_list.json")
+	generator.GenerateTestCase("./tests/json/val_list.json")
 }

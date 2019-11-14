@@ -7,7 +7,7 @@ import (
 	amino "github.com/tendermint/go-amino"
 	cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	lite "github.com/tendermint/tendermint/lite2"
-	generator "github.com/tendermint/tendermint/types/lite-client/generators"
+	generator "github.com/tendermint/tendermint/types/lite-client/generator"
 )
 
 var cases generator.TestCases
