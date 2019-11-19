@@ -5,34 +5,34 @@ func GenerateTestCase(jsonValList string) {
 	var testCases *TestCases = &TestCases{}
 	valList := GetValList(jsonValList)
 
-	// Verify - ValidatorSet
-	CaseVerifyValidatorSetOf1(testCases, valList)
-	CaseVerifyValidatorSetOf8(testCases, valList)
-	CaseVerifyValidatorSetOf128(testCases, valList)
-	CaseVerifyValidatorSetEmpty(testCases, valList)
+	// // Verify - ValidatorSet
+	// CaseVerifyValidatorSetOf1(testCases, valList)
+	// CaseVerifyValidatorSetOf8(testCases, valList)
+	// CaseVerifyValidatorSetOf128(testCases, valList)
+	// CaseVerifyValidatorSetEmpty(testCases, valList)
 
-	CaseVerifyValidatorSetAddTwiceVals(testCases, valList)
-	CaseVerifyValidatorSetRemoveHalfVals(testCases, valList)
+	// CaseVerifyValidatorSetAddTwiceVals(testCases, valList)
+	// CaseVerifyValidatorSetRemoveHalfVals(testCases, valList)
 
-	valList = GetValList(jsonValList)
-	CaseVerifyValidatorSetChangesOneThird(testCases, valList)
-	valList = GetValList(jsonValList)
-	CaseVerifyValidatorSetChangesHalf(testCases, valList)
-	valList = GetValList(jsonValList)
-	CaseVerifyValidatorSetChangesTwoThirds(testCases, valList)
-	valList = GetValList(jsonValList)
-	CaseVerifyValidatorSetChangesFully(testCases, valList)
-	valList = GetValList(jsonValList)
-	CaseVerifyValidatorSetChangesLessThanOneThird(testCases, valList)
-	valList = GetValList(jsonValList)
-	CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases, valList)
+	// valList = GetValList(jsonValList)
+	// CaseVerifyValidatorSetChangesOneThird(testCases, valList)
+	// valList = GetValList(jsonValList)
+	// CaseVerifyValidatorSetChangesHalf(testCases, valList)
+	// valList = GetValList(jsonValList)
+	// CaseVerifyValidatorSetChangesTwoThirds(testCases, valList)
+	// valList = GetValList(jsonValList)
+	// CaseVerifyValidatorSetChangesFully(testCases, valList)
+	// valList = GetValList(jsonValList)
+	// CaseVerifyValidatorSetChangesLessThanOneThird(testCases, valList)
+	// valList = GetValList(jsonValList)
+	// CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases, valList)
 
-	valList = GetValList(jsonValList)
-	CaseVerifyValidatorSetWrongProposer(testCases, valList)
+	// valList = GetValList(jsonValList)
+	// CaseVerifyValidatorSetWrongProposer(testCases, valList)
 
-	CaseVerifyValidatorSetWrongValidatorSet(testCases, valList)
+	// CaseVerifyValidatorSetWrongValidatorSet(testCases, valList)
 
-	// // Verify - Commit
+	// Verify - Commit
 	CaseVerifyCommitEmpty(testCases, valList)
 	CaseVerifyCommitWrongHeaderHash(testCases, valList)
 	CaseVerifyCommitWrongPartsHeaderCount(testCases, valList)
@@ -40,6 +40,17 @@ func GenerateTestCase(jsonValList string) {
 	CaseVerifyCommitWrongVoteType(testCases, valList)
 	CaseVerifyCommitWrongVoteHeight(testCases, valList)
 	CaseVerifyCommitWrongVoteRound(testCases, valList)
+	CaseVerifyCommitWrongVoteBlockID(testCases, valList)
+	CaseVerifyCommitWrongVoteTimestamp(testCases, valList)
+	CaseVerifyCommitWrongVoteSignature(testCases, valList)
+	CaseVerifyCommitWrongVoteInvalidSignature(testCases, valList)
+	valList = GetValList(jsonValList)
+	CaseVerifyCommitOneThirdValsDontSign(testCases, valList)
+	CaseVerifyCommitLessThanOneThirdValsDontSign(testCases, valList)
+
+	// Verify - Header
+	// CaseVerifyHeaderEmpty(testCases, valList)
+	// CaseVerifyHeaderWrongLastCommitHash(testCases, valList)
 
 	GenerateJSON(testCases)
 }

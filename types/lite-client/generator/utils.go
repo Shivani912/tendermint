@@ -209,6 +209,35 @@ func GenerateNextBlock(state *st.State, testCase *TestCase, privVal types.PrivVa
 
 }
 
+func GenerateNextBlockWithDoubleSign(state *st.State, testCase *TestCase, privVal types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) {
+
+	txs := types.GenerateTxs()
+	evidences := types.GenerateEvidences()
+
+	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, lastCommit, evidences, state.Validators.Proposer.Address)
+
+	wrongVals := state.Validators.Copy()
+	wrongVals.Validators[1] = state.Validators.Validators[0]
+	wrongPrivVal := privVal
+	wrongPrivVal[1] = privVal[0]
+
+	commit := types.GenerateCommit(block.Header, partSet, *wrongVals, wrongPrivVal, state.ChainID, now)
+	liteBlock := &LiteBlock{
+		SignedHeader: &types.SignedHeader{
+			Header: &block.Header,
+			Commit: commit,
+		},
+		ValidatorSet:     *state.Validators.Copy(),
+		NextValidatorSet: *state.NextValidators.Copy(),
+	}
+
+	testCase.Input = append(testCase.Input, liteBlock)
+
+	uState, _ := updateState(state, commit.BlockID, privVal, privVal)
+	state = uState
+
+}
+
 func GenerateJSON(testCases *TestCases) {
 
 	var cdc = amino.NewCodec()
@@ -308,4 +337,14 @@ func GetValList(file string) ValList {
 	}
 
 	return valList
+}
+
+func GenerateGeneralTestCase(testCase *TestCase, valList ValList, numVals int, name string, description string) {
+	vals := valList.ValidatorSet.Validators[:numVals]
+	privVal := valList.PrivVal[:numVals]
+
+	GenerateTestNameAndDescription(testCase, name, description)
+	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
+	GenerateInitial(testCase, *state.Validators, 3*time.Hour, now)
 }
