@@ -8,14 +8,10 @@ import (
 
 func CaseVerifyValidatorSetOf1(testCases *TestCases, valList ValList) {
 	var testCase *TestCase = &TestCase{}
-	GenerateTestNameAndDescription(testCase, "verify", "Case: one lite block, one validator, no error")
 
-	vals := valList.ValidatorSet.Validators[:1]
-	privVal := valList.PrivVal[:1]
-
-	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
+	name := "verify"
+	description := "Case: one lite block, one validator, no error"
+	GenerateGeneralTestCase(testCase, valList, 1, name, description)
 
 	GenerateExpectedOutput(testCase)
 	testCases.TC = append(testCases.TC, *testCase)
@@ -23,28 +19,22 @@ func CaseVerifyValidatorSetOf1(testCases *TestCases, valList ValList) {
 
 func CaseVerifyValidatorSetOf8(testCases *TestCases, valList ValList) {
 	var testCase *TestCase = &TestCase{}
-	GenerateTestNameAndDescription(testCase, "verify", "Case: one lite block, 8 validators, no error")
 
-	vals := valList.ValidatorSet.Validators[:8]
-	privVal := valList.PrivVal[:8]
+	name := "verify"
+	description := "Case: one lite block, 8 validators, no error"
+	GenerateGeneralTestCase(testCase, valList, 8, name, description)
 
-	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
 	GenerateExpectedOutput(testCase)
 	testCases.TC = append(testCases.TC, *testCase)
 }
 
 func CaseVerifyValidatorSetOf128(testCases *TestCases, valList ValList) {
 	var testCase *TestCase = &TestCase{}
-	GenerateTestNameAndDescription(testCase, "verify", "Case: one lite block, 128 validators, no error")
 
-	vals := valList.ValidatorSet.Validators[:128]
-	privVal := valList.PrivVal[:128]
+	name := "verify"
+	description := "Case: one lite block, 128 validators, no error"
+	GenerateGeneralTestCase(testCase, valList, 128, name, description)
 
-	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
 	GenerateExpectedOutput(testCase)
 	testCases.TC = append(testCases.TC, *testCase)
 
@@ -52,14 +42,11 @@ func CaseVerifyValidatorSetOf128(testCases *TestCases, valList ValList) {
 
 func CaseVerifyValidatorSetEmpty(testCases *TestCases, valList ValList) {
 	var testCase *TestCase = &TestCase{}
-	GenerateTestNameAndDescription(testCase, "verify", "Case: one lite block, empty validator set, expects error")
 
-	vals := valList.ValidatorSet.Validators[:8]
-	privVal := valList.PrivVal[:8]
+	name := "verify"
+	description := "Case: one lite block, empty validator set, expects error"
+	GenerateGeneralTestCase(testCase, valList, 2, name, description)
 
-	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
 	testCase.Input[0].ValidatorSet = *types.NewValidatorSet(nil)
 	GenerateExpectedOutput(testCase)
 	testCases.TC = append(testCases.TC, *testCase)
@@ -93,9 +80,6 @@ func CaseVerifyValidatorSetRemoveHalfVals(testCases *TestCases, valList ValList)
 	privVal := valList.PrivVal[:4]
 
 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-
-	// newVals := valList.ValidatorSet.Validators[2:4]
-	// newPrivVal := valList.PrivVal[2:4]
 
 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, nil, nil, 2, secondBlockTime)
 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
@@ -232,8 +216,6 @@ func CaseVerifyValidatorSetWrongProposer(testCases *TestCases, valList ValList) 
 	vs := *state.Validators.Copy()
 	state.Validators.IncrementProposerPriority(1)
 
-	// fmt.Printf("\nvs: %+v, hash: %v \nvs: %+v, hash: %v", vs, vs.Hash(), state.Validators, state.Validators.Hash())
-
 	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
 	GenerateInitial(testCase, vs, 3*time.Hour, now)
 
@@ -256,8 +238,6 @@ func CaseVerifyValidatorSetWrongValidatorSet(testCases *TestCases, valList ValLi
 	wrongValSet := types.NewValidatorSet(wrongVals)
 	state.Validators = wrongValSet
 	state.NextValidators = wrongValSet
-
-	// fmt.Printf("\nvs: %+v, hash: %v \nvs: %+v, hash: %v", vs, vs.Hash(), state.Validators, state.Validators.Hash())
 
 	GenerateNextBlock(state, testCase, wrongPrivVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
 	GenerateInitial(testCase, vs, 3*time.Hour, now)
