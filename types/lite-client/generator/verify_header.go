@@ -172,3 +172,39 @@ func CaseVerifyHeaderWrongConsensusHash(testCases *TestCases, valList ValList) {
 	GenerateExpectedOutput(testCase)
 	testCases.TC = append(testCases.TC, *testCase)
 }
+
+func CaseVerifyHeaderWrongAppHash(testCases *TestCases, valList ValList) {
+	var testCase *TestCase = &TestCase{}
+
+	name := "verify"
+	description := "Case: one lite block, wrong app hash in header, with error"
+
+	GenerateGeneralTestCase(testCase, valList, 1, name, description)
+	testCase.Input[0].SignedHeader.Header.AppHash = []byte("wrong app hash")
+	GenerateExpectedOutput(testCase)
+	testCases.TC = append(testCases.TC, *testCase)
+}
+
+func CaseVerifyHeaderWrongEvidenceHash(testCases *TestCases, valList ValList) {
+	var testCase *TestCase = &TestCase{}
+
+	name := "verify"
+	description := "Case: one lite block, wrong evidence hash in header, with error"
+
+	GenerateGeneralTestCase(testCase, valList, 1, name, description)
+	testCase.Input[0].SignedHeader.Header.EvidenceHash = []byte("wrong evidence hash")
+	GenerateExpectedOutput(testCase)
+	testCases.TC = append(testCases.TC, *testCase)
+}
+
+func CaseVerifyHeaderWrongProposerAddress(testCases *TestCases, valList ValList) {
+	var testCase *TestCase = &TestCase{}
+
+	name := "verify"
+	description := "Case: one lite block, wrong proposer address in header, with error"
+
+	GenerateGeneralTestCase(testCase, valList, 1, name, description)
+	testCase.Input[0].SignedHeader.Header.ProposerAddress = []byte("wrong proposer address")
+	GenerateExpectedOutput(testCase)
+	testCases.TC = append(testCases.TC, *testCase)
+}
