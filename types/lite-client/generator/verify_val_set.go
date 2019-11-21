@@ -9,6 +9,8 @@ import (
 func CaseVerifyValidatorSetOf1(testCases *TestCases, valList ValList) {
 	var testCase *TestCase = &TestCase{}
 
+	// lets have a `testNameVerify` constant that we can define globally once and use for all these
+	// instead of redefining this var each time
 	name := "verify"
 	description := "Case: one lite block, one validator, no error"
 	GenerateGeneralTestCase(testCase, valList, 1, name, description)

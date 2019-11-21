@@ -1,0 +1,19 @@
+
+- break up the JSON test file into multiple files according to categories of the kind of functionality being tested ...
+
+- we need standard error types rather than comparing strings
+    - https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully
+
+- let's try to separate changes to the code from the tests so the changes can be merged independently ...
+
+- can we do better than the C-style passing a mutable pointer to be populated?
+
+- would things be simpler if we jsut always passed around all the priv vals and fetched teh ones we need when we needd them ?
+
+- can we deduplicate *all* the ValidatorSetChangesXxx functions (ie. they're all the same except for the numbers ... )
+
+
+
+Notes for Shivani:
+- Read Dave Cheney's blog
+- https://peter.bourgon.org/go-for-industrial-programming/
