@@ -14,6 +14,7 @@ func GenerateTestCase(jsonValList string) {
 	CaseVerifyValidatorSetAddTwiceVals(testCases, valList)
 	CaseVerifyValidatorSetRemoveHalfVals(testCases, valList)
 
+	// TODO: let's avoid this reloading by copying in the CaseVerifyXXX where necessary
 	valList = GetValList(jsonValList)
 	CaseVerifyValidatorSetChangesOneThird(testCases, valList)
 	valList = GetValList(jsonValList)
@@ -30,6 +31,10 @@ func GenerateTestCase(jsonValList string) {
 	valList = GetValList(jsonValList)
 	CaseVerifyValidatorSetWrongProposer(testCases, valList)
 
+	// TODO: how about some variations on the wrong validator set:
+	// - replace a validator
+	// - change a validators power
+	// - different validator set
 	CaseVerifyValidatorSetWrongValidatorSet(testCases, valList)
 
 	// Verify - Commit
@@ -45,8 +50,12 @@ func GenerateTestCase(jsonValList string) {
 	CaseVerifyCommitWrongVoteSignature(testCases, valList)
 	CaseVerifyCommitWrongVoteInvalidSignature(testCases, valList)
 	valList = GetValList(jsonValList)
-	CaseVerifyCommitOneThirdValsDontSign(testCases, valList)
-	CaseVerifyCommitLessThanOneThirdValsDontSign(testCases, valList)
+
+	// TODO: more cases
+	// - commits from wrong validators
+	// We need to come back to this after the commit structure changes
+	CaseVerifyCommitOneThirdValsDontSign(testCases, valList)         // error
+	CaseVerifyCommitLessThanOneThirdValsDontSign(testCases, valList) // not an error
 
 	// Verify - Header
 	CaseVerifyHeaderEmpty(testCases, valList)

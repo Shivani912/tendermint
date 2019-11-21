@@ -77,6 +77,8 @@ func NewState() *st.State {
 	}
 }
 
+// TODO: all funcs need comments please!
+// This should also return the signedHeader instead of taking the testCase ...
 func GenerateFirstBlock(testCase *TestCase, valz []*types.Validator, privVal types.PrivValidatorsByAddress, now time.Time) *st.State {
 
 	state := NewState()
@@ -85,7 +87,7 @@ func GenerateFirstBlock(testCase *TestCase, valz []*types.Validator, privVal typ
 	evidences := types.GenerateEvidences()
 
 	valSet := types.NewValidatorSet(valz)
-	state.Validators = valSet
+	state.Validators = valSet // TODO: can we pass this into NewState instead ?
 	state.NextValidators = valSet
 
 	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, nil, evidences, state.Validators.Proposer.Address) // nil for last commit
@@ -185,6 +187,7 @@ func GenerateNextBlockWithNextValsUpdate(testCase *TestCase, state *st.State, pr
 	return uPrivVal
 }
 
+// TODO: this should return the input and the new state instead of taking the testCase and mutating the state
 func GenerateNextBlock(state *st.State, testCase *TestCase, privVal types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) {
 
 	txs := types.GenerateTxs()
@@ -260,6 +263,9 @@ func GenerateTestNameAndDescription(testCase *TestCase, testName string, descrip
 	testCase.Description = description
 }
 
+// TODO: this function should probably disappear. We should specify the expected errors manually and using
+// some standardized error system
+// This will require some refactoring of the Verify function itself to return better error types ("Sentinals")
 func GenerateExpectedOutput(testCase *TestCase) {
 	for i, input := range testCase.Input {
 		if i == 0 {
@@ -339,6 +345,9 @@ func GetValList(file string) ValList {
 	return valList
 }
 
+// TODO: should return initial and input instead of taking a testCase and populating it.
+// Then it also doesn't need to take name and description
+// Then we can change the name to GenerateInitialAndInput or something ...
 func GenerateGeneralTestCase(testCase *TestCase, valList ValList, numVals int, name string, description string) {
 	vals := valList.ValidatorSet.Validators[:numVals]
 	privVal := valList.PrivVal[:numVals]
@@ -347,4 +356,15 @@ func GenerateGeneralTestCase(testCase *TestCase, valList ValList, numVals int, n
 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
 	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
 	GenerateInitial(testCase, *state.Validators, 3*time.Hour, now)
+
+	/* TODO make the above more like below. Should be more functional, and less C-like pointer magic voodoo :P
+	// can remove: GenerateTestNameAndDescription(testCase, name, description)
+	signedHeader, state := GenerateFirstBlock(vals, privVal, firstBlockTime)
+	input, state := GenerateNextBlock(state, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
+	// then GenerateInitial should take everything necessary to create an Initial struct and return it
+	//   initial := GenerateInitial(...)
+	// also the trustingPeriod should be a variable (can be a default constant global for now ...)
+
+	return initial, input
+	*/
 }

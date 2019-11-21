@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// TODO: why is this stuff in types? can it just be part of the lite-client/generator/utils.go?
 func GenerateCommit(header Header, partSet *PartSet, valSet ValidatorSet, privVal []PrivValidator, chainID string, now time.Time) *Commit {
 	blockID := &BlockID{
 		Hash: header.Hash(),

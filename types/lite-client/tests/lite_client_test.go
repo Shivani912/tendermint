@@ -10,6 +10,7 @@ import (
 	generator "github.com/tendermint/tendermint/types/lite-client/generator"
 )
 
+// TODO: deal with these globals
 var cases generator.TestCases
 var testCase generator.TestCase
 
@@ -42,6 +43,13 @@ func TestCase(t *testing.T) {
 }
 
 func TestVerify(t *testing.T) {
+
+	// TODO: clean up the arguments to these functions, eg:
+	// signedHeader := testCase.Initial.SignedHeader
+	// and then use signedHeader directly as necessary, etc.
+	// Otherwise it's hard to read
+
+	// TODO: deduplicate this logic by having some variable to refer to the latest trusted state.
 
 	for i, input := range testCase.Input {
 		if i == 0 {
