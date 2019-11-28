@@ -4,5 +4,6 @@ import "github.com/tendermint/tendermint/types/lite-client/generator"
 
 func main() {
 
-	generator.GenerateTestCase("./tests/json/val_list.json")
+	// generator.GenerateValList(128, 50)
+	generator.GenerateTestCases("./tests/json/val_list.json")
 }
