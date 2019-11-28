@@ -10,37 +10,7 @@ import (
 	generator "github.com/tendermint/tendermint/types/lite-client/generator"
 )
 
-// TODO: deal with these globals
-var cases generator.TestCases
-var testCase generator.TestCase
-
-func TestCase(t *testing.T) {
-
-	data := generator.GetJsonFrom("./json/test_lite_client.json")
-
-	var cdc = amino.NewCodec()
-	cryptoAmino.RegisterAmino(cdc)
-
-	er := cdc.UnmarshalJSON(data, &cases)
-	if er != nil {
-		fmt.Printf("error: %v", er)
-	}
-
-	for _, tc := range cases.TC {
-
-		testCase = tc
-
-		switch testCase.Test {
-
-		case "verify":
-			t.Run("verify", TestVerify)
-		default:
-			fmt.Println("No such test found: ", testCase.Test)
-
-		}
-	}
-
-}
+// DONE: deal with these globals
 
 func TestVerify(t *testing.T) {
 
@@ -51,20 +21,39 @@ func TestVerify(t *testing.T) {
 
 	// TODO: deduplicate this logic by having some variable to refer to the latest trusted state.
 
-	for i, input := range testCase.Input {
-		if i == 0 {
-			e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
-			if e != nil {
-				if e.Error() != testCase.ExpectedOutput[0] {
-					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, testCase.ExpectedOutput[0])
-				}
-			}
-		} else {
-			e := lite.Verify(testCase.Input[i-1].SignedHeader.Header.ChainID, testCase.Input[i-1].SignedHeader, &testCase.Input[i-1].NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
-			if e != nil {
-				if e.Error() != testCase.ExpectedOutput[i] {
-					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, testCase.ExpectedOutput[i])
-				}
+	data := generator.ReadFile("./json/test_lite_client.json")
+
+	cdc := amino.NewCodec()
+	cryptoAmino.RegisterAmino(cdc)
+
+	var testCases generator.TestCases
+	err := cdc.UnmarshalJSON(data, &testCases)
+	if err != nil {
+		fmt.Printf("error: %v", err)
+	}
+
+	for _, testCase := range testCases.TC {
+
+		chainID := testCase.Initial.SignedHeader.Header.ChainID
+		trustedSignedHeader := &testCase.Initial.SignedHeader
+		trustedNextVals := &testCase.Initial.NextValidatorSet
+		trustingPeriod := testCase.Initial.TrustingPeriod
+		now := testCase.Initial.Now
+		trustLevel := lite.DefaultTrustLevel
+		expectedOutput := testCase.ExpectedOutput
+		expectsError := expectedOutput == "error"
+
+		for _, input := range testCase.Input {
+
+			newSignedHeader := &input.SignedHeader
+			newVals := &input.ValidatorSet
+
+			e := lite.Verify(chainID, trustedSignedHeader, trustedNextVals, newSignedHeader, newVals, trustingPeriod, now, trustLevel)
+			err := e != nil
+
+			if (err && !expectsError) || (!err && expectsError) {
+				t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, expectedOutput)
+
 			}
 		}
 	}

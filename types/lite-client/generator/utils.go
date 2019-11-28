@@ -7,7 +7,6 @@ import (
 	"sort"
 	"time"
 
-	lite "github.com/tendermint/tendermint/lite2"
 	"github.com/tendermint/tendermint/types"
 
 	amino "github.com/tendermint/go-amino"
@@ -15,43 +14,52 @@ import (
 	st "github.com/tendermint/tendermint/state"
 )
 
-var genTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
-var now, _ = time.Parse(time.RFC3339, "2019-11-02T15:05:00Z")
-var firstBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
-var secondBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
-var thirdBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
+var (
+	genTime, _            = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
+	now, _                = time.Parse(time.RFC3339, "2019-11-02T15:05:00Z")
+	firstBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
+	secondBlockTime, _    = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
+	thirdBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
+	trustingPeriod        = 3 * time.Hour
+	testName              = "verify"
+	expectedOutputNoError = "no error"
+	expectedOutputError   = "error"
+)
 
 type TestCases struct {
 	TC []TestCase `json:"test_cases"`
 }
 
 type TestCase struct {
-	Test           string       `json:"name"`
-	Description    string       `json:"description"`
-	Initial        Initial      `json:"initial"`
-	Input          []*LiteBlock `json:"input"`
-	ExpectedOutput []string     `json:"expected_output"`
+	TestName       string      `json:"test_name"`
+	Description    string      `json:"description"`
+	Initial        Initial     `json:"initial"`
+	Input          []LiteBlock `json:"input"`
+	ExpectedOutput string      `json:"expected_output"`
 }
 
 type LiteBlock struct {
-	SignedHeader     *types.SignedHeader `json:"signed_header"`
-	ValidatorSet     types.ValidatorSet  `json:"validator_set"`
-	NextValidatorSet types.ValidatorSet  `json:"next_validator_set"`
+	SignedHeader     types.SignedHeader `json:"signed_header"`
+	ValidatorSet     types.ValidatorSet `json:"validator_set"`
+	NextValidatorSet types.ValidatorSet `json:"next_validator_set"`
 }
 
 type Initial struct {
-	SignedHeader     *types.SignedHeader `json:"signed_header"`
-	NextValidatorSet types.ValidatorSet  `json:"next_validator_set"`
-	TrustingPeriod   time.Duration       `json:"trusting_period"`
-	Now              time.Time           `json:"now"`
+	SignedHeader     types.SignedHeader `json:"signed_header"`
+	NextValidatorSet types.ValidatorSet `json:"next_validator_set"`
+	TrustingPeriod   time.Duration      `json:"trusting_period"`
+	Now              time.Time          `json:"now"`
 }
 
 type ValList struct {
-	ValidatorSet types.ValidatorSet            `json:"validator_set"`
-	PrivVal      types.PrivValidatorsByAddress `json:"priv_val"`
+	Validators []*types.Validator            `json:"validators"`
+	PrivVals   types.PrivValidatorsByAddress `json:"priv_val"`
 }
 
-func NewState() *st.State {
+// NewState is used to initiate a state that will be used and manipulated
+// by functions to create blocks for the "simulated" blockchain
+// It creates an INITIAL state with the given parameters
+func NewState(chainId string, valSet *types.ValidatorSet) st.State {
 
 	consensusParams := types.ConsensusParams{
 		Block:     types.DefaultBlockParams(),
@@ -59,14 +67,14 @@ func NewState() *st.State {
 		Validator: types.DefaultValidatorParams(),
 	}
 
-	return &st.State{
-		ChainID:         "test-chain-01",
+	return st.State{
+		ChainID:         chainId,
 		LastBlockHeight: 0,
 		LastBlockID:     types.BlockID{},
 		LastBlockTime:   genTime,
 
-		NextValidators:              types.NewValidatorSet(nil),
-		Validators:                  types.NewValidatorSet(nil),
+		NextValidators:              valSet,
+		Validators:                  valSet,
 		LastValidators:              types.NewValidatorSet(nil),
 		LastHeightValidatorsChanged: 1,
 
@@ -78,66 +86,79 @@ func NewState() *st.State {
 }
 
 // TODO: all funcs need comments please!
-// This should also return the signedHeader instead of taking the testCase ...
-func GenerateFirstBlock(testCase *TestCase, valz []*types.Validator, privVal types.PrivValidatorsByAddress, now time.Time) *st.State {
 
-	state := NewState()
+// DONE -> This should also return the signedHeader instead of taking the testCase ...
+// GenerateFirstBlock creates the first block of the chain
+// with the given list of validators and timestamp
+// Thus, It also calls the NewState() to initialize the state
+// Returns the signedHeader and state after the first block is created
+func GenerateFirstBlock(valList ValList, numOfValz int, now time.Time) (types.SignedHeader, st.State, types.PrivValidatorsByAddress) {
 
-	txs := types.GenerateTxs()
-	evidences := types.GenerateEvidences()
+	valz := valList.Validators[:numOfValz]
+	privVals := valList.PrivVals[:numOfValz]
 
 	valSet := types.NewValidatorSet(valz)
-	state.Validators = valSet // TODO: can we pass this into NewState instead ?
-	state.NextValidators = valSet
+	state := NewState("test-chain-01", valSet)
 
-	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, nil, evidences, state.Validators.Proposer.Address) // nil for last commit
+	txs := GenerateTxs()
+	evidences := GenerateEvidences()
+	lbh := state.LastBlockHeight + 1
+	proposer := state.Validators.Proposer.Address
 
-	commit := types.GenerateCommit(block.Header, partSet, *state.Validators, privVal, state.ChainID, now)
+	// first block has a nil last commit
+	block, partSet := state.MakeBlock(lbh, txs, nil, evidences, proposer)
 
-	uState, _ := updateState(state, commit.BlockID, privVal, nil)
+	commit := GenerateCommit(block.Header, partSet, state.Validators, privVals, state.ChainID, now)
 
-	initial := Initial{
-		SignedHeader: &types.SignedHeader{
-			Header: &block.Header,
-			Commit: commit,
-		},
+	state, privVals = updateState(state, commit.BlockID, privVals, nil)
+
+	signedHeader := types.SignedHeader{
+		Header: &block.Header,
+		Commit: commit,
 	}
-	testCase.Initial = initial
 
-	return uState
+	return signedHeader, state, privVals
 }
 
-func updateState(state *st.State, blockID types.BlockID, privVal types.PrivValidatorsByAddress, newPrivVal types.PrivValidatorsByAddress) (*st.State, types.PrivValidatorsByAddress) {
+// Called after creating each block to update the validator set, proposer,
+// last block id, privVals etc.
+// In case of privVals, it adds the new ones to the list
+// and performs a sort operation on it.
+func updateState(state st.State, blockID types.BlockID, privVals types.PrivValidatorsByAddress, newPrivVal types.PrivValidatorsByAddress) (st.State, types.PrivValidatorsByAddress) {
 	state.LastBlockHeight += 1
 	state.LastValidators = state.Validators.Copy()
 	state.Validators = state.NextValidators.Copy()
 	state.Validators.IncrementProposerPriority(1)
 	state.LastBlockID = blockID
 
+	// Adds newPrivVals if they are not already present in privVals
 	for _, npv := range newPrivVal {
-		if !Contains(privVal, npv) {
-			privVal = append(privVal, npv)
+		if !Contains(privVals, npv) {
+			privVals = append(privVals, npv)
 		}
 	}
 
-	if len(privVal) > len(state.Validators.Validators) {
-		for i := 0; i < len(privVal); i++ {
-			_, val := state.Validators.GetByAddress(privVal[i].GetPubKey().Address())
+	// Checks if a validator has been removed from the set
+	// If so, removes it from privVals too
+	if len(privVals) > len(state.Validators.Validators) {
+		for i := 0; i < len(privVals); i++ {
+			_, val := state.Validators.GetByAddress(privVals[i].GetPubKey().Address())
 			if val == nil {
-				privVal = append(privVal[:i], privVal[i+1:]...)
+				// removing the privVal when no corresponding entry found in the validator set
+				privVals = append(privVals[:i], privVals[i+1:]...)
 				i = i - 1
 			}
-
 		}
 	}
 
-	sort.Sort(privVal)
+	sort.Sort(privVals)
 
-	return state, privVal
+	return state, privVals
 }
 
-func Contains(privVal types.PrivValidatorsByAddress, npv types.PrivValidator) bool {
-	for _, n := range privVal {
+// Checks if privVals contain the privVal - used by updateState()
+func Contains(privVals types.PrivValidatorsByAddress, npv types.PrivValidator) bool {
+	for _, n := range privVals {
 		if npv == n {
 			return true
 		}
@@ -145,16 +166,52 @@ func Contains(privVal types.PrivValidatorsByAddress, npv types.PrivValidator) bo
 	return false
 }
 
-func GenerateInitial(testCase *TestCase, nextValidatorSet types.ValidatorSet, trustingPeriod time.Duration, now time.Time) {
+// Builds the Initial struct with given parameters
+func GenerateInitial(signedHeader types.SignedHeader, nextValidatorSet types.ValidatorSet, trustingPeriod time.Duration, now time.Time) Initial {
 
-	testCase.Initial.NextValidatorSet = nextValidatorSet
-	testCase.Initial.TrustingPeriod = trustingPeriod
-	testCase.Initial.Now = now
+	return Initial{
+		SignedHeader:     signedHeader,
+		NextValidatorSet: nextValidatorSet,
+		TrustingPeriod:   trustingPeriod,
+		Now:              now,
+	}
+}
+
+// This one generates a "next" block,
+// i.e. given the first block, this function can be used to build up successive blocks
+// DONE: this should return the input and the new state instead of taking the testCase and mutating the state
+func GenerateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) (LiteBlock, st.State) {
+
+	txs := GenerateTxs()
+	evidences := GenerateEvidences()
+	lbh := state.LastBlockHeight + 1
+	proposer := state.Validators.Proposer.Address
+
+	block, partSet := state.MakeBlock(lbh, txs, lastCommit, evidences, proposer)
+
+	commit := GenerateCommit(block.Header, partSet, state.Validators, privVals, state.ChainID, now)
+	liteBlock := LiteBlock{
+		SignedHeader: types.SignedHeader{
+			Header: &block.Header,
+			Commit: commit,
+		},
+		ValidatorSet:     *state.Validators.Copy(),     // dereferencing pointer
+		NextValidatorSet: *state.NextValidators.Copy(), // dereferencing pointer
+	}
+
+	state, _ = updateState(state, commit.BlockID, privVals, nil)
+	return liteBlock, state
 
 }
 
-func GenerateNextBlockWithNextValsUpdate(testCase *TestCase, state *st.State, privVal types.PrivValidatorsByAddress, lastCommit *types.Commit, newVals []*types.Validator, newPrivVal types.PrivValidatorsByAddress, delete int, now time.Time) types.PrivValidatorsByAddress {
+// Similar to GenerateNextBlock
+// It also takes in new validators and privVals to be added to the NextValidatorSet
+// Calls the UpdateWithChangeSet function on state.NextValidatorSet for the same
+// Also, you can specify the number of vals to be deleted from it
+func GenerateNextBlockWithNextValsUpdate(state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, valList ValList, startIdx int, endIdx int, delete int, now time.Time) (LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
+	newVals := valList.Validators[startIdx:endIdx]
+	newPrivVals := valList.PrivVals[startIdx:endIdx]
 	if delete > 0 {
 		for i := 0; i < delete; i++ {
 			state.NextValidators.Validators[i].VotingPower = 0
@@ -165,83 +222,32 @@ func GenerateNextBlockWithNextValsUpdate(testCase *TestCase, state *st.State, pr
 	if err != nil {
 		fmt.Println(err)
 	}
-	state.NextValidators.IncrementProposerPriority(1)
+	// state.NextValidators.IncrementProposerPriority(1)
 
-	txs := types.GenerateTxs()
-	evidences := types.GenerateEvidences()
+	txs := GenerateTxs()
+	evidences := GenerateEvidences()
+	lbh := state.LastBlockHeight + 1
+	proposer := state.Validators.Proposer.Address
 
-	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, lastCommit, evidences, state.Validators.Proposer.Address)
-	commit := types.GenerateCommit(block.Header, partSet, *state.Validators, privVal, state.ChainID, now)
+	block, partSet := state.MakeBlock(lbh, txs, lastCommit, evidences, proposer)
+	commit := GenerateCommit(block.Header, partSet, state.Validators, privVals, state.ChainID, now)
 
-	liteBlock := &LiteBlock{
-		SignedHeader: &types.SignedHeader{
+	liteBlock := LiteBlock{
+		SignedHeader: types.SignedHeader{
 			Header: &block.Header,
 			Commit: commit,
 		},
-		ValidatorSet:     *state.Validators.Copy(),
-		NextValidatorSet: *state.NextValidators.Copy(),
+		ValidatorSet:     *state.Validators.Copy(),     // dereferencing pointer
+		NextValidatorSet: *state.NextValidators.Copy(), // dereferencing pointer
 	}
-	testCase.Input = append(testCase.Input, liteBlock)
-	state, uPrivVal := updateState(state, commit.BlockID, privVal, newPrivVal)
+	state, newPrivVals = updateState(state, commit.BlockID, privVals, newPrivVals)
 
-	return uPrivVal
+	return liteBlock, state, newPrivVals
 }
 
-// TODO: this should return the input and the new state instead of taking the testCase and mutating the state
-func GenerateNextBlock(state *st.State, testCase *TestCase, privVal types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) {
-
-	txs := types.GenerateTxs()
-	evidences := types.GenerateEvidences()
-
-	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, lastCommit, evidences, state.Validators.Proposer.Address)
-
-	commit := types.GenerateCommit(block.Header, partSet, *state.Validators, privVal, state.ChainID, now)
-	liteBlock := &LiteBlock{
-		SignedHeader: &types.SignedHeader{
-			Header: &block.Header,
-			Commit: commit,
-		},
-		ValidatorSet:     *state.Validators.Copy(),
-		NextValidatorSet: *state.NextValidators.Copy(),
-	}
-
-	testCase.Input = append(testCase.Input, liteBlock)
-
-	uState, _ := updateState(state, commit.BlockID, privVal, privVal)
-	state = uState
-
-}
-
-func GenerateNextBlockWithDoubleSign(state *st.State, testCase *TestCase, privVal types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) {
-
-	txs := types.GenerateTxs()
-	evidences := types.GenerateEvidences()
-
-	block, partSet := state.MakeBlock(state.LastBlockHeight+1, txs, lastCommit, evidences, state.Validators.Proposer.Address)
-
-	wrongVals := state.Validators.Copy()
-	wrongVals.Validators[1] = state.Validators.Validators[0]
-	wrongPrivVal := privVal
-	wrongPrivVal[1] = privVal[0]
-
-	commit := types.GenerateCommit(block.Header, partSet, *wrongVals, wrongPrivVal, state.ChainID, now)
-	liteBlock := &LiteBlock{
-		SignedHeader: &types.SignedHeader{
-			Header: &block.Header,
-			Commit: commit,
-		},
-		ValidatorSet:     *state.Validators.Copy(),
-		NextValidatorSet: *state.NextValidators.Copy(),
-	}
-
-	testCase.Input = append(testCase.Input, liteBlock)
-
-	uState, _ := updateState(state, commit.BlockID, privVal, privVal)
-	state = uState
-
-}
-
-func GenerateJSON(testCases *TestCases) {
+// Generates the JSON for the given testCase type.
+// The ouput is saved under the specified file parameter
+func GenerateJSON(testCases *TestCases, file string) {
 
 	var cdc = amino.NewCodec()
 	cryptoAmino.RegisterAmino(cdc)
@@ -252,45 +258,34 @@ func GenerateJSON(testCases *TestCases) {
 		fmt.Printf("error: %v", err)
 	}
 
-	file := "./tests/json/test_lite_client.json"
 	_ = ioutil.WriteFile(file, b, 0644)
 
 }
 
-func GenerateTestNameAndDescription(testCase *TestCase, testName string, description string) {
-
-	testCase.Test = testName
-	testCase.Description = description
+// Copies over the parameters to the TestCase struct and returns it
+func GenerateTestCase(testName string, description string, initial Initial, input []LiteBlock, expectedOutput string) TestCase {
+	return TestCase{
+		TestName:       testName,
+		Description:    description,
+		Initial:        initial,
+		Input:          input,
+		ExpectedOutput: expectedOutput,
+	}
 }
 
-// TODO: this function should probably disappear. We should specify the expected errors manually and using
+// DONE: this function (GenerateExpectedOutput) should probably disappear. We should specify the expected errors manually and using
 // some standardized error system
 // This will require some refactoring of the Verify function itself to return better error types ("Sentinals")
-func GenerateExpectedOutput(testCase *TestCase) {
-	for i, input := range testCase.Input {
-		if i == 0 {
-			e := lite.Verify(testCase.Initial.SignedHeader.Header.ChainID, testCase.Initial.SignedHeader, &testCase.Initial.NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
-			if e != nil {
-				testCase.ExpectedOutput = append(testCase.ExpectedOutput, e.Error())
-			}
-		} else {
-			e := lite.Verify(testCase.Input[i-1].SignedHeader.Header.ChainID, testCase.Input[i-1].SignedHeader, &testCase.Input[i-1].NextValidatorSet, input.SignedHeader, &input.ValidatorSet, testCase.Initial.TrustingPeriod, testCase.Initial.Now, lite.DefaultTrustLevel)
-			if e != nil {
-				testCase.ExpectedOutput = append(testCase.ExpectedOutput, e.Error())
-			}
-		}
 
-	}
-
-}
-
+// Produces a val_list.json file which contains a list validators and privVals
+// of given number abd voting power
 func GenerateValList(numVals int, votingPower int64) {
 
 	valSet, newPrivVal := types.RandValidatorSet(numVals, votingPower)
 	sort.Sort(types.ValidatorsByAddress(valSet.Validators))
 	valList := &ValList{
-		ValidatorSet: *valSet,
-		PrivVal:      types.PrivValidatorsByAddress(newPrivVal),
+		Validators: valSet.Validators,
+		PrivVals:   types.PrivValidatorsByAddress(newPrivVal),
 	}
 
 	var cdc = amino.NewCodec()
@@ -311,7 +306,9 @@ func GenerateValList(numVals int, votingPower int64) {
 	}
 }
 
-func GetJsonFrom(file string) []byte {
+// ReadFile returns the byte slice of the content in the given file
+// "file" parameter is the path to the file to be read
+func ReadFile(file string) []byte {
 	jsonFile, err := os.Open(file)
 	if err != nil {
 		panic(err)
@@ -328,8 +325,11 @@ func GetJsonFrom(file string) []byte {
 	return dat
 }
 
+// GetValList reads the validators and privals list in the file
+// unmarshals it to ValList struct
+// "file" parameter specifies the path to the val_list.json file
 func GetValList(file string) ValList {
-	data := GetJsonFrom(file)
+	data := ReadFile(file)
 	var valList ValList
 
 	var cdc = amino.NewCodec()
@@ -348,16 +348,18 @@ func GetValList(file string) ValList {
 // TODO: should return initial and input instead of taking a testCase and populating it.
 // Then it also doesn't need to take name and description
 // Then we can change the name to GenerateInitialAndInput or something ...
-func GenerateGeneralTestCase(testCase *TestCase, valList ValList, numVals int, name string, description string) {
-	vals := valList.ValidatorSet.Validators[:numVals]
-	privVal := valList.PrivVal[:numVals]
+func GenerateGeneralTestCase(valList ValList, numOfVals int, description string, expectedOutput string) TestCase {
 
-	GenerateTestNameAndDescription(testCase, name, description)
-	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-	GenerateInitial(testCase, *state.Validators, 3*time.Hour, now)
+	var input []LiteBlock
+	signedHeader, state, privVals := GenerateFirstBlock(valList, numOfVals, firstBlockTime)
+	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+	liteBlock, state := GenerateNextBlock(state, privVals, signedHeader.Commit, secondBlockTime)
+	input = append(input, liteBlock)
 
-	/* TODO make the above more like below. Should be more functional, and less C-like pointer magic voodoo :P
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutput)
+
+	return testCase
+	/* DONE: make the above more like below. Should be more functional, and less C-like pointer magic voodoo :P
 	// can remove: GenerateTestNameAndDescription(testCase, name, description)
 	signedHeader, state := GenerateFirstBlock(vals, privVal, firstBlockTime)
 	input, state := GenerateNextBlock(state, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
@@ -367,4 +369,38 @@ func GenerateGeneralTestCase(testCase *TestCase, valList ValList, numVals int, n
 
 	return initial, input
 	*/
+}
+
+// DONE: why is this stuff in types? can it just be part of the lite-client/generator/utils.go?
+// UPDATE -> mutex on PartSet and functions take pointer to valSet - have to use a pointer
+// GenerateCommit takes in header, partSet from Block that was created,
+// validator set, privVals, chain ID and a timestamp to create
+// and return a commit type
+// To be called after MakeBlock()
+func GenerateCommit(header types.Header, partSet *types.PartSet, valSet *types.ValidatorSet, privVals []types.PrivValidator, chainID string, now time.Time) *types.Commit {
+	blockID := types.BlockID{
+		Hash: header.Hash(),
+		PartsHeader: types.PartSetHeader{
+			Hash:  partSet.Hash(),
+			Total: partSet.Total(),
+		},
+	}
+	voteSet := types.NewVoteSet(chainID, header.Height, 1, types.SignedMsgType(byte(types.PrecommitType)), valSet)
+
+	commit, err := types.MakeCommit(blockID, header.Height, 1, voteSet, privVals, now)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return commit
+}
+
+func GenerateTxs() []types.Tx {
+	// Empty txs
+	return []types.Tx{}
+}
+
+func GenerateEvidences() []types.Evidence {
+	// Empty evidences
+	return []types.Evidence{}
 }
