@@ -1,6 +1,6 @@
 package generator
 
-func GenerateTestCases(jsonValList string, file string) {
+func GenerateTestCases(jsonValList string) {
 
 	var testCases *TestCases = &TestCases{}
 	valList := GetValList(jsonValList)
@@ -30,7 +30,10 @@ func GenerateTestCases(jsonValList string, file string) {
 	CaseVerifyValidatorSetReplaceValidator(testCases, valList)
 	CaseVerifyValidatorSetChangeValidatorPower(testCases, valList)
 
+	GenerateJSON(testCases, "./tests/json/val_set_tests.json")
+
 	// Verify - Commit
+	testCases = &TestCases{}
 	CaseVerifyCommitEmpty(testCases, valList)
 	CaseVerifyCommitWrongHeaderHash(testCases, valList)
 	CaseVerifyCommitWrongPartsHeaderCount(testCases, valList)
@@ -48,7 +51,10 @@ func GenerateTestCases(jsonValList string, file string) {
 	CaseVerifyCommitOneThirdValsDontSign(testCases, valList)         // error
 	CaseVerifyCommitLessThanOneThirdValsDontSign(testCases, valList) // not an error
 
+	GenerateJSON(testCases, "./tests/json/commit_tests.json")
+
 	// Verify - Header
+	testCases = &TestCases{}
 	CaseVerifyHeaderEmpty(testCases, valList)
 	CaseVerifyHeaderWrongLastCommitHash(testCases, valList)
 	CaseVerifyHeaderWrongLastResultsHash(testCases, valList)
@@ -59,5 +65,5 @@ func GenerateTestCases(jsonValList string, file string) {
 	CaseVerifyHeaderWrongValSetHash(testCases, valList)
 	CaseVerifyHeaderWrongNextValSetHash(testCases, valList)
 
-	GenerateJSON(testCases, file)
+	GenerateJSON(testCases, "./tests/json/header_tests.json")
 }
