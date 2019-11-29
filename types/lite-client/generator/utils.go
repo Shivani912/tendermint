@@ -124,7 +124,7 @@ func GenerateFirstBlock(valList ValList, numOfValz int, now time.Time) (types.Si
 // last block id, privVals etc.
 // In case of privVals, it adds the new ones to the list
 // and performs a sort operation on it.
-func updateState(state st.State, blockID types.BlockID, privVals types.PrivValidatorsByAddress, newPrivVal types.PrivValidatorsByAddress) (st.State, types.PrivValidatorsByAddress) {
+func updateState(state st.State, blockID types.BlockID, privVals types.PrivValidatorsByAddress, newPrivVals types.PrivValidatorsByAddress) (st.State, types.PrivValidatorsByAddress) {
 	state.LastBlockHeight += 1
 	state.LastValidators = state.Validators.Copy()
 	state.Validators = state.NextValidators.Copy()
@@ -132,9 +132,11 @@ func updateState(state st.State, blockID types.BlockID, privVals types.PrivValid
 	state.LastBlockID = blockID
 
 	// Adds newPrivVals if they are not already present in privVals
-	for _, npv := range newPrivVal {
-		if !Contains(privVals, npv) {
-			privVals = append(privVals, npv)
+	if newPrivVals != nil {
+		for _, npv := range newPrivVals {
+			if !Contains(privVals, npv) {
+				privVals = append(privVals, npv)
+			}
 		}
 	}
 
@@ -210,19 +212,21 @@ func GenerateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, l
 // Also, you can specify the number of vals to be deleted from it
 func GenerateNextBlockWithNextValsUpdate(state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, valList ValList, startIdx int, endIdx int, delete int, now time.Time) (LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
-	newVals := valList.Validators[startIdx:endIdx]
-	newPrivVals := valList.PrivVals[startIdx:endIdx]
-	if delete > 0 {
+	copyValList := valList.Copy()
+	newVals := copyValList.Validators[startIdx:endIdx]
+	newPrivVals := copyValList.PrivVals[startIdx:endIdx]
+	if delete > 0 && delete < len(state.NextValidators.Validators)+len(newVals) {
 		for i := 0; i < delete; i++ {
-			state.NextValidators.Validators[i].VotingPower = 0
-			newVals = append(newVals, state.NextValidators.Validators[i])
+			toDelete := *state.NextValidators.Validators[i]
+			toDelete.VotingPower = 0
+			newVals = append(newVals, &toDelete)
 		}
 	}
 	err := state.NextValidators.UpdateWithChangeSet(newVals)
 	if err != nil {
 		fmt.Println(err)
 	}
-	// state.NextValidators.IncrementProposerPriority(1)
+	state.NextValidators.IncrementProposerPriority(1)
 
 	txs := GenerateTxs()
 	evidences := GenerateEvidences()
@@ -345,20 +349,19 @@ func GetValList(file string) ValList {
 	return valList
 }
 
-// TODO: should return initial and input instead of taking a testCase and populating it.
+// DONE: should return initial and input instead of taking a testCase and populating it.
 // Then it also doesn't need to take name and description
 // Then we can change the name to GenerateInitialAndInput or something ...
-func GenerateGeneralTestCase(valList ValList, numOfVals int, description string, expectedOutput string) TestCase {
+func GenerateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	var input []LiteBlock
+
 	signedHeader, state, privVals := GenerateFirstBlock(valList, numOfVals, firstBlockTime)
 	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 	liteBlock, state := GenerateNextBlock(state, privVals, signedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
 
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutput)
-
-	return testCase
+	return initial, input, state, privVals
 	/* DONE: make the above more like below. Should be more functional, and less C-like pointer magic voodoo :P
 	// can remove: GenerateTestNameAndDescription(testCase, name, description)
 	signedHeader, state := GenerateFirstBlock(vals, privVal, firstBlockTime)
@@ -369,6 +372,23 @@ func GenerateGeneralTestCase(valList ValList, numOfVals int, description string,
 
 	return initial, input
 	*/
+}
+
+func GenerateNextValsUpdateCase(valList ValList, numOfInitialVals int, numOfValsToAdd int, numOfValsToDelete int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
+
+	var input []LiteBlock
+
+	signedHeader, state, privVals := GenerateFirstBlock(valList, numOfInitialVals, firstBlockTime)
+	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+
+	startIdx := numOfInitialVals
+	endIdx := startIdx + numOfValsToAdd
+	liteBlock, state, privVals := GenerateNextBlockWithNextValsUpdate(state, privVals, signedHeader.Commit, valList, startIdx, endIdx, numOfValsToDelete, secondBlockTime)
+	input = append(input, liteBlock)
+	liteBlock, state = GenerateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime)
+	input = append(input, liteBlock)
+
+	return initial, input, state, privVals
 }
 
 // DONE: why is this stuff in types? can it just be part of the lite-client/generator/utils.go?
@@ -403,4 +423,16 @@ func GenerateTxs() []types.Tx {
 func GenerateEvidences() []types.Evidence {
 	// Empty evidences
 	return []types.Evidence{}
+}
+
+func (valList ValList) Copy() (vl ValList) {
+
+	for i, val := range valList.Validators {
+		var privVal types.PrivValidator
+		copyVal := *val
+		vl.Validators = append(vl.Validators, &copyVal)
+		privVal = valList.PrivVals[i]
+		vl.PrivVals = append(vl.PrivVals, privVal)
+	}
+	return
 }

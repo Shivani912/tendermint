@@ -14,12 +14,12 @@ import (
 
 func TestVerify(t *testing.T) {
 
-	// TODO: clean up the arguments to these functions, eg:
+	// DONE: clean up the arguments to these functions, eg:
 	// signedHeader := testCase.Initial.SignedHeader
 	// and then use signedHeader directly as necessary, etc.
 	// Otherwise it's hard to read
 
-	// TODO: deduplicate this logic by having some variable to refer to the latest trusted state.
+	// DONE: deduplicate this logic by having some variable to refer to the latest trusted state.
 
 	data := generator.ReadFile("./json/test_lite_client.json")
 
@@ -35,8 +35,8 @@ func TestVerify(t *testing.T) {
 	for _, testCase := range testCases.TC {
 
 		chainID := testCase.Initial.SignedHeader.Header.ChainID
-		trustedSignedHeader := &testCase.Initial.SignedHeader
-		trustedNextVals := &testCase.Initial.NextValidatorSet
+		trustedSignedHeader := testCase.Initial.SignedHeader
+		trustedNextVals := testCase.Initial.NextValidatorSet
 		trustingPeriod := testCase.Initial.TrustingPeriod
 		now := testCase.Initial.Now
 		trustLevel := lite.DefaultTrustLevel
@@ -45,15 +45,18 @@ func TestVerify(t *testing.T) {
 
 		for _, input := range testCase.Input {
 
-			newSignedHeader := &input.SignedHeader
-			newVals := &input.ValidatorSet
+			newSignedHeader := input.SignedHeader
+			newVals := input.ValidatorSet
 
-			e := lite.Verify(chainID, trustedSignedHeader, trustedNextVals, newSignedHeader, newVals, trustingPeriod, now, trustLevel)
+			e := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
 			err := e != nil
 
 			if (err && !expectsError) || (!err && expectsError) {
 				t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, expectedOutput)
 
+			} else {
+				trustedSignedHeader = newSignedHeader
+				trustedNextVals = input.NextValidatorSet
 			}
 		}
 	}
