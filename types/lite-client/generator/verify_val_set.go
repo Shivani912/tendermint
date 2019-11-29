@@ -1,5 +1,9 @@
 package generator
 
+import (
+	"github.com/tendermint/tendermint/types"
+)
+
 func CaseVerifyValidatorSetOf1(testCases *TestCases, valList ValList) {
 
 	// DONE: lets have a `testNameVerify` constant that we can define globally once and use for all these
@@ -7,231 +11,144 @@ func CaseVerifyValidatorSetOf1(testCases *TestCases, valList ValList) {
 
 	description := "Case: one lite block to fetch, one validator in the set, expects no error"
 
-	testCase := GenerateGeneralTestCase(valList, 1, description, expectedOutputNoError)
+	initial, input, _, _ := GenerateGeneralCase(valList, 1)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
+
 	testCases.TC = append(testCases.TC, testCase)
 }
 
 func CaseVerifyValidatorSetOf8(testCases *TestCases, valList ValList) {
 
 	description := "Case: one lite block to fetch, 8 validators in the set, expects no error"
-	testCase := GenerateGeneralTestCase(valList, 8, description, expectedOutputNoError)
+	initial, input, _, _ := GenerateGeneralCase(valList, 8)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
 	testCases.TC = append(testCases.TC, testCase)
 }
 
-// func CaseVerifyValidatorSetOf128(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
+func CaseVerifyValidatorSetOf128(testCases *TestCases, valList ValList) {
 
-// 	name := "verify"
-// 	description := "Case: one lite block, 128 validators, no error"
-// 	GenerateGeneralTestCase(testCase, valList, 128, name, description)
+	description := "Case: one lite block, 128 validators, no error"
+	initial, input, _, _ := GenerateGeneralCase(valList, 128)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
+	testCases.TC = append(testCases.TC, testCase)
 
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
+}
 
-// }
+func CaseVerifyValidatorSetEmpty(testCases *TestCases, valList ValList) {
 
-// func CaseVerifyValidatorSetEmpty(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
+	description := "Case: one lite block, empty validator set, expects error"
+	initial, input, _, _ := GenerateGeneralCase(valList, 2)
+	input[0].ValidatorSet = *types.NewValidatorSet(nil)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
 
-// 	name := "verify"
-// 	description := "Case: one lite block, empty validator set, expects error"
-// 	GenerateGeneralTestCase(testCase, valList, 2, name, description)
+	testCases.TC = append(testCases.TC, testCase)
 
-// 	testCase.Input[0].ValidatorSet = *types.NewValidatorSet(nil)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
+}
 
-// }
+func CaseVerifyValidatorSetAddTwiceVals(testCases *TestCases, valList ValList) {
 
-// func CaseVerifyValidatorSetAddTwiceVals(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, validator set grows twice (2 + 2), no error")
+	description := "Case: two lite blocks, validator set reduces to half, no error"
 
-// 	vals := valList.ValidatorSet.Validators[:2]
-// 	privVal := valList.PrivVal[:2]
+	initial, input, _, _ := GenerateNextValsUpdateCase(valList, 2, 2, 0)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
+	testCases.TC = append(testCases.TC, testCase)
+}
 
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+func CaseVerifyValidatorSetRemoveHalfVals(testCases *TestCases, valList ValList) {
 
-// 	newVals := valList.ValidatorSet.Validators[2:4]
-// 	newPrivVal := valList.PrivVal[2:4]
+	copyValList := valList.Copy()
+	description := "Case: two lite blocks, validator set reduces to half, no error"
 
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, newVals, newPrivVal, 0, secondBlockTime)
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, 4, 0, 2)
 
-// func CaseVerifyValidatorSetRemoveHalfVals(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, validator set reduces to half, no error")
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
+	testCases.TC = append(testCases.TC, testCase)
 
-// 	vals := valList.ValidatorSet.Validators[:4]
-// 	privVal := valList.PrivVal[:4]
+}
 
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+func CaseVerifyValidatorSetChangesOneThird(testCases *TestCases, valList ValList) {
 
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, nil, nil, 2, secondBlockTime)
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+	copyValList := valList.Copy()
+	description := "Case: two lite blocks, 1/3 validator set changes, no error"
 
-// func CaseVerifyValidatorSetChangesOneThird(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, 1/3 validator set changes, no error")
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, 3, 1, 1)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
 
-// 	vals := valList.ValidatorSet.Validators[:3]
-// 	privVal := valList.PrivVal[:3]
+	testCases.TC = append(testCases.TC, testCase)
+}
 
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+func CaseVerifyValidatorSetChangesHalf(testCases *TestCases, valList ValList) {
 
-// 	newVals := valList.ValidatorSet.Validators[3:4]
-// 	newPrivVal := valList.PrivVal[3:4]
+	copyValList := valList.Copy()
+	description := "Case: two lite blocks, 1/2 validator set changes, no error"
 
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, newVals, newPrivVal, 1, secondBlockTime)
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, 4, 2, 2)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
 
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+	testCases.TC = append(testCases.TC, testCase)
+}
 
-// func CaseVerifyValidatorSetChangesHalf(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, 1/2 validator set changes, no error")
+func CaseVerifyValidatorSetChangesTwoThirds(testCases *TestCases, valList ValList) {
 
-// 	vals := valList.ValidatorSet.Validators[:4]
-// 	privVal := valList.PrivVal[:4]
+	copyValList := valList.Copy()
+	description := "Case: two lite blocks, 2/3 validator set changes, no error"
 
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, 3, 2, 2)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
 
-// 	newVals := valList.ValidatorSet.Validators[4:6]
-// 	newPrivVal := valList.PrivVal[4:6]
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, newVals, newPrivVal, 2, secondBlockTime)
+	testCases.TC = append(testCases.TC, testCase)
+}
 
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+func CaseVerifyValidatorSetChangesFully(testCases *TestCases, valList ValList) {
 
-// func CaseVerifyValidatorSetChangesTwoThirds(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, 2/3 validator set changes, no error")
+	copyValList := valList.Copy()
+	description := "Case: two lite blocks, validator set changes completely, no error"
 
-// 	vals := valList.ValidatorSet.Validators[:3]
-// 	privVal := valList.PrivVal[:3]
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, 5, 5, 5)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
 
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+	testCases.TC = append(testCases.TC, testCase)
+}
 
-// 	newVals := valList.ValidatorSet.Validators[4:6]
-// 	newPrivVal := valList.PrivVal[4:6]
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, newVals, newPrivVal, 2, secondBlockTime)
+func CaseVerifyValidatorSetChangesLessThanOneThird(testCases *TestCases, valList ValList) {
 
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+	copyValList := valList.Copy()
+	description := "Case: two lite blocks, less than 1/3 validator set changes, no error"
 
-// func CaseVerifyValidatorSetChangesFully(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, validator set changes completely, no error")
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, 4, 1, 1)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
 
-// 	vals := valList.ValidatorSet.Validators[:5]
-// 	privVal := valList.PrivVal[:5]
+	testCases.TC = append(testCases.TC, testCase)
+}
 
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+func CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases *TestCases, valList ValList) {
 
-// 	newVals := valList.ValidatorSet.Validators[5:10]
-// 	newPrivVal := valList.PrivVal[5:10]
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, newVals, newPrivVal, 5, secondBlockTime)
+	copyValList := valList.Copy()
+	description := "Case: two lite blocks, more than 2/3 validator set changes, no error"
 
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, 4, 3, 3)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
 
-// func CaseVerifyValidatorSetChangesLessThanOneThird(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, less than 1/3 validator set changes, no error")
+	testCases.TC = append(testCases.TC, testCase)
+}
 
-// 	vals := valList.ValidatorSet.Validators[:4]
-// 	privVal := valList.PrivVal[:4]
+func CaseVerifyValidatorSetWrongValidatorSet(testCases *TestCases, valList ValList) {
 
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
+	var input []LiteBlock
+	description := "Case: one lite block, wrong validator set, with error"
 
-// 	newVals := valList.ValidatorSet.Validators[4:5]
-// 	newPrivVal := valList.PrivVal[4:5]
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, newVals, newPrivVal, 1, secondBlockTime)
+	signedHeader, state, _ := GenerateFirstBlock(valList, 3, firstBlockTime)
+	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+	wrongVals := valList.Validators[3:6]
+	wrongPrivVals := valList.PrivVals[3:6]
+	wrongValSet := types.NewValidatorSet(wrongVals)
+	state.Validators = wrongValSet
+	state.NextValidators = wrongValSet
 
-// func CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: two lite blocks, more than 2/3 validator set changes, no error")
+	liteBlock, state := GenerateNextBlock(state, wrongPrivVals, initial.SignedHeader.Commit, secondBlockTime)
+	input = append(input, liteBlock)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
 
-// 	vals := valList.ValidatorSet.Validators[:4]
-// 	privVal := valList.PrivVal[:4]
-
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-
-// 	newVals := valList.ValidatorSet.Validators[4:7]
-// 	newPrivVal := valList.PrivVal[4:7]
-// 	privVal = GenerateNextBlockWithNextValsUpdate(testCase, state, privVal, testCase.Initial.SignedHeader.Commit, newVals, newPrivVal, 3, secondBlockTime)
-
-// 	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now)
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Input[0].SignedHeader.Commit, thirdBlockTime)
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
-
-// // NOTE: commented on Lite Client PR already. This case should give error.
-// func CaseVerifyValidatorSetWrongProposer(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: one lite block, wrong proposer, with error")
-
-// 	vals := valList.ValidatorSet.Validators[:3]
-// 	privVal := valList.PrivVal[:3]
-
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-
-// 	vs := *state.Validators.Copy()
-// 	state.Validators.IncrementProposerPriority(1)
-
-// 	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-// 	GenerateInitial(testCase, vs, 3*time.Hour, now)
-
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
-
-// func CaseVerifyValidatorSetWrongValidatorSet(testCases *TestCases, valList ValList) {
-// 	var testCase *TestCase = &TestCase{}
-// 	GenerateTestNameAndDescription(testCase, "verify", "Case: one lite block, wrong validator set, with error")
-
-// 	vals := valList.ValidatorSet.Validators[:3]
-// 	privVal := valList.PrivVal[:3]
-
-// 	state := GenerateFirstBlock(testCase, vals, privVal, firstBlockTime)
-// 	vs := *state.Validators.Copy()
-
-// 	wrongVals := valList.ValidatorSet.Validators[3:6]
-// 	wrongPrivVal := valList.PrivVal[3:6]
-// 	wrongValSet := types.NewValidatorSet(wrongVals)
-// 	state.Validators = wrongValSet
-// 	state.NextValidators = wrongValSet
-
-// 	GenerateNextBlock(state, testCase, wrongPrivVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-// 	GenerateInitial(testCase, vs, 3*time.Hour, now)
-
-// 	GenerateExpectedOutput(testCase)
-// 	testCases.TC = append(testCases.TC, *testCase)
-// }
+	testCases.TC = append(testCases.TC, testCase)
+}
