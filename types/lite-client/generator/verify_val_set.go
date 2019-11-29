@@ -135,7 +135,7 @@ func CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases *TestCases, valLis
 func CaseVerifyValidatorSetWrongValidatorSet(testCases *TestCases, valList ValList) {
 
 	var input []LiteBlock
-	description := "Case: one lite block, wrong validator set, with error"
+	description := "Case: one lite block, wrong validator set, expects error"
 
 	signedHeader, state, _ := GenerateFirstBlock(valList, 3, firstBlockTime)
 	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
@@ -147,6 +147,46 @@ func CaseVerifyValidatorSetWrongValidatorSet(testCases *TestCases, valList ValLi
 	state.NextValidators = wrongValSet
 
 	liteBlock, state := GenerateNextBlock(state, wrongPrivVals, initial.SignedHeader.Commit, secondBlockTime)
+	input = append(input, liteBlock)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
+
+	testCases.TC = append(testCases.TC, testCase)
+}
+
+func CaseVerifyValidatorSetReplaceValidator(testCases *TestCases, valList ValList) {
+
+	copyValList := valList.Copy()
+	var input []LiteBlock
+	description := "Case: one lite block, replacing a validator in validator set, expects error"
+
+	signedHeader, state, privVals := GenerateFirstBlock(copyValList, 3, firstBlockTime)
+	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+
+	privVals[0] = copyValList.PrivVals[4]
+	state.Validators.Validators[0] = copyValList.Validators[4]
+	state.NextValidators = state.Validators
+
+	liteBlock, state := GenerateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
+	input = append(input, liteBlock)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
+
+	testCases.TC = append(testCases.TC, testCase)
+}
+
+func CaseVerifyValidatorSetChangeValidatorPower(testCases *TestCases, valList ValList) {
+
+	copyValList := valList.Copy()
+	var input []LiteBlock
+	description := "Case: one lite block, changing a validator's power in validator set, expects error"
+
+	signedHeader, state, privVals := GenerateFirstBlock(copyValList, 3, firstBlockTime)
+	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+
+	// privVals[0] = copyValList.PrivVals[4]
+	state.Validators.Validators[0].VotingPower += 1 //copyValList.Validators[4]
+	state.NextValidators = state.Validators
+
+	liteBlock, state := GenerateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
 	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
 

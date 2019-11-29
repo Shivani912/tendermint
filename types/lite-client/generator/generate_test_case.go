@@ -1,6 +1,6 @@
 package generator
 
-func GenerateTestCases(jsonValList string) {
+func GenerateTestCases(jsonValList string, file string) {
 
 	var testCases *TestCases = &TestCases{}
 	valList := GetValList(jsonValList)
@@ -22,11 +22,13 @@ func GenerateTestCases(jsonValList string) {
 	CaseVerifyValidatorSetChangesLessThanOneThird(testCases, valList)
 	CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases, valList)
 
-	// TODO: how about some variations on the wrong validator set:
+	// DONE: how about some variations on the wrong validator set:
 	// - replace a validator
 	// - change a validators power
 	// - different validator set
 	CaseVerifyValidatorSetWrongValidatorSet(testCases, valList)
+	CaseVerifyValidatorSetReplaceValidator(testCases, valList)
+	CaseVerifyValidatorSetChangeValidatorPower(testCases, valList)
 
 	// Verify - Commit
 	CaseVerifyCommitEmpty(testCases, valList)
@@ -57,6 +59,5 @@ func GenerateTestCases(jsonValList string) {
 	CaseVerifyHeaderWrongValSetHash(testCases, valList)
 	CaseVerifyHeaderWrongNextValSetHash(testCases, valList)
 
-	file := "./tests/json/test_lite_client.json"
 	GenerateJSON(testCases, file)
 }

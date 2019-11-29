@@ -352,6 +352,7 @@ func GetValList(file string) ValList {
 // DONE: should return initial and input instead of taking a testCase and populating it.
 // Then it also doesn't need to take name and description
 // Then we can change the name to GenerateInitialAndInput or something ...
+// Builds a general case with initial, and one lite block in input
 func GenerateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	var input []LiteBlock
@@ -374,6 +375,8 @@ func GenerateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, 
 	*/
 }
 
+// Builds a case where next validator set changes
+// makes initial, and input with 2 lite blocks
 func GenerateNextValsUpdateCase(valList ValList, numOfInitialVals int, numOfValsToAdd int, numOfValsToDelete int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	var input []LiteBlock
@@ -425,13 +428,15 @@ func GenerateEvidences() []types.Evidence {
 	return []types.Evidence{}
 }
 
+// ValList contains valSet pointer and privVal interface
+// So to avoid manipulating the original list, we better copy it!
 func (valList ValList) Copy() (vl ValList) {
 
 	for i, val := range valList.Validators {
-		var privVal types.PrivValidator
+		// var privVal types.PrivValidator
 		copyVal := *val
+		privVal := valList.PrivVals[i]
 		vl.Validators = append(vl.Validators, &copyVal)
-		privVal = valList.PrivVals[i]
 		vl.PrivVals = append(vl.PrivVals, privVal)
 	}
 	return
