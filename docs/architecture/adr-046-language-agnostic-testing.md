@@ -13,19 +13,19 @@ Considering Go implementation to be the standard, Go code is used to generate JS
 
 A generator will look something like this: 
 ```
-func CaseVerifyValidatorSetOf1(testCases *TestCases, valList *ValList) {
-	var testCase *TestCase = &TestCase{}
-	GenerateTestNameAndDescription(testCase, "verify", "Case: one lite block, one validator, no error")
+func CaseVerifyValidatorSetChangesLessThanOneThird(testCases *TestCases, valList ValList) {
 
-	vals := valList.ValidatorSet.Validators[:1]
-	privVal := valList.PrivVal[:1]
+	copyValList := valList.Copy() // To dereference pointers
+	description := "Case: two lite blocks, less than 1/3 validator set changes, no error"
 
-	state := GenerateFirstBlock(testCase, vals, privVal, now)
-	GenerateNextBlock(state, testCase, privVal, testCase.Initial.SignedHeader.Commit, now.Add(time.Second*5))
-	GenerateInitial(testCase, testCase.Input[0].ValidatorSet, 3*time.Hour, now.Add(time.Second*10))
+	initialNumOfVals := 4
+	numOfValsToAdd := 1
+	numOfValsToDelete := 1
 
-	GenerateExpectedOutput(testCase)
-	testCases.TC = append(testCases.TC, *testCase)
+	initial, input, _, _ := GenerateNextValsUpdateCase(copyValList, initialNumOfVals, numOfValsToAdd, numOfValsToDelete)
+	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
+
+	testCases.TC = append(testCases.TC, testCase)
 }
 ```
 
