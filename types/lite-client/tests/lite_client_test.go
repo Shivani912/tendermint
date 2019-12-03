@@ -21,43 +21,47 @@ func TestVerify(t *testing.T) {
 
 	// DONE: deduplicate this logic by having some variable to refer to the latest trusted state.
 
-	data := generator.ReadFile("./json/test_lite_client.json")
+	tests := []string{"commit_tests.json", "header_tests.json", "val_set_tests.json"}
+	for _, test := range tests {
+		data := generator.ReadFile("./json/" + test)
 
-	cdc := amino.NewCodec()
-	cryptoAmino.RegisterAmino(cdc)
+		cdc := amino.NewCodec()
+		cryptoAmino.RegisterAmino(cdc)
 
-	var testCases generator.TestCases
-	err := cdc.UnmarshalJSON(data, &testCases)
-	if err != nil {
-		fmt.Printf("error: %v", err)
-	}
+		var testCases generator.TestCases
+		err := cdc.UnmarshalJSON(data, &testCases)
+		if err != nil {
+			fmt.Printf("error: %v", err)
+		}
 
-	for _, testCase := range testCases.TC {
+		for _, testCase := range testCases.TC {
 
-		chainID := testCase.Initial.SignedHeader.Header.ChainID
-		trustedSignedHeader := testCase.Initial.SignedHeader
-		trustedNextVals := testCase.Initial.NextValidatorSet
-		trustingPeriod := testCase.Initial.TrustingPeriod
-		now := testCase.Initial.Now
-		trustLevel := lite.DefaultTrustLevel
-		expectedOutput := testCase.ExpectedOutput
-		expectsError := expectedOutput == "error"
+			chainID := testCase.Initial.SignedHeader.Header.ChainID
+			trustedSignedHeader := testCase.Initial.SignedHeader
+			trustedNextVals := testCase.Initial.NextValidatorSet
+			trustingPeriod := testCase.Initial.TrustingPeriod
+			now := testCase.Initial.Now
+			trustLevel := lite.DefaultTrustLevel
+			expectedOutput := testCase.ExpectedOutput
+			expectsError := expectedOutput == "error"
 
-		for _, input := range testCase.Input {
+			for _, input := range testCase.Input {
 
-			newSignedHeader := input.SignedHeader
-			newVals := input.ValidatorSet
+				newSignedHeader := input.SignedHeader
+				newVals := input.ValidatorSet
 
-			e := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
-			err := e != nil
+				e := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
+				err := e != nil
 
-			if (err && !expectsError) || (!err && expectsError) {
-				t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, expectedOutput)
+				if (err && !expectsError) || (!err && expectsError) {
+					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, expectedOutput)
 
-			} else {
-				trustedSignedHeader = newSignedHeader
-				trustedNextVals = input.NextValidatorSet
+				} else {
+					trustedSignedHeader = newSignedHeader
+					trustedNextVals = input.NextValidatorSet
+				}
 			}
 		}
 	}
+
 }
