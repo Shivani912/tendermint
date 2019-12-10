@@ -6,9 +6,6 @@ import (
 
 func CaseVerifyValidatorSetOf1(testCases *TestCases, valList ValList) {
 
-	// DONE: lets have a `testNameVerify` constant that we can define globally once and use for all these
-	// instead of redefining this var each time
-
 	description := "Case: one lite block to fetch, one validator in the set, expects no error"
 
 	initial, input, _, _ := GenerateGeneralCase(valList, 1)
@@ -182,8 +179,7 @@ func CaseVerifyValidatorSetChangeValidatorPower(testCases *TestCases, valList Va
 	signedHeader, state, privVals := GenerateFirstBlock(copyValList, 3, firstBlockTime)
 	initial := GenerateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 
-	// privVals[0] = copyValList.PrivVals[4]
-	state.Validators.Validators[0].VotingPower += 1 //copyValList.Validators[4]
+	state.Validators.Validators[0].VotingPower += 1
 	state.NextValidators = state.Validators
 
 	liteBlock, state := GenerateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)

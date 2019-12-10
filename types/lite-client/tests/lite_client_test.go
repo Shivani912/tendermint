@@ -10,16 +10,7 @@ import (
 	generator "github.com/tendermint/tendermint/types/lite-client/generator"
 )
 
-// DONE: deal with these globals
-
 func TestVerify(t *testing.T) {
-
-	// DONE: clean up the arguments to these functions, eg:
-	// signedHeader := testCase.Initial.SignedHeader
-	// and then use signedHeader directly as necessary, etc.
-	// Otherwise it's hard to read
-
-	// DONE: deduplicate this logic by having some variable to refer to the latest trusted state.
 
 	tests := []string{"commit_tests.json", "header_tests.json", "val_set_tests.json"}
 	for _, test := range tests {
