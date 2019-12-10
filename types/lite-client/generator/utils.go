@@ -85,9 +85,6 @@ func NewState(chainId string, valSet *types.ValidatorSet) st.State {
 	}
 }
 
-// TODO: all funcs need comments please!
-
-// DONE -> This should also return the signedHeader instead of taking the testCase ...
 // GenerateFirstBlock creates the first block of the chain
 // with the given list of validators and timestamp
 // Thus, It also calls the NewState() to initialize the state
@@ -181,7 +178,6 @@ func GenerateInitial(signedHeader types.SignedHeader, nextValidatorSet types.Val
 
 // This one generates a "next" block,
 // i.e. given the first block, this function can be used to build up successive blocks
-// DONE: this should return the input and the new state instead of taking the testCase and mutating the state
 func GenerateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) (LiteBlock, st.State) {
 
 	txs := GenerateTxs()
@@ -277,10 +273,6 @@ func GenerateTestCase(testName string, description string, initial Initial, inpu
 	}
 }
 
-// DONE: this function (GenerateExpectedOutput) should probably disappear. We should specify the expected errors manually and using
-// some standardized error system
-// This will require some refactoring of the Verify function itself to return better error types ("Sentinals")
-
 // Produces a val_list.json file which contains a list validators and privVals
 // of given number abd voting power
 func GenerateValList(numVals int, votingPower int64) {
@@ -349,10 +341,7 @@ func GetValList(file string) ValList {
 	return valList
 }
 
-// DONE: should return initial and input instead of taking a testCase and populating it.
-// Then it also doesn't need to take name and description
-// Then we can change the name to GenerateInitialAndInput or something ...
-// Builds a general case with initial, and one lite block in input
+// Builds a general case containing initial and one lite block in input
 func GenerateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	var input []LiteBlock
@@ -363,16 +352,6 @@ func GenerateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, 
 	input = append(input, liteBlock)
 
 	return initial, input, state, privVals
-	/* DONE: make the above more like below. Should be more functional, and less C-like pointer magic voodoo :P
-	// can remove: GenerateTestNameAndDescription(testCase, name, description)
-	signedHeader, state := GenerateFirstBlock(vals, privVal, firstBlockTime)
-	input, state := GenerateNextBlock(state, privVal, testCase.Initial.SignedHeader.Commit, secondBlockTime)
-	// then GenerateInitial should take everything necessary to create an Initial struct and return it
-	//   initial := GenerateInitial(...)
-	// also the trustingPeriod should be a variable (can be a default constant global for now ...)
-
-	return initial, input
-	*/
 }
 
 // Builds a case where next validator set changes
@@ -394,7 +373,6 @@ func GenerateNextValsUpdateCase(valList ValList, numOfInitialVals int, numOfVals
 	return initial, input, state, privVals
 }
 
-// DONE: why is this stuff in types? can it just be part of the lite-client/generator/utils.go?
 // UPDATE -> mutex on PartSet and functions take pointer to valSet - have to use a pointer
 // GenerateCommit takes in header, partSet from Block that was created,
 // validator set, privVals, chain ID and a timestamp to create

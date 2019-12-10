@@ -14,18 +14,12 @@ func GenerateTestCases(jsonValList string) {
 	CaseVerifyValidatorSetAddTwiceVals(testCases, valList)
 	CaseVerifyValidatorSetRemoveHalfVals(testCases, valList)
 
-	// DONE: let's avoid this reloading by copying in the CaseVerifyXXX where necessary
 	CaseVerifyValidatorSetChangesOneThird(testCases, valList)
 	CaseVerifyValidatorSetChangesHalf(testCases, valList)
 	CaseVerifyValidatorSetChangesTwoThirds(testCases, valList)
 	CaseVerifyValidatorSetChangesFully(testCases, valList)
 	CaseVerifyValidatorSetChangesLessThanOneThird(testCases, valList)
 	CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases, valList)
-
-	// DONE: how about some variations on the wrong validator set:
-	// - replace a validator
-	// - change a validators power
-	// - different validator set
 	CaseVerifyValidatorSetWrongValidatorSet(testCases, valList)
 	CaseVerifyValidatorSetReplaceValidator(testCases, valList)
 	CaseVerifyValidatorSetChangeValidatorPower(testCases, valList)
