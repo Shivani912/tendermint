@@ -1,7 +1,7 @@
 {
+ 	"batch_name": "verify-commit",
  	"test_cases": [
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, empty commit, with error",
  			"initial": {
  				"signed_header": {
@@ -166,7 +166,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong header hash, with error",
  			"initial": {
  				"signed_header": {
@@ -282,7 +281,7 @@
  						},
  						"commit": {
  							"block_id": {
- 								"hash": "77726F6E672068656164657220686173682121",
+ 								"hash": "2D2D2D2D5468697320697320612033322D6279746520737472696E672D2D2D2D",
  								"parts": {
  									"total": "1",
  									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
@@ -357,7 +356,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong PartsHeader.Total, with error",
  			"initial": {
  				"signed_header": {
@@ -548,7 +546,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong PartsHeader.Hash, with error",
  			"initial": {
  				"signed_header": {
@@ -667,7 +664,7 @@
  								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
  								"parts": {
  									"total": "1",
- 									"hash": "77726F6E6720506172747348656164657220686173682121"
+ 									"hash": "2D2D2D2D5468697320697320612033322D6279746520737472696E672D2D2D2D"
  								}
  							},
  							"precommits": [
@@ -739,7 +736,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong vote type, with error",
  			"initial": {
  				"signed_header": {
@@ -930,7 +926,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong vote height, with error",
  			"initial": {
  				"signed_header": {
@@ -1121,7 +1116,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong vote round, with error",
  			"initial": {
  				"signed_header": {
@@ -1312,7 +1306,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong vote BlockID, with error",
  			"initial": {
  				"signed_header": {
@@ -1440,7 +1433,7 @@
  									"height": "2",
  									"round": "1",
  									"block_id": {
- 										"hash": "77726F6E672068617368",
+ 										"hash": "2D2D2D2D5468697320697320612033322D6279746520737472696E672D2D2D2D",
  										"parts": {
  											"total": "1",
  											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
@@ -1503,7 +1496,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong vote timestamp, with error",
  			"initial": {
  				"signed_header": {
@@ -1694,7 +1686,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, wrong signature in vote, with error",
  			"initial": {
  				"signed_header": {
@@ -1831,7 +1822,7 @@
  									"timestamp": "2019-11-02T15:04:15Z",
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
  									"validator_index": "0",
- 									"signature": "d3JvbmcgYWRkcmVzcw=="
+ 									"signature": "LS0tLS0tLS0tLVRoaXMgaXMgYSA2NC1ieXRlIGxvbmcgbG9uZyBsb25nIGxvbmcgc3RyaW5nLS0tLS0tLS0tLQ=="
  								}
  							]
  						}
@@ -1885,7 +1876,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, one-third vals don't sign, expects error",
  			"initial": {
  				"signed_header": {
@@ -2179,7 +2169,6 @@
  			"expected_output": "error"
  		},
  		{
- 			"test_name": "verify",
  			"description": "Case: one lite block, less than one-third vals don't sign, no error",
  			"initial": {
  				"signed_header": {
