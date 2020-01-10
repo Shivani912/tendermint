@@ -19,13 +19,13 @@ func TestVerify(t *testing.T) {
 		cdc := amino.NewCodec()
 		cryptoAmino.RegisterAmino(cdc)
 
-		var testCases generator.TestCases
-		err := cdc.UnmarshalJSON(data, &testCases)
+		var testBatch generator.TestBatch
+		err := cdc.UnmarshalJSON(data, &testBatch)
 		if err != nil {
 			fmt.Printf("error: %v", err)
 		}
 
-		for _, testCase := range testCases.TC {
+		for _, testCase := range testBatch.TestCases {
 
 			chainID := testCase.Initial.SignedHeader.Header.ChainID
 			trustedSignedHeader := testCase.Initial.SignedHeader

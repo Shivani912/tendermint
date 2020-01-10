@@ -1,63 +1,72 @@
 package generator
 
-func GenerateTestCases(jsonValList string) {
+// GenerateVerifyTestCases is a wrapper function around all the test case specific functions.
+// It calls these functions that essentially make the test cases and store them under TestCases data structure
+// These cases are categorized according to the data structure it is trying to test (e.g. Validator set, Commit, etc...)
+func GenerateVerifyTestCases(jsonValList string) {
 
-	var testCases *TestCases = &TestCases{}
 	valList := GetValList(jsonValList)
 
 	// Verify - ValidatorSet
-	CaseVerifyValidatorSetOf1(testCases, valList)
-	CaseVerifyValidatorSetOf8(testCases, valList)
-	CaseVerifyValidatorSetOf128(testCases, valList)
-	CaseVerifyValidatorSetEmpty(testCases, valList)
+	testBatch := newBatch("verify-validator set")
+	caseVerifyValidatorSetOf1(testBatch, valList)
+	caseVerifyValidatorSetOf8(testBatch, valList)
+	caseVerifyValidatorSetOf128(testBatch, valList)
+	caseVerifyValidatorSetEmpty(testBatch, valList)
 
-	CaseVerifyValidatorSetAddTwiceVals(testCases, valList)
-	CaseVerifyValidatorSetRemoveHalfVals(testCases, valList)
+	caseVerifyValidatorSetAddTwiceVals(testBatch, valList)
+	caseVerifyValidatorSetRemoveHalfVals(testBatch, valList)
 
-	CaseVerifyValidatorSetChangesOneThird(testCases, valList)
-	CaseVerifyValidatorSetChangesHalf(testCases, valList)
-	CaseVerifyValidatorSetChangesTwoThirds(testCases, valList)
-	CaseVerifyValidatorSetChangesFully(testCases, valList)
-	CaseVerifyValidatorSetChangesLessThanOneThird(testCases, valList)
-	CaseVerifyValidatorSetChangesMoreThanTwoThirds(testCases, valList)
-	CaseVerifyValidatorSetWrongValidatorSet(testCases, valList)
-	CaseVerifyValidatorSetReplaceValidator(testCases, valList)
-	CaseVerifyValidatorSetChangeValidatorPower(testCases, valList)
+	caseVerifyValidatorSetChangesOneThird(testBatch, valList)
+	caseVerifyValidatorSetChangesHalf(testBatch, valList)
+	caseVerifyValidatorSetChangesTwoThirds(testBatch, valList)
+	caseVerifyValidatorSetChangesFully(testBatch, valList)
+	caseVerifyValidatorSetChangesLessThanOneThird(testBatch, valList)
+	caseVerifyValidatorSetChangesMoreThanTwoThirds(testBatch, valList)
+	caseVerifyValidatorSetWrongValidatorSet(testBatch, valList)
+	caseVerifyValidatorSetReplaceValidator(testBatch, valList)
+	caseVerifyValidatorSetChangeValidatorPower(testBatch, valList)
 
-	GenerateJSON(testCases, "./tests/json/val_set_tests.json")
+	generateJSON(testBatch, "./tests/json/val_set_tests.json")
 
 	// Verify - Commit
-	testCases = &TestCases{}
-	CaseVerifyCommitEmpty(testCases, valList)
-	CaseVerifyCommitWrongHeaderHash(testCases, valList)
-	CaseVerifyCommitWrongPartsHeaderCount(testCases, valList)
-	CaseVerifyCommitWrongPartsHeaderHash(testCases, valList)
-	CaseVerifyCommitWrongVoteType(testCases, valList)
-	CaseVerifyCommitWrongVoteHeight(testCases, valList)
-	CaseVerifyCommitWrongVoteRound(testCases, valList)
-	CaseVerifyCommitWrongVoteBlockID(testCases, valList)
-	CaseVerifyCommitWrongVoteTimestamp(testCases, valList)
-	CaseVerifyCommitWrongVoteSignature(testCases, valList)
+	testBatch = newBatch("verify-commit")
+	caseVerifyCommitEmpty(testBatch, valList)
+	caseVerifyCommitWrongHeaderHash(testBatch, valList)
+	caseVerifyCommitWrongPartsHeaderCount(testBatch, valList)
+	caseVerifyCommitWrongPartsHeaderHash(testBatch, valList)
+	caseVerifyCommitWrongVoteType(testBatch, valList)
+	caseVerifyCommitWrongVoteHeight(testBatch, valList)
+	caseVerifyCommitWrongVoteRound(testBatch, valList)
+	caseVerifyCommitWrongVoteBlockID(testBatch, valList)
+	caseVerifyCommitWrongVoteTimestamp(testBatch, valList)
+	caseVerifyCommitWrongVoteSignature(testBatch, valList)
 
 	// TODO: more cases
 	// - commits from wrong validators
 	// We need to come back to this after the commit structure changes
-	CaseVerifyCommitOneThirdValsDontSign(testCases, valList)         // error
-	CaseVerifyCommitLessThanOneThirdValsDontSign(testCases, valList) // not an error
+	caseVerifyCommitOneThirdValsDontSign(testBatch, valList)         // error
+	caseVerifyCommitLessThanOneThirdValsDontSign(testBatch, valList) // not an error
 
-	GenerateJSON(testCases, "./tests/json/commit_tests.json")
+	generateJSON(testBatch, "./tests/json/commit_tests.json")
 
 	// Verify - Header
-	testCases = &TestCases{}
-	CaseVerifyHeaderEmpty(testCases, valList)
-	CaseVerifyHeaderWrongLastCommitHash(testCases, valList)
-	CaseVerifyHeaderWrongLastResultsHash(testCases, valList)
-	CaseVerifyHeaderWrongLastBlockID(testCases, valList)
-	CaseVerifyHeaderWrongChainID(testCases, valList)
-	CaseVerifyHeaderWrongHeight(testCases, valList)
-	CaseVerifyHeaderWrongTimestamp(testCases, valList)
-	CaseVerifyHeaderWrongValSetHash(testCases, valList)
-	CaseVerifyHeaderWrongNextValSetHash(testCases, valList)
+	testBatch = newBatch("verify-header")
+	caseVerifyHeaderEmpty(testBatch, valList)
+	caseVerifyHeaderWrongLastCommitHash(testBatch, valList)
+	caseVerifyHeaderWrongLastResultsHash(testBatch, valList)
+	caseVerifyHeaderWrongLastBlockID(testBatch, valList)
+	caseVerifyHeaderWrongChainID(testBatch, valList)
+	caseVerifyHeaderWrongHeight(testBatch, valList)
+	caseVerifyHeaderWrongTimestamp(testBatch, valList)
+	caseVerifyHeaderWrongValSetHash(testBatch, valList)
+	caseVerifyHeaderWrongNextValSetHash(testBatch, valList)
 
-	GenerateJSON(testCases, "./tests/json/header_tests.json")
+	generateJSON(testBatch, "./tests/json/header_tests.json")
+}
+
+func newBatch(name string) *TestBatch {
+	return &TestBatch{
+		BatchName: name,
+	}
 }

@@ -6,113 +6,118 @@ import (
 	"github.com/tendermint/tendermint/types"
 )
 
-func CaseVerifyCommitEmpty(testCases *TestCases, valList ValList) {
+var (
+	str32byte = "----This is a 32-byte string----"
+	str64byte = "----------This is a 64-byte long long long long string----------"
+)
+
+func caseVerifyCommitEmpty(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, empty commit, with error"
 
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
 	input[0].SignedHeader.Commit = nil
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongHeaderHash(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongHeaderHash(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong header hash, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
-	input[0].SignedHeader.Commit.BlockID.Hash = []byte("wrong header hash!!")
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
+	input[0].SignedHeader.Commit.BlockID.Hash = []byte(str32byte)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongPartsHeaderCount(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongPartsHeaderCount(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong PartsHeader.Total, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
 	input[0].SignedHeader.Commit.BlockID.PartsHeader.Total += 5
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongPartsHeaderHash(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongPartsHeaderHash(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong PartsHeader.Hash, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
-	input[0].SignedHeader.Commit.BlockID.PartsHeader.Hash = []byte("wrong PartsHeader hash!!")
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
+	input[0].SignedHeader.Commit.BlockID.PartsHeader.Hash = []byte(str32byte)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongVoteType(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongVoteType(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong vote type, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
 	input[0].SignedHeader.Commit.Precommits[0].Type = types.SignedMsgType(types.PrevoteType)
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongVoteHeight(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongVoteHeight(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong vote height, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
-	input[0].SignedHeader.Commit.Precommits[0].Height -= 1
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
+	input[0].SignedHeader.Commit.Precommits[0].Height--
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongVoteRound(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongVoteRound(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong vote round, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
-	input[0].SignedHeader.Commit.Precommits[0].Round -= 1
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
+	input[0].SignedHeader.Commit.Precommits[0].Round--
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongVoteBlockID(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongVoteBlockID(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong vote BlockID, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
-	input[0].SignedHeader.Commit.Precommits[0].BlockID.Hash = []byte("wrong hash")
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
+	input[0].SignedHeader.Commit.Precommits[0].BlockID.Hash = []byte(str32byte)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongVoteTimestamp(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongVoteTimestamp(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong vote timestamp, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
 
 	wrongTimestamp, _ := time.Parse(time.RFC3339, "2019-11-02T15:04:05Z")
 	input[0].SignedHeader.Commit.Precommits[0].Timestamp = wrongTimestamp
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitWrongVoteSignature(testCases *TestCases, valList ValList) {
+func caseVerifyCommitWrongVoteSignature(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong signature in vote, with error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 1)
-	input[0].SignedHeader.Commit.Precommits[0].Signature = []byte("wrong address")
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	initial, input, _, _ := generateGeneralCase(valList, 1)
+	input[0].SignedHeader.Commit.Precommits[0].Signature = []byte(str64byte)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitOneThirdValsDontSign(testCases *TestCases, valList ValList) {
+func caseVerifyCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, one-third vals don't sign, expects error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 3)
+	initial, input, _, _ := generateGeneralCase(valList, 3)
 	input[0].SignedHeader.Commit.Precommits[0] = nil
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputError)
-	testCases.TC = append(testCases.TC, testCase)
+	testCase := generateTestCase(description, initial, input, expectedOutputError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func CaseVerifyCommitLessThanOneThirdValsDontSign(testCases *TestCases, valList ValList) {
+func caseVerifyCommitLessThanOneThirdValsDontSign(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, less than one-third vals don't sign, no error"
-	initial, input, _, _ := GenerateGeneralCase(valList, 4)
+	initial, input, _, _ := generateGeneralCase(valList, 4)
 	input[0].SignedHeader.Commit.Precommits[0] = nil
-	testCase := GenerateTestCase(testName, description, initial, input, expectedOutputNoError)
-	testCases.TC = append(testCases.TC, testCase)
+	testCase := generateTestCase(description, initial, input, expectedOutputNoError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
