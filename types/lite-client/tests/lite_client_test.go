@@ -13,6 +13,8 @@ import (
 func TestVerify(t *testing.T) {
 
 	tests := []string{"commit_tests.json", "header_tests.json", "val_set_tests.json"}
+
+	// tests := []string{"single_step_skipping/val_set_tests.json", "single_step_skipping/commit_tests.json"}
 	for _, test := range tests {
 		data := generator.ReadFile("./json/" + test)
 
@@ -38,6 +40,7 @@ func TestVerify(t *testing.T) {
 
 			for _, input := range testCase.Input {
 
+				fmt.Println(testCase.Description)
 				newSignedHeader := input.SignedHeader
 				newVals := input.ValidatorSet
 

@@ -1,5 +1,5 @@
 {
- 	"batch_name": "verify-validator set",
+ 	"batch_name": "Single Step Sequential-validator set",
  	"test_cases": [
  		{
  			"description": "Case: one lite block to fetch, one validator in the set, expects no error",
@@ -83,7 +83,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -448,7 +448,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -4051,7 +4051,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -8478,228 +8478,6 @@
  			"expected_output": "no error"
  		},
  		{
- 			"description": "Case: one lite block, empty validator set, expects error",
- 			"initial": {
- 				"signed_header": {
- 					"header": {
- 						"version": {
- 							"block": "0",
- 							"app": "0"
- 						},
- 						"chain_id": "test-chain-01",
- 						"height": "1",
- 						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
- 						"last_block_id": {
- 							"hash": "",
- 							"parts": {
- 								"total": "0",
- 								"hash": ""
- 							}
- 						},
- 						"last_commit_hash": "",
- 						"data_hash": "",
- 						"validators_hash": "ADAE23D9D908638F3866C11A39E31CE4399AE6DE8EC8EBBCB1916B90C46EDDE3",
- 						"next_validators_hash": "ADAE23D9D908638F3866C11A39E31CE4399AE6DE8EC8EBBCB1916B90C46EDDE3",
- 						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
- 						"app_hash": "6170705F68617368",
- 						"last_results_hash": "",
- 						"evidence_hash": "",
- 						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
- 					},
- 					"commit": {
- 						"block_id": {
- 							"hash": "9A54593FD033F1608BFFFD68B3E62C92719B660943AA4694B5EFCD7E71B22F39",
- 							"parts": {
- 								"total": "1",
- 								"hash": "9CF857E072C5E4D58CE9C92F829FA96C124B40495DD39155A3549A6B5F1A5B5F"
- 							}
- 						},
- 						"precommits": [
- 							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "9A54593FD033F1608BFFFD68B3E62C92719B660943AA4694B5EFCD7E71B22F39",
- 									"parts": {
- 										"total": "1",
- 										"hash": "9CF857E072C5E4D58CE9C92F829FA96C124B40495DD39155A3549A6B5F1A5B5F"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
- 								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "HroeJPHddeOvRnAgKwMZYy546Lgf6dDfZNZF+wHhsu7eAKEJJ6XrH4SuP+fS1W9+1igMrnOboWYw6SOwrCZHDw=="
- 							},
- 							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "9A54593FD033F1608BFFFD68B3E62C92719B660943AA4694B5EFCD7E71B22F39",
- 									"parts": {
- 										"total": "1",
- 										"hash": "9CF857E072C5E4D58CE9C92F829FA96C124B40495DD39155A3549A6B5F1A5B5F"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
- 								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"validator_index": "1",
- 								"signature": "1W01L4Ao5SMJ7RflFEB546ZremeO6K65iSWCUMzTRN+BSYhM0VIdDazSqWuA7SpsFwhY8lU4kralO0MiU/GKCA=="
- 							}
- 						]
- 					}
- 				},
- 				"next_validator_set": {
- 					"validators": [
- 						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 							"pub_key": {
- 								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
- 							},
- 							"voting_power": "50",
- 							"proposer_priority": "-50"
- 						},
- 						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 							"pub_key": {
- 								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
- 							},
- 							"voting_power": "50",
- 							"proposer_priority": "50"
- 						}
- 					],
- 					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 						"pub_key": {
- 							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
- 						},
- 						"voting_power": "50",
- 						"proposer_priority": "-50"
- 					}
- 				},
- 				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
- 			},
- 			"input": [
- 				{
- 					"signed_header": {
- 						"header": {
- 							"version": {
- 								"block": "0",
- 								"app": "0"
- 							},
- 							"chain_id": "test-chain-01",
- 							"height": "2",
- 							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
- 							"last_block_id": {
- 								"hash": "9A54593FD033F1608BFFFD68B3E62C92719B660943AA4694B5EFCD7E71B22F39",
- 								"parts": {
- 									"total": "1",
- 									"hash": "9CF857E072C5E4D58CE9C92F829FA96C124B40495DD39155A3549A6B5F1A5B5F"
- 								}
- 							},
- 							"last_commit_hash": "CAE65007A087B05FDB7561445678EA0BE7A35C29FA1B6C0D053F05CA8961AE92",
- 							"data_hash": "",
- 							"validators_hash": "ADAE23D9D908638F3866C11A39E31CE4399AE6DE8EC8EBBCB1916B90C46EDDE3",
- 							"next_validators_hash": "ADAE23D9D908638F3866C11A39E31CE4399AE6DE8EC8EBBCB1916B90C46EDDE3",
- 							"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
- 							"app_hash": "6170705F68617368",
- 							"last_results_hash": "",
- 							"evidence_hash": "",
- 							"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
- 						},
- 						"commit": {
- 							"block_id": {
- 								"hash": "ED8C8FD567F31FFDFFE86556A59FF995F5184563F3EC048839B2E7655BA043FC",
- 								"parts": {
- 									"total": "1",
- 									"hash": "8325ADF2C8DAABCD6108E3F0DEE75C16AEB7A4CEA5BAABB149E90F49297EE593"
- 								}
- 							},
- 							"precommits": [
- 								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "ED8C8FD567F31FFDFFE86556A59FF995F5184563F3EC048839B2E7655BA043FC",
- 										"parts": {
- 											"total": "1",
- 											"hash": "8325ADF2C8DAABCD6108E3F0DEE75C16AEB7A4CEA5BAABB149E90F49297EE593"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
- 									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "iKTdYTfwDTRBzjPFJI3zwqa6S7s2SptO4vem22LlKXbnccAukgfW5U06ng4EiN7hfTuZ1V9xGlA+R0aWzqd0DQ=="
- 								},
- 								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "ED8C8FD567F31FFDFFE86556A59FF995F5184563F3EC048839B2E7655BA043FC",
- 										"parts": {
- 											"total": "1",
- 											"hash": "8325ADF2C8DAABCD6108E3F0DEE75C16AEB7A4CEA5BAABB149E90F49297EE593"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
- 									"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 									"validator_index": "1",
- 									"signature": "LmaRIL+tvvQ2ZXaqwJRobsQ5xSWTP8RYMZGBG/nhnEdjKWrGKZdQZrteo1oQigbNljWmRUBTmUqoTxkkkrGaAA=="
- 								}
- 							]
- 						}
- 					},
- 					"validator_set": {
- 						"validators": null,
- 						"proposer": null
- 					},
- 					"next_validator_set": {
- 						"validators": [
- 							{
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"pub_key": {
- 									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
- 								},
- 								"voting_power": "50",
- 								"proposer_priority": "-50"
- 							},
- 							{
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"pub_key": {
- 									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
- 								},
- 								"voting_power": "50",
- 								"proposer_priority": "50"
- 							}
- 						],
- 						"proposer": {
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 							"pub_key": {
- 								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
- 							},
- 							"voting_power": "50",
- 							"proposer_priority": "-50"
- 						}
- 					}
- 				}
- 			],
- 			"expected_output": "error"
- 		},
- 		{
  			"description": "Case: two lite blocks, validator set reduces to half, no error",
  			"initial": {
  				"signed_header": {
@@ -8806,7 +8584,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -9327,7 +9105,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -9787,7 +9565,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -10290,7 +10068,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -10836,7 +10614,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -11364,7 +11142,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -12003,7 +11781,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -12574,7 +12352,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -13120,7 +12898,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -13428,7 +13206,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{
@@ -13736,7 +13514,7 @@
  					}
  				},
  				"trusting_period": "10800000000000",
- 				"now": "2019-11-02T15:05:00Z"
+ 				"now": "2019-11-02T15:30:00Z"
  			},
  			"input": [
  				{

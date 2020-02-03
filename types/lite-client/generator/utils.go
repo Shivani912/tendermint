@@ -16,7 +16,7 @@ import (
 
 var (
 	genTime, _         = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
-	now, _             = time.Parse(time.RFC3339, "2019-11-02T15:05:00Z")
+	now, _             = time.Parse(time.RFC3339, "2019-11-02T15:30:00Z")
 	firstBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
 	secondBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
 	thirdBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
@@ -272,8 +272,8 @@ func generateJSON(testCases *TestBatch, file string) {
 
 }
 
-// generateTestCase copies over the given parameters to the TestCase struct and returns it
-func generateTestCase(description string, initial Initial, input []LiteBlock, expectedOutput string) TestCase {
+// makeTestCase copies over the given parameters to the TestCase struct and returns it
+func makeTestCase(description string, initial Initial, input []LiteBlock, expectedOutput string) TestCase {
 	return TestCase{
 		Description:    description,
 		Initial:        initial,
@@ -351,6 +351,7 @@ func GetValList(file string) ValList {
 }
 
 // Builds a general case containing initial and one lite block in input
+// TODO: change name to genInitialAndInput
 func generateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	var input []LiteBlock
@@ -361,6 +362,39 @@ func generateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, 
 	input = append(input, liteBlock)
 
 	return initial, input, state, privVals
+}
+
+func generateInitialAndInputSkipBlocks(valList ValList, numOfVals, numOfBlocksToSkip int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
+	var input []LiteBlock
+
+	signedHeader, state, privVals := generateFirstBlock(valList, numOfVals, firstBlockTime)
+	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+
+	blockTime := secondBlockTime
+	for i := 0; i <= numOfBlocksToSkip; i++ {
+		liteBlock, s := generateNextBlock(state, privVals, signedHeader.Commit, blockTime)
+		blockTime = blockTime.Add(5 * time.Second)
+		state = s
+
+		if i == numOfBlocksToSkip {
+			input = append(input, liteBlock)
+		}
+	}
+
+	return initial, input, state, privVals
+}
+
+func generateAndMakeGeneralTestCase(description string, valList ValList, numOfVals int, expectedOutput string) TestCase {
+
+	initial, input, _, _ := generateGeneralCase(valList, numOfVals)
+	return makeTestCase(description, initial, input, expectedOutput)
+}
+
+func generateAndMakeNextValsUpdateTestCase(description string, valList ValList, numOfInitialVals int, numOfValsToAdd int, numOfValsToDelete int, expectedOutput string) TestCase {
+
+	copyValList := valList.Copy()
+	initial, input, _, _ := generateNextValsUpdateCase(copyValList, numOfInitialVals, numOfValsToAdd, numOfValsToDelete)
+	return makeTestCase(description, initial, input, expectedOutput)
 }
 
 // Builds a case where next validator set changes

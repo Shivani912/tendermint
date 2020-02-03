@@ -1,72 +1,98 @@
 package generator
 
-// GenerateVerifyTestCases is a wrapper function around all the test case specific functions.
-// It calls these functions that essentially make the test cases and store them under TestCases data structure
+// GenerateSingleStepSequentialCases creates three json files each for validator set, commit and header cases
 // These cases are categorized according to the data structure it is trying to test (e.g. Validator set, Commit, etc...)
-func GenerateVerifyTestCases(jsonValList string) {
+// It produces cases that test the single step sequential verification
+// what this means is, given a trusted state and height can the lite node verify the next block height?
+func GenerateSingleStepSequentialCases(jsonValList string) {
 
 	valList := GetValList(jsonValList)
 
-	// Verify - ValidatorSet
-	testBatch := newBatch("verify-validator set")
-	caseVerifyValidatorSetOf1(testBatch, valList)
-	caseVerifyValidatorSetOf8(testBatch, valList)
-	caseVerifyValidatorSetOf128(testBatch, valList)
-	caseVerifyValidatorSetEmpty(testBatch, valList)
+	// ValidatorSet
+	testBatch := newBatch("Single Step Sequential-validator set")
+	caseSingleSeqValidatorSetOf1(testBatch, valList)
+	caseSingleSeqValidatorSetOf8(testBatch, valList)
+	caseSingleSeqValidatorSetOf128(testBatch, valList)
+	// caseSingleSeqValidatorSetEmpty(testBatch, valList)
 
-	caseVerifyValidatorSetAddTwiceVals(testBatch, valList)
-	caseVerifyValidatorSetRemoveHalfVals(testBatch, valList)
+	caseSingleSeqValidatorSetAddTwiceVals(testBatch, valList)
+	caseSingleSeqValidatorSetRemoveHalfVals(testBatch, valList)
 
-	caseVerifyValidatorSetChangesOneThird(testBatch, valList)
-	caseVerifyValidatorSetChangesHalf(testBatch, valList)
-	caseVerifyValidatorSetChangesTwoThirds(testBatch, valList)
-	caseVerifyValidatorSetChangesFully(testBatch, valList)
-	caseVerifyValidatorSetChangesLessThanOneThird(testBatch, valList)
-	caseVerifyValidatorSetChangesMoreThanTwoThirds(testBatch, valList)
-	caseVerifyValidatorSetWrongValidatorSet(testBatch, valList)
-	caseVerifyValidatorSetReplaceValidator(testBatch, valList)
-	caseVerifyValidatorSetChangeValidatorPower(testBatch, valList)
+	caseSingleSeqValidatorSetChangesOneThird(testBatch, valList)
+	caseSingleSeqValidatorSetChangesHalf(testBatch, valList)
+	caseSingleSeqValidatorSetChangesTwoThirds(testBatch, valList)
+	caseSingleSeqValidatorSetChangesFully(testBatch, valList)
+	caseSingleSeqValidatorSetChangesLessThanOneThird(testBatch, valList)
+	caseSingleSeqValidatorSetChangesMoreThanTwoThirds(testBatch, valList)
+	caseSingleSeqValidatorSetWrongValidatorSet(testBatch, valList)
+	caseSingleSeqValidatorSetReplaceValidator(testBatch, valList)
+	caseSingleSeqValidatorSetChangeValidatorPower(testBatch, valList)
 
-	generateJSON(testBatch, "./tests/json/val_set_tests.json")
+	generateJSON(testBatch, "./tests/json/single_step_sequential/val_set_tests.json")
 
-	// Verify - Commit
-	testBatch = newBatch("verify-commit")
-	caseVerifyCommitEmpty(testBatch, valList)
-	caseVerifyCommitWrongHeaderHash(testBatch, valList)
-	caseVerifyCommitWrongPartsHeaderCount(testBatch, valList)
-	caseVerifyCommitWrongPartsHeaderHash(testBatch, valList)
-	caseVerifyCommitWrongVoteType(testBatch, valList)
-	caseVerifyCommitWrongVoteHeight(testBatch, valList)
-	caseVerifyCommitWrongVoteRound(testBatch, valList)
-	caseVerifyCommitWrongVoteBlockID(testBatch, valList)
-	caseVerifyCommitWrongVoteTimestamp(testBatch, valList)
-	caseVerifyCommitWrongVoteSignature(testBatch, valList)
+	// Commit
+	testBatch = newBatch("Single Step Sequential-commit")
+	// caseSingleSeqCommitEmpty(testBatch, valList)
+	caseSingleSeqCommitWrongHeaderHash(testBatch, valList)
+	caseSingleSeqCommitWrongPartsHeaderCount(testBatch, valList)
+	caseSingleSeqCommitWrongPartsHeaderHash(testBatch, valList)
+	caseSingleSeqCommitWrongVoteType(testBatch, valList)
+	caseSingleSeqCommitWrongVoteHeight(testBatch, valList)
+	caseSingleSeqCommitWrongVoteRound(testBatch, valList)
+	caseSingleSeqCommitWrongVoteBlockID(testBatch, valList)
+	caseSingleSeqCommitWrongVoteTimestamp(testBatch, valList)
+	caseSingleSeqCommitWrongVoteSignature(testBatch, valList)
 
 	// TODO: more cases
-	// - commits from wrong validators
 	// We need to come back to this after the commit structure changes
-	caseVerifyCommitOneThirdValsDontSign(testBatch, valList)         // error
-	caseVerifyCommitLessThanOneThirdValsDontSign(testBatch, valList) // not an error
+	caseSingleSeqCommitOneThirdValsDontSign(testBatch, valList)         // error
+	caseSingleSeqCommitLessThanOneThirdValsDontSign(testBatch, valList) // not an error
 
-	generateJSON(testBatch, "./tests/json/commit_tests.json")
+	generateJSON(testBatch, "./tests/json/single_step_sequential/commit_tests.json")
 
-	// Verify - Header
-	testBatch = newBatch("verify-header")
-	caseVerifyHeaderEmpty(testBatch, valList)
-	caseVerifyHeaderWrongLastCommitHash(testBatch, valList)
-	caseVerifyHeaderWrongLastResultsHash(testBatch, valList)
-	caseVerifyHeaderWrongLastBlockID(testBatch, valList)
-	caseVerifyHeaderWrongChainID(testBatch, valList)
-	caseVerifyHeaderWrongHeight(testBatch, valList)
-	caseVerifyHeaderWrongTimestamp(testBatch, valList)
-	caseVerifyHeaderWrongValSetHash(testBatch, valList)
-	caseVerifyHeaderWrongNextValSetHash(testBatch, valList)
+	// Header
+	testBatch = newBatch("Single Step Sequential-header")
+	// caseSingleSeqHeaderEmpty(testBatch, valList)
+	caseSingleSeqHeaderWrongLastCommitHash(testBatch, valList)
+	caseSingleSeqHeaderWrongLastResultsHash(testBatch, valList)
+	caseSingleSeqHeaderWrongLastBlockID(testBatch, valList)
+	caseSingleSeqHeaderWrongChainID(testBatch, valList)
+	caseSingleSeqHeaderWrongHeight(testBatch, valList)
+	caseSingleSeqHeaderWrongTimestamp(testBatch, valList)
+	caseSingleSeqHeaderWrongValSetHash(testBatch, valList)
+	caseSingleSeqHeaderWrongNextValSetHash(testBatch, valList)
 
-	generateJSON(testBatch, "./tests/json/header_tests.json")
+	generateJSON(testBatch, "./tests/json/single_step_sequential/header_tests.json")
 }
 
 func newBatch(name string) *TestBatch {
 	return &TestBatch{
 		BatchName: name,
 	}
+}
+
+// GenerateSingleStepSkippingCases creates three json files each for validator set, commit and header cases
+// These cases test the single step skipping verification
+// which means, given a trusted height and state can the lite node jump to a certain block height?
+func GenerateSingleStepSkippingCases(jsonValList string) {
+
+	valList := GetValList(jsonValList)
+
+	// ValidatorSet
+	testBatch := newBatch("Single Step Skipping-validator set")
+	caseSingleSkipOneBlock(testBatch, valList)
+	caseSingleSkipFiveBlocks(testBatch, valList)
+	caseSingleSkipValidatorSetChangesLessThanTrustLevel(testBatch, valList)
+	caseSingleSkipValidatorSetChangesMoreThanTrustLevel(testBatch, valList)
+
+	generateJSON(testBatch, "./tests/json/single_step_skipping/val_set_tests.json")
+
+	// Commit
+	testBatch = newBatch("Single Step Skipping-commit")
+
+	caseSingleSkipCommitOneThirdValsDontSign(testBatch, valList)         // error
+	caseSingleSkipCommitLessThanOneThirdValsDontSign(testBatch, valList) // not an error
+
+	generateJSON(testBatch, "./tests/json/single_step_skipping/commit_tests.json")
+
 }
