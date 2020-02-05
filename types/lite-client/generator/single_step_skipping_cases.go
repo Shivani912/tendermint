@@ -24,7 +24,7 @@ func caseSingleSkipValidatorSetChangesLessThanTrustLevel(testBatch *TestBatch, v
 	copyValList := valList.Copy()
 	initial, input, state, privVals := generateInitialAndInputSkipBlocks(copyValList, 4, 3)
 	liteBlock, state, privVals := generateNextBlockWithNextValsUpdate(state, privVals, input[0].SignedHeader.Commit, copyValList, 10, 11, 1, thirdBlockTime.Add(30*time.Second))
-	liteBlock, state = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime.Add(35*time.Second))
+	liteBlock, state, _ = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime.Add(35*time.Second))
 	input[0] = liteBlock
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
@@ -36,7 +36,7 @@ func caseSingleSkipValidatorSetChangesMoreThanTrustLevel(testBatch *TestBatch, v
 	copyValList := valList.Copy()
 	initial, input, state, privVals := generateInitialAndInputSkipBlocks(copyValList, 4, 3)
 	liteBlock, state, privVals := generateNextBlockWithNextValsUpdate(state, privVals, input[0].SignedHeader.Commit, copyValList, 10, 13, 3, thirdBlockTime.Add(30*time.Second))
-	liteBlock, state = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime.Add(35*time.Second))
+	liteBlock, state, _ = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime.Add(35*time.Second))
 	input[0] = liteBlock
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)

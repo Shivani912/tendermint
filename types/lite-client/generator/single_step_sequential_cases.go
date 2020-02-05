@@ -8,7 +8,9 @@ import (
 
 var (
 	str32byte = "----This is a 32-byte string----"
-	str64byte = "----------This is a 64-byte long long long long string----------"
+	str64byte = []byte{206, 129, 9, 176, 142, 141, 188, 30, 197, 158, 80, 135, 172, 5, 239, 44, 219, 46, 60, 239, 9, 65, 151, 236, 221, 44, 72, 253, 191, 95, 20, 67, 175, 2, 133, 74, 3, 84, 20, 60, 142, 1, 0, 75, 129, 148, 2, 206, 180, 49, 223, 47, 41, 189, 149, 230, 247, 16, 48, 228, 39, 91, 154, 6}
+
+	//"----------This is a 64-byte long long long long string----------"
 )
 
 // HEADER - BEGIN
@@ -191,6 +193,7 @@ func caseSingleSeqCommitWrongVoteSignature(testBatch *TestBatch, valList ValList
 
 	description := "Case: one lite block, wrong signature in vote, with error"
 	initial, input, _, _ := generateGeneralCase(valList, 1)
+	// fmt.Println("", input[0].SignedHeader.Commit.Precommits[0].Signature)
 	input[0].SignedHeader.Commit.Precommits[0].Signature = []byte(str64byte)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
@@ -320,7 +323,7 @@ func caseSingleSeqValidatorSetWrongValidatorSet(testBatch *TestBatch, valList Va
 	state.Validators = wrongValSet
 	state.NextValidators = wrongValSet
 
-	liteBlock, state := generateNextBlock(state, wrongPrivVals, initial.SignedHeader.Commit, secondBlockTime)
+	liteBlock, state, _ := generateNextBlock(state, wrongPrivVals, initial.SignedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
@@ -340,7 +343,7 @@ func caseSingleSeqValidatorSetReplaceValidator(testBatch *TestBatch, valList Val
 	state.Validators.Validators[0] = copyValList.Validators[4]
 	state.NextValidators = state.Validators
 
-	liteBlock, state := generateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
+	liteBlock, state, _ := generateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
@@ -359,7 +362,7 @@ func caseSingleSeqValidatorSetChangeValidatorPower(testBatch *TestBatch, valList
 	state.Validators.Validators[0].VotingPower++
 	state.NextValidators = state.Validators
 
-	liteBlock, state := generateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
+	liteBlock, state, _ := generateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 

@@ -12,7 +12,7 @@ import (
 
 func TestVerify(t *testing.T) {
 
-	tests := []string{"commit_tests.json", "header_tests.json", "val_set_tests.json"}
+	tests := []string{"single_step_sequential/commit_tests.json", "single_step_sequential/header_tests.json", "single_step_sequential/val_set_tests.json"}
 
 	// tests := []string{"single_step_skipping/val_set_tests.json", "single_step_skipping/commit_tests.json"}
 	for _, test := range tests {
@@ -44,11 +44,11 @@ func TestVerify(t *testing.T) {
 				newSignedHeader := input.SignedHeader
 				newVals := input.ValidatorSet
 
-				e := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
+				e, str := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
 				err := e != nil
 
 				if (err && !expectsError) || (!err && expectsError) {
-					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, expectedOutput)
+					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v \n String: %v", testCase.Description, e, expectedOutput, str)
 
 				} else {
 					trustedSignedHeader = newSignedHeader
@@ -57,5 +57,9 @@ func TestVerify(t *testing.T) {
 			}
 		}
 	}
+
+}
+
+func TestBisection(t *testing.T) {
 
 }

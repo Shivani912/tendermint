@@ -188,7 +188,7 @@ func generateInitial(signedHeader types.SignedHeader, nextValidatorSet types.Val
 
 // This one generates a "next" block,
 // i.e. given the first block, this function can be used to build up successive blocks
-func generateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) (LiteBlock, st.State) {
+func generateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, now time.Time) (LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	txs := generateTxs()
 	evidences := generateEvidences()
@@ -208,8 +208,21 @@ func generateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, l
 	}
 
 	state, _ = updateState(state, commit.BlockID, privVals, nil)
-	return liteBlock, state
+	return liteBlock, state, privVals
 
+}
+
+func generateNextBlocks(numOfBlocks int, state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit) ([]LiteBlock, st.State, types.PrivValidatorsByAddress) {
+	var liteBlocks []LiteBlock
+	blockTime := thirdBlockTime
+	for i := 0; i < numOfBlocks; i++ {
+		liteblock, st, pvs := generateNextBlock(state, privVals, lastCommit, blockTime)
+		liteBlocks = append(liteBlocks, liteblock)
+		state = st
+		privVals = pvs
+		blockTime = blockTime.Add(1 * time.Second)
+	}
+	return liteBlocks, state, privVals
 }
 
 // Similar to generateNextBlock
@@ -358,7 +371,7 @@ func generateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, 
 
 	signedHeader, state, privVals := generateFirstBlock(valList, numOfVals, firstBlockTime)
 	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
-	liteBlock, state := generateNextBlock(state, privVals, signedHeader.Commit, secondBlockTime)
+	liteBlock, state, _ := generateNextBlock(state, privVals, signedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
 
 	return initial, input, state, privVals
@@ -372,7 +385,7 @@ func generateInitialAndInputSkipBlocks(valList ValList, numOfVals, numOfBlocksTo
 
 	blockTime := secondBlockTime
 	for i := 0; i <= numOfBlocksToSkip; i++ {
-		liteBlock, s := generateNextBlock(state, privVals, signedHeader.Commit, blockTime)
+		liteBlock, s, _ := generateNextBlock(state, privVals, signedHeader.Commit, blockTime)
 		blockTime = blockTime.Add(5 * time.Second)
 		state = s
 
@@ -410,7 +423,7 @@ func generateNextValsUpdateCase(valList ValList, numOfInitialVals int, numOfVals
 	endIdx := startIdx + numOfValsToAdd
 	liteBlock, state, privVals := generateNextBlockWithNextValsUpdate(state, privVals, signedHeader.Commit, valList, startIdx, endIdx, numOfValsToDelete, secondBlockTime)
 	input = append(input, liteBlock)
-	liteBlock, state = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime)
+	liteBlock, state, _ = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime)
 	input = append(input, liteBlock)
 
 	return initial, input, state, privVals
