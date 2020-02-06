@@ -36,10 +36,10 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 	caseSingleSeqCommitWrongHeaderHash(testBatch, valList)
 	caseSingleSeqCommitWrongPartsHeaderCount(testBatch, valList)
 	caseSingleSeqCommitWrongPartsHeaderHash(testBatch, valList)
-	caseSingleSeqCommitWrongVoteType(testBatch, valList)
+	// caseSingleSeqCommitWrongVoteType(testBatch, valList)
 	caseSingleSeqCommitWrongVoteHeight(testBatch, valList)
 	caseSingleSeqCommitWrongVoteRound(testBatch, valList)
-	caseSingleSeqCommitWrongVoteBlockID(testBatch, valList)
+	// caseSingleSeqCommitWrongVoteBlockID(testBatch, valList)
 	caseSingleSeqCommitWrongVoteTimestamp(testBatch, valList)
 	caseSingleSeqCommitWrongVoteSignature(testBatch, valList)
 
@@ -95,4 +95,13 @@ func GenerateSingleStepSkippingCases(jsonValList string) {
 
 	generateJSON(testBatch, "./tests/json/single_step_skipping/commit_tests.json")
 
+}
+
+func GenerateManyHeaderBisectionCases(jsonValList string) {
+
+	valList := GetValList(jsonValList)
+
+	// testBatch := newBatch("Many header bisection")
+	caseBisectionVerifyTenHeaders(valList)
+	// generateJSON(testBatch, "./tests/json/many_header_bisection/happy_path.json")
 }

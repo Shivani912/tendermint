@@ -7,12 +7,13 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
+	tmmath "github.com/tendermint/tendermint/libs/math"
 	"github.com/tendermint/tendermint/types"
 )
 
-func TestVerifyAdjustedHeaders(t *testing.T) {
+func TestVerifyAdjacentHeaders(t *testing.T) {
 	const (
-		chainID    = "TestVerifyAdjustedHeaders"
+		chainID    = "TestVerifyAdjacentHeaders"
 		lastHeight = 1
 		nextHeight = 2
 	)
@@ -51,10 +52,30 @@ func TestVerifyAdjustedHeaders(t *testing.T) {
 			3 * time.Hour,
 			bTime.Add(2 * time.Hour),
 			nil,
-			"h2.ValidateBasic failed: signedHeader belongs to another chain 'different-chainID' not 'TestVerifyAdjustedHeaders'",
+			"h2.ValidateBasic failed: signedHeader belongs to another chain 'different-chainID' not 'TestVerifyAdjacentHeaders'",
+		},
+		// new header's time is before old header's time -> error
+		2: {
+			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(-1*time.Hour), nil, vals, vals,
+				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 0, len(keys)),
+			vals,
+			3 * time.Hour,
+			bTime.Add(2 * time.Hour),
+			nil,
+			"to be after old header time",
+		},
+		// new header's time is from the future -> error
+		3: {
+			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(3*time.Hour), nil, vals, vals,
+				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 0, len(keys)),
+			vals,
+			3 * time.Hour,
+			bTime.Add(2 * time.Hour),
+			nil,
+			"new header has a time from the future",
 		},
 		// 3/3 signed -> no error
-		2: {
+		4: {
 			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(1*time.Hour), nil, vals, vals,
 				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 0, len(keys)),
 			vals,
@@ -64,7 +85,7 @@ func TestVerifyAdjustedHeaders(t *testing.T) {
 			"",
 		},
 		// 2/3 signed -> no error
-		3: {
+		5: {
 			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(1*time.Hour), nil, vals, vals,
 				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 1, len(keys)),
 			vals,
@@ -74,17 +95,17 @@ func TestVerifyAdjustedHeaders(t *testing.T) {
 			"",
 		},
 		// 1/3 signed -> error
-		4: {
+		6: {
 			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(1*time.Hour), nil, vals, vals,
 				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), len(keys)-1, len(keys)),
 			vals,
 			3 * time.Hour,
 			bTime.Add(2 * time.Hour),
-			types.ErrTooMuchChange{Got: 50.0, Needed: 93.00},
+			types.ErrNotEnoughVotingPowerSigned{Got: 50, Needed: 93},
 			"",
 		},
 		// vals does not match with what we have -> error
-		5: {
+		7: {
 			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(1*time.Hour), nil, keys.ToValidators(10, 1), vals,
 				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 0, len(keys)),
 			keys.ToValidators(10, 1),
@@ -94,7 +115,7 @@ func TestVerifyAdjustedHeaders(t *testing.T) {
 			"to match those from new header",
 		},
 		// vals are inconsistent with newHeader -> error
-		6: {
+		8: {
 			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(1*time.Hour), nil, vals, vals,
 				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 0, len(keys)),
 			keys.ToValidators(10, 1),
@@ -104,7 +125,7 @@ func TestVerifyAdjustedHeaders(t *testing.T) {
 			"to match those that were supplied",
 		},
 		// old header has expired -> error
-		7: {
+		9: {
 			keys.GenSignedHeader(chainID, nextHeight, bTime.Add(1*time.Hour), nil, vals, vals,
 				[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 0, len(keys)),
 			keys.ToValidators(10, 1),
@@ -130,11 +151,12 @@ func TestVerifyAdjustedHeaders(t *testing.T) {
 			}
 		})
 	}
+
 }
 
-func TestVerifyNonAdjustedHeaders(t *testing.T) {
+func TestVerifyNonAdjacentHeaders(t *testing.T) {
 	const (
-		chainID    = "TestVerifyNonAdjustedHeaders"
+		chainID    = "TestVerifyNonAdjacentHeaders"
 		lastHeight = 1
 	)
 
@@ -194,7 +216,7 @@ func TestVerifyNonAdjustedHeaders(t *testing.T) {
 			vals,
 			3 * time.Hour,
 			bTime.Add(2 * time.Hour),
-			types.ErrTooMuchChange{Got: 50.0, Needed: 93.00},
+			types.ErrNotEnoughVotingPowerSigned{Got: 50, Needed: 93},
 			"",
 		},
 		// 3/3 new vals signed, 2/3 old vals present -> no error
@@ -224,7 +246,7 @@ func TestVerifyNonAdjustedHeaders(t *testing.T) {
 			lessThanOneThirdVals,
 			3 * time.Hour,
 			bTime.Add(2 * time.Hour),
-			types.ErrTooMuchChange{Got: 20.0, Needed: 46.666668},
+			ErrNewValSetCantBeTrusted{types.ErrNotEnoughVotingPowerSigned{Got: 20, Needed: 46}},
 			"",
 		},
 	}
@@ -243,5 +265,56 @@ func TestVerifyNonAdjustedHeaders(t *testing.T) {
 				assert.NoError(t, err)
 			}
 		})
+	}
+}
+
+func TestVerifyReturnsErrorIfTrustLevelIsInvalid(t *testing.T) {
+	const (
+		chainID    = "TestVerifyReturnsErrorIfTrustLevelIsInvalid"
+		lastHeight = 1
+	)
+
+	var (
+		keys = genPrivKeys(4)
+		// 20, 30, 40, 50 - the first 3 don't have 2/3, the last 3 do!
+		vals     = keys.ToValidators(20, 10)
+		bTime, _ = time.Parse(time.RFC3339, "2006-01-02T15:04:05Z")
+		header   = keys.GenSignedHeader(chainID, lastHeight, bTime, nil, vals, vals,
+			[]byte("app_hash"), []byte("cons_hash"), []byte("results_hash"), 0, len(keys))
+	)
+
+	err := Verify(chainID, header, vals, header, vals, 2*time.Hour, time.Now(),
+		tmmath.Fraction{Numerator: 2, Denominator: 1})
+	assert.Error(t, err)
+}
+
+func TestValidateTrustLevel(t *testing.T) {
+	testCases := []struct {
+		lvl   tmmath.Fraction
+		valid bool
+	}{
+		// valid
+		0: {tmmath.Fraction{Numerator: 1, Denominator: 1}, true},
+		1: {tmmath.Fraction{Numerator: 1, Denominator: 3}, true},
+		2: {tmmath.Fraction{Numerator: 2, Denominator: 3}, true},
+		3: {tmmath.Fraction{Numerator: 3, Denominator: 3}, true},
+		4: {tmmath.Fraction{Numerator: 4, Denominator: 5}, true},
+
+		// invalid
+		5:  {tmmath.Fraction{Numerator: 6, Denominator: 5}, false},
+		6:  {tmmath.Fraction{Numerator: -1, Denominator: 3}, false},
+		7:  {tmmath.Fraction{Numerator: 0, Denominator: 1}, false},
+		8:  {tmmath.Fraction{Numerator: -1, Denominator: -3}, false},
+		9:  {tmmath.Fraction{Numerator: 0, Denominator: 0}, false},
+		10: {tmmath.Fraction{Numerator: 1, Denominator: 0}, false},
+	}
+
+	for _, tc := range testCases {
+		err := ValidateTrustLevel(tc.lvl)
+		if !tc.valid {
+			assert.Error(t, err)
+		} else {
+			assert.NoError(t, err)
+		}
 	}
 }

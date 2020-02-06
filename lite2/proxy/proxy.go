@@ -18,11 +18,20 @@ import (
 
 // A Proxy defines parameters for running an HTTP server proxy.
 type Proxy struct {
+<<<<<<< HEAD
 	Addr   string // TCP address to listen on, ":http" if empty
 	Config *rpcserver.Config
 	Codec  *amino.Codec
 	Client *lrpc.Client
 	Logger log.Logger
+=======
+	Addr     string // TCP address to listen on, ":http" if empty
+	Config   *rpcserver.Config
+	Codec    *amino.Codec
+	Client   *lrpc.Client
+	Logger   log.Logger
+	Listener net.Listener
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 }
 
 // ListenAndServe configures the rpcserver.WebsocketManager, sets up the RPC
@@ -34,6 +43,10 @@ func (p *Proxy) ListenAndServe() error {
 	if err != nil {
 		return err
 	}
+<<<<<<< HEAD
+=======
+	p.Listener = listener
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 
 	return rpcserver.StartHTTPServer(
 		listener,
@@ -51,6 +64,10 @@ func (p *Proxy) ListenAndServeTLS(certFile, keyFile string) error {
 	if err != nil {
 		return err
 	}
+<<<<<<< HEAD
+=======
+	p.Listener = listener
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 
 	return rpcserver.StartHTTPAndTLSServer(
 		listener,

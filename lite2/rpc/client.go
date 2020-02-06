@@ -10,7 +10,12 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/tendermint/tendermint/crypto/merkle"
+<<<<<<< HEAD
 	cmn "github.com/tendermint/tendermint/libs/common"
+=======
+	tmbytes "github.com/tendermint/tendermint/libs/bytes"
+	service "github.com/tendermint/tendermint/libs/service"
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	lite "github.com/tendermint/tendermint/lite2"
 	rpcclient "github.com/tendermint/tendermint/rpc/client"
 	ctypes "github.com/tendermint/tendermint/rpc/core/types"
@@ -21,7 +26,11 @@ import (
 // Client is an RPC client, which uses lite#Client to verify data (if it can be
 // proved!).
 type Client struct {
+<<<<<<< HEAD
 	cmn.BaseService
+=======
+	service.BaseService
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 
 	next rpcclient.Client
 	lc   *lite.Client
@@ -37,7 +46,11 @@ func NewClient(next rpcclient.Client, lc *lite.Client) *Client {
 		lc:   lc,
 		prt:  defaultProofRuntime(),
 	}
+<<<<<<< HEAD
 	c.BaseService = *cmn.NewBaseService(nil, "Client", c)
+=======
+	c.BaseService = *service.NewBaseService(nil, "Client", c)
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	return c
 }
 
@@ -62,13 +75,23 @@ func (c *Client) ABCIInfo() (*ctypes.ResultABCIInfo, error) {
 	return c.next.ABCIInfo()
 }
 
+<<<<<<< HEAD
 func (c *Client) ABCIQuery(path string, data cmn.HexBytes) (*ctypes.ResultABCIQuery, error) {
+=======
+func (c *Client) ABCIQuery(path string, data tmbytes.HexBytes) (*ctypes.ResultABCIQuery, error) {
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	return c.ABCIQueryWithOptions(path, data, rpcclient.DefaultABCIQueryOptions)
 }
 
 // GetWithProofOptions is useful if you want full access to the ABCIQueryOptions.
 // XXX Usage of path?  It's not used, and sometimes it's /, sometimes /key, sometimes /store.
+<<<<<<< HEAD
 func (c *Client) ABCIQueryWithOptions(path string, data cmn.HexBytes, opts rpcclient.ABCIQueryOptions) (*ctypes.ResultABCIQuery, error) {
+=======
+func (c *Client) ABCIQueryWithOptions(path string, data tmbytes.HexBytes,
+	opts rpcclient.ABCIQueryOptions) (*ctypes.ResultABCIQuery, error) {
+
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	res, err := c.next.ABCIQueryWithOptions(path, data, opts)
 	if err != nil {
 		return nil, err
@@ -87,6 +110,7 @@ func (c *Client) ABCIQueryWithOptions(path string, data cmn.HexBytes, opts rpccl
 	}
 
 	// Update the light client if we're behind.
+<<<<<<< HEAD
 	if err := c.updateLiteClientIfNeededTo(resp.Height + 1); err != nil {
 		return nil, err
 	}
@@ -95,6 +119,12 @@ func (c *Client) ABCIQueryWithOptions(path string, data cmn.HexBytes, opts rpccl
 	h, err := c.lc.TrustedHeader(resp.Height + 1)
 	if err != nil {
 		return nil, errors.Wrapf(err, "TrustedHeader(%d)", resp.Height+1)
+=======
+	// NOTE: AppHash for height H is in header H+1.
+	h, err := c.updateLiteClientIfNeededTo(resp.Height + 1)
+	if err != nil {
+		return nil, err
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	}
 
 	// Validate the value proof against the trusted header.
@@ -156,6 +186,13 @@ func (c *Client) ConsensusState() (*ctypes.ResultConsensusState, error) {
 	return c.next.ConsensusState()
 }
 
+<<<<<<< HEAD
+=======
+func (c *Client) ConsensusParams(height *int64) (*ctypes.ResultConsensusParams, error) {
+	return c.next.ConsensusParams(height)
+}
+
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 func (c *Client) Health() (*ctypes.ResultHealth, error) {
 	return c.next.Health()
 }
@@ -181,14 +218,22 @@ func (c *Client) BlockchainInfo(minHeight, maxHeight int64) (*ctypes.ResultBlock
 	// Update the light client if we're behind.
 	if len(res.BlockMetas) > 0 {
 		lastHeight := res.BlockMetas[len(res.BlockMetas)-1].Header.Height
+<<<<<<< HEAD
 		if err := c.updateLiteClientIfNeededTo(lastHeight); err != nil {
+=======
+		if _, err := c.updateLiteClientIfNeededTo(lastHeight); err != nil {
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 			return nil, err
 		}
 	}
 
 	// Verify each of the BlockMetas.
 	for _, meta := range res.BlockMetas {
+<<<<<<< HEAD
 		h, err := c.lc.TrustedHeader(meta.Header.Height)
+=======
+		h, err := c.lc.TrustedHeader(meta.Header.Height, time.Now())
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 		if err != nil {
 			return nil, errors.Wrapf(err, "TrustedHeader(%d)", meta.Header.Height)
 		}
@@ -213,27 +258,44 @@ func (c *Client) Block(height *int64) (*ctypes.ResultBlock, error) {
 	}
 
 	// Validate res.
+<<<<<<< HEAD
 	if err := res.BlockMeta.ValidateBasic(); err != nil {
+=======
+	if err := res.BlockID.ValidateBasic(); err != nil {
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 		return nil, err
 	}
 	if err := res.Block.ValidateBasic(); err != nil {
 		return nil, err
 	}
+<<<<<<< HEAD
 	if bmH, bH := res.BlockMeta.Header.Hash(), res.Block.Hash(); !bytes.Equal(bmH, bH) {
 		return nil, errors.Errorf("BlockMeta#Header %X does not match with Block %X",
+=======
+	if bmH, bH := res.BlockID.Hash, res.Block.Hash(); !bytes.Equal(bmH, bH) {
+		return nil, errors.Errorf("BlockID %X does not match with Block %X",
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 			bmH, bH)
 	}
 
 	// Update the light client if we're behind.
+<<<<<<< HEAD
 	if err := c.updateLiteClientIfNeededTo(res.Block.Height); err != nil {
+=======
+	h, err := c.updateLiteClientIfNeededTo(res.Block.Height)
+	if err != nil {
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 		return nil, err
 	}
 
 	// Verify block.
+<<<<<<< HEAD
 	h, err := c.lc.TrustedHeader(res.Block.Height)
 	if err != nil {
 		return nil, errors.Wrapf(err, "TrustedHeader(%d)", res.Block.Height)
 	}
+=======
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	if bH, tH := res.Block.Hash(), h.Hash(); !bytes.Equal(bH, tH) {
 		return nil, errors.Errorf("Block#Header %X does not match with trusted header %X",
 			bH, tH)
@@ -258,15 +320,23 @@ func (c *Client) Commit(height *int64) (*ctypes.ResultCommit, error) {
 	}
 
 	// Update the light client if we're behind.
+<<<<<<< HEAD
 	if err := c.updateLiteClientIfNeededTo(res.Height); err != nil {
+=======
+	h, err := c.updateLiteClientIfNeededTo(res.Height)
+	if err != nil {
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 		return nil, err
 	}
 
 	// Verify commit.
+<<<<<<< HEAD
 	h, err := c.lc.TrustedHeader(res.Height)
 	if err != nil {
 		return nil, errors.Wrapf(err, "TrustedHeader(%d)", res.Height)
 	}
+=======
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	if rH, tH := res.Hash(), h.Hash(); !bytes.Equal(rH, tH) {
 		return nil, errors.Errorf("header %X does not match with trusted header %X",
 			rH, tH)
@@ -289,11 +359,17 @@ func (c *Client) Tx(hash []byte, prove bool) (*ctypes.ResultTx, error) {
 	}
 
 	// Update the light client if we're behind.
+<<<<<<< HEAD
 	if err := c.updateLiteClientIfNeededTo(res.Height); err != nil {
+=======
+	h, err := c.updateLiteClientIfNeededTo(res.Height)
+	if err != nil {
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 		return nil, err
 	}
 
 	// Validate the proof.
+<<<<<<< HEAD
 	h, err := c.lc.TrustedHeader(res.Height)
 	if err != nil {
 		return res, errors.Wrapf(err, "TrustedHeader(%d)", res.Height)
@@ -307,6 +383,18 @@ func (c *Client) TxSearch(query string, prove bool, page, perPage int) (*ctypes.
 
 func (c *Client) Validators(height *int64) (*ctypes.ResultValidators, error) {
 	return c.next.Validators(height)
+=======
+	return res, res.Proof.Validate(h.DataHash)
+}
+
+func (c *Client) TxSearch(query string, prove bool, page, perPage int, orderBy string) (
+	*ctypes.ResultTxSearch, error) {
+	return c.next.TxSearch(query, prove, page, perPage, orderBy)
+}
+
+func (c *Client) Validators(height *int64, page, perPage int) (*ctypes.ResultValidators, error) {
+	return c.next.Validators(height, page, perPage)
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 }
 
 func (c *Client) BroadcastEvidence(ev types.Evidence) (*ctypes.ResultBroadcastEvidence, error) {
@@ -326,6 +414,7 @@ func (c *Client) UnsubscribeAll(ctx context.Context, subscriber string) error {
 	return c.next.UnsubscribeAll(ctx, subscriber)
 }
 
+<<<<<<< HEAD
 func (c *Client) updateLiteClientIfNeededTo(height int64) error {
 	lastTrustedHeight, err := c.lc.LastTrustedHeight()
 	if err != nil {
@@ -337,6 +426,23 @@ func (c *Client) updateLiteClientIfNeededTo(height int64) error {
 		}
 	}
 	return nil
+=======
+func (c *Client) updateLiteClientIfNeededTo(height int64) (*types.SignedHeader, error) {
+	lastTrustedHeight, err := c.lc.LastTrustedHeight()
+	if err != nil {
+		return nil, errors.Wrap(err, "LastTrustedHeight")
+	}
+
+	if lastTrustedHeight < height {
+		return c.lc.VerifyHeaderAtHeight(height, time.Now())
+	}
+
+	h, err := c.lc.TrustedHeader(height, time.Now())
+	if err != nil {
+		return nil, errors.Wrapf(err, "TrustedHeader(#%d)", height)
+	}
+	return h, nil
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 }
 
 func (c *Client) RegisterOpDecoder(typ string, dec merkle.OpDecoder) {
@@ -401,11 +507,19 @@ func parseQueryStorePath(path string) (storeName string, err error) {
 	paths := strings.SplitN(path[1:], "/", 3)
 	switch {
 	case len(paths) != 3:
+<<<<<<< HEAD
 		return "", fmt.Errorf("expected format like /store/<storeName>/key")
 	case paths[0] != "store":
 		return "", fmt.Errorf("expected format like /store/<storeName>/key")
 	case paths[2] != "key":
 		return "", fmt.Errorf("expected format like /store/<storeName>/key")
+=======
+		return "", errors.New("expected format like /store/<storeName>/key")
+	case paths[0] != "store":
+		return "", errors.New("expected format like /store/<storeName>/key")
+	case paths[2] != "key":
+		return "", errors.New("expected format like /store/<storeName>/key")
+>>>>>>> df3eee455c9d2a4a9698a35aa0dfe6d5d2efd53d
 	}
 
 	return paths[1], nil

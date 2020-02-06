@@ -5,7 +5,6 @@ import (
 
 	"github.com/tendermint/tendermint/crypto"
 	"github.com/tendermint/tendermint/crypto/ed25519"
-	"github.com/tendermint/tendermint/crypto/secp256k1"
 
 	"github.com/tendermint/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
@@ -29,34 +28,34 @@ func genPrivKeys(n int) privKeys {
 	return res
 }
 
-// Change replaces the key at index i.
-func (pkz privKeys) Change(i int) privKeys {
-	res := make(privKeys, len(pkz))
-	copy(res, pkz)
-	res[i] = ed25519.GenPrivKey()
-	return res
-}
+// // Change replaces the key at index i.
+// func (pkz privKeys) Change(i int) privKeys {
+// 	res := make(privKeys, len(pkz))
+// 	copy(res, pkz)
+// 	res[i] = ed25519.GenPrivKey()
+// 	return res
+// }
 
-// Extend adds n more keys (to remove, just take a slice).
-func (pkz privKeys) Extend(n int) privKeys {
-	extra := genPrivKeys(n)
-	return append(pkz, extra...)
-}
+// // Extend adds n more keys (to remove, just take a slice).
+// func (pkz privKeys) Extend(n int) privKeys {
+// 	extra := genPrivKeys(n)
+// 	return append(pkz, extra...)
+// }
 
-// GenSecpPrivKeys produces an array of secp256k1 private keys to generate commits.
-func GenSecpPrivKeys(n int) privKeys {
-	res := make(privKeys, n)
-	for i := range res {
-		res[i] = secp256k1.GenPrivKey()
-	}
-	return res
-}
+// // GenSecpPrivKeys produces an array of secp256k1 private keys to generate commits.
+// func GenSecpPrivKeys(n int) privKeys {
+// 	res := make(privKeys, n)
+// 	for i := range res {
+// 		res[i] = secp256k1.GenPrivKey()
+// 	}
+// 	return res
+// }
 
-// ExtendSecp adds n more secp256k1 keys (to remove, just take a slice).
-func (pkz privKeys) ExtendSecp(n int) privKeys {
-	extra := GenSecpPrivKeys(n)
-	return append(pkz, extra...)
-}
+// // ExtendSecp adds n more secp256k1 keys (to remove, just take a slice).
+// func (pkz privKeys) ExtendSecp(n int) privKeys {
+// 	extra := GenSecpPrivKeys(n)
+// 	return append(pkz, extra...)
+// }
 
 // ToValidators produces a valset from the set of keys.
 // The first key has weight `init` and it increases by `inc` every step
@@ -72,21 +71,31 @@ func (pkz privKeys) ToValidators(init, inc int64) *types.ValidatorSet {
 
 // signHeader properly signs the header with all keys from first to last exclusive.
 func (pkz privKeys) signHeader(header *types.Header, first, last int) *types.Commit {
-	commitSigs := make([]*types.CommitSig, len(pkz))
+	commitSigs := make([]types.CommitSig, len(pkz))
+	for i := 0; i < len(pkz); i++ {
+		commitSigs[i] = types.NewCommitSigAbsent()
+	}
 
 	// We need this list to keep the ordering.
 	vset := pkz.ToValidators(1, 0)
 
+	blockID := types.BlockID{
+		Hash:        header.Hash(),
+		PartsHeader: types.PartSetHeader{Total: 1, Hash: crypto.CRandBytes(32)},
+	}
+
 	// Fill in the votes we want.
 	for i := first; i < last && i < len(pkz); i++ {
-		vote := makeVote(header, vset, pkz[i])
+		vote := makeVote(header, vset, pkz[i], blockID)
 		commitSigs[vote.ValidatorIndex] = vote.CommitSig()
 	}
-	blockID := types.BlockID{Hash: header.Hash()}
-	return types.NewCommit(blockID, commitSigs)
+
+	return types.NewCommit(header.Height, 1, blockID, commitSigs)
 }
 
-func makeVote(header *types.Header, valset *types.ValidatorSet, key crypto.PrivKey) *types.Vote {
+func makeVote(header *types.Header, valset *types.ValidatorSet,
+	key crypto.PrivKey, blockID types.BlockID) *types.Vote {
+
 	addr := key.PubKey().Address()
 	idx, _ := valset.GetByAddress(addr)
 	vote := &types.Vote{
@@ -96,7 +105,7 @@ func makeVote(header *types.Header, valset *types.ValidatorSet, key crypto.PrivK
 		Round:            1,
 		Timestamp:        tmtime.Now(),
 		Type:             types.PrecommitType,
-		BlockID:          types.BlockID{Hash: header.Hash()},
+		BlockID:          blockID,
 	}
 	// Sign it
 	signBytes := vote.SignBytes(header.ChainID)
@@ -114,11 +123,9 @@ func genHeader(chainID string, height int64, bTime time.Time, txs types.Txs,
 	valset, nextValset *types.ValidatorSet, appHash, consHash, resHash []byte) *types.Header {
 
 	return &types.Header{
-		ChainID:  chainID,
-		Height:   height,
-		Time:     bTime,
-		NumTxs:   int64(len(txs)),
-		TotalTxs: int64(len(txs)),
+		ChainID: chainID,
+		Height:  height,
+		Time:    bTime,
 		// LastBlockID
 		// LastCommitHash
 		ValidatorsHash:     valset.Hash(),

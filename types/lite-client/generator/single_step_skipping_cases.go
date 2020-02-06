@@ -1,6 +1,10 @@
 package generator
 
-import "time"
+import (
+	"time"
+
+	"github.com/tendermint/tendermint/types"
+)
 
 func caseSingleSkipOneBlock(testBatch *TestBatch, valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=3, should not expect error"
@@ -46,7 +50,7 @@ func caseSingleSkipCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValL
 	description := "Case: Trusted height=1, verifying signed header at height=3 where 1/3 vals dont sign, should expect error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(valList, 3, 1)
-	input[0].SignedHeader.Commit.Precommits[0] = nil
+	input[0].SignedHeader.Commit.Signatures[0].BlockIDFlag = types.BlockIDFlagAbsent
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
@@ -55,7 +59,7 @@ func caseSingleSkipCommitLessThanOneThirdValsDontSign(testBatch *TestBatch, valL
 	description := "Case: Trusted height=1, verifying signed header at height=3 where less than 1/3 vals dont sign, should not expect error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(valList, 4, 1)
-	input[0].SignedHeader.Commit.Precommits[0] = nil
+	input[0].SignedHeader.Commit.Signatures[0].BlockIDFlag = types.BlockIDFlagAbsent
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }

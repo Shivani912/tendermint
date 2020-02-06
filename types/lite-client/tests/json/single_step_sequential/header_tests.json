@@ -13,8 +13,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -33,29 +31,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -96,13 +86,11 @@
  							"chain_id": "test-chain-01",
  							"height": "2",
  							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
- 								"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 								"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
  							"last_commit_hash": "77726F6E672068617368",
@@ -116,29 +104,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}
@@ -203,8 +183,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -223,29 +201,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -286,16 +256,14 @@
  							"chain_id": "test-chain-01",
  							"height": "2",
  							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
- 								"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 								"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
- 							"last_commit_hash": "AB6E7DD5B29A242104BAA90BE2D708A0A41C06139FB27D135B63905B3A5717D3",
+ 							"last_commit_hash": "A07B92432C2504E8C869B2E9853FDAE071BC364C222FE8520C112E645962325A",
  							"data_hash": "",
  							"validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
  							"next_validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
@@ -306,29 +274,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}
@@ -393,8 +353,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -413,29 +371,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -476,16 +426,14 @@
  							"chain_id": "test-chain-01",
  							"height": "2",
  							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
  								"hash": "77726F6E672068617368",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
- 							"last_commit_hash": "AB6E7DD5B29A242104BAA90BE2D708A0A41C06139FB27D135B63905B3A5717D3",
+ 							"last_commit_hash": "A07B92432C2504E8C869B2E9853FDAE071BC364C222FE8520C112E645962325A",
  							"data_hash": "",
  							"validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
  							"next_validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
@@ -496,29 +444,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}
@@ -583,8 +523,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -603,29 +541,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -666,16 +596,14 @@
  							"chain_id": "wrong-chain-id",
  							"height": "2",
  							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
- 								"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 								"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
- 							"last_commit_hash": "AB6E7DD5B29A242104BAA90BE2D708A0A41C06139FB27D135B63905B3A5717D3",
+ 							"last_commit_hash": "A07B92432C2504E8C869B2E9853FDAE071BC364C222FE8520C112E645962325A",
  							"data_hash": "",
  							"validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
  							"next_validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
@@ -686,29 +614,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}
@@ -773,8 +693,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -793,29 +711,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -856,16 +766,14 @@
  							"chain_id": "test-chain-01",
  							"height": "3",
  							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
- 								"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 								"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
- 							"last_commit_hash": "AB6E7DD5B29A242104BAA90BE2D708A0A41C06139FB27D135B63905B3A5717D3",
+ 							"last_commit_hash": "A07B92432C2504E8C869B2E9853FDAE071BC364C222FE8520C112E645962325A",
  							"data_hash": "",
  							"validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
  							"next_validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
@@ -876,29 +784,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}
@@ -963,8 +863,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -983,29 +881,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -1046,16 +936,14 @@
  							"chain_id": "test-chain-01",
  							"height": "2",
  							"time": "2019-11-02T15:05:15Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
- 								"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 								"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
- 							"last_commit_hash": "AB6E7DD5B29A242104BAA90BE2D708A0A41C06139FB27D135B63905B3A5717D3",
+ 							"last_commit_hash": "A07B92432C2504E8C869B2E9853FDAE071BC364C222FE8520C112E645962325A",
  							"data_hash": "",
  							"validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
  							"next_validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
@@ -1066,29 +954,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}
@@ -1153,8 +1033,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -1173,29 +1051,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -1236,16 +1106,14 @@
  							"chain_id": "test-chain-01",
  							"height": "2",
  							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
- 								"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 								"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
- 							"last_commit_hash": "AB6E7DD5B29A242104BAA90BE2D708A0A41C06139FB27D135B63905B3A5717D3",
+ 							"last_commit_hash": "A07B92432C2504E8C869B2E9853FDAE071BC364C222FE8520C112E645962325A",
  							"data_hash": "",
  							"validators_hash": "77726F6E672076616C696461746F72207365742068617368",
  							"next_validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
@@ -1256,29 +1124,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}
@@ -1343,8 +1203,6 @@
  						"chain_id": "test-chain-01",
  						"height": "1",
  						"time": "2019-11-02T15:04:00Z",
- 						"num_txs": "0",
- 						"total_txs": "0",
  						"last_block_id": {
  							"hash": "",
  							"parts": {
@@ -1363,29 +1221,21 @@
  						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
+ 						"height": "1",
+ 						"round": "1",
  						"block_id": {
- 							"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 							"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  							"parts": {
  								"total": "1",
- 								"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 								"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  							}
  						},
- 						"precommits": [
+ 						"signatures": [
  							{
- 								"type": 2,
- 								"height": "1",
- 								"round": "1",
- 								"block_id": {
- 									"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
- 									"parts": {
- 										"total": "1",
- 										"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
- 									}
- 								},
- 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"validator_index": "0",
- 								"signature": "4TA6MKq3xvL+0BNy/AgETrRTq3TRidFyEEUe5lRAPysMAcBe3WSudbYHh6l+1Pu61foJLXiYz+wDYdrOrEk2Dw=="
+ 								"timestamp": "2019-11-02T15:04:10Z",
+ 								"signature": "K9TiLbablYPl7Fz4gibHhG5Fc80if/sMO/3zIcKvVPOWuZMgSimwLHZIGcEfEyQpXFQfFzV6Pe0R2tzsyNpiAg=="
  							}
  						]
  					}
@@ -1426,16 +1276,14 @@
  							"chain_id": "test-chain-01",
  							"height": "2",
  							"time": "2019-11-02T15:04:10Z",
- 							"num_txs": "0",
- 							"total_txs": "0",
  							"last_block_id": {
- 								"hash": "EC561779A1A1A2F969B11D41DF93878AA27AEACDEAAFC5A9564F52F8729FC91D",
+ 								"hash": "9FF0F7C1F18374545CBC009BD6E59566AA568324D542050B5683615ADCAC6A47",
  								"parts": {
  									"total": "1",
- 									"hash": "198AB65E5090C2D65576D0F84876A97BDDCC8E50EBDB0EEA44D21B58CBC4660E"
+ 									"hash": "5DEAF7B76F7C379B7850946013451BF2BA23EA01CB81BB320889782B2A6E7BD3"
  								}
  							},
- 							"last_commit_hash": "AB6E7DD5B29A242104BAA90BE2D708A0A41C06139FB27D135B63905B3A5717D3",
+ 							"last_commit_hash": "A07B92432C2504E8C869B2E9853FDAE071BC364C222FE8520C112E645962325A",
  							"data_hash": "",
  							"validators_hash": "75B9F27F25F3515EF7CA61DD42C272CCC280C537E6A9ED493710EB361CB90B0D",
  							"next_validators_hash": "77726F6E67206E6578742076616C696461746F72207365742068617368",
@@ -1446,29 +1294,21 @@
  							"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  						},
  						"commit": {
+ 							"height": "2",
+ 							"round": "1",
  							"block_id": {
- 								"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
+ 								"hash": "5B769D15E38158CBE7CD657DACC5505C857C0290951CD364A232DBF611024B22",
  								"parts": {
  									"total": "1",
- 									"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
+ 									"hash": "9CE8DAB030B30FFC52D03E03ADA6310AD1A3F03E3423493F2388B4575F53FEEE"
  								}
  							},
- 							"precommits": [
+ 							"signatures": [
  								{
- 									"type": 2,
- 									"height": "2",
- 									"round": "1",
- 									"block_id": {
- 										"hash": "E3D4300A0C730F2912219F257314C4F3CE95E4E0954FB9F5E224B4FD076C51C0",
- 										"parts": {
- 											"total": "1",
- 											"hash": "00CD6653A3879863104D304394193DD6B06125DB014A829098FF9470C7865D0C"
- 										}
- 									},
- 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"block_id_flag": 2,
  									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"timestamp": "2019-11-02T15:04:15Z",
+ 									"signature": "nzE+gG7QoY0pl3PTTtaUqgyLpSxK5yihZmhUXNndHsnWaaaLF2mFcDhVr2IWxce8UG6toYERbNAdFEK8f06ZDg=="
  								}
  							]
  						}

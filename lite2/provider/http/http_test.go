@@ -14,7 +14,7 @@ import (
 )
 
 func TestMain(m *testing.M) {
-	app := kvstore.NewKVStoreApplication()
+	app := kvstore.NewApplication()
 	node := rpctest.StartTendermint(app)
 
 	code := m.Run()
@@ -33,7 +33,8 @@ func TestProvider(t *testing.T) {
 	}
 	chainID := genDoc.ChainID
 	t.Log("chainID:", chainID)
-	p := New(chainID, rpcAddr)
+	p, err := New(chainID, rpcAddr)
+	require.Nil(t, err)
 	require.NotNil(t, p)
 
 	// let it produce some blocks

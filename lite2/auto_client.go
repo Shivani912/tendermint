@@ -55,12 +55,12 @@ func (c *AutoClient) autoUpdate() {
 	for {
 		select {
 		case <-ticker.C:
-			err := c.base.VerifyHeaderAtHeight(lastTrustedHeight+1, time.Now())
+			_, err := c.base.VerifyHeaderAtHeight(lastTrustedHeight+1, time.Now())
 			if err != nil {
 				c.err <- err
 				continue
 			}
-			h, err := c.base.TrustedHeader(lastTrustedHeight + 1)
+			h, err := c.base.TrustedHeader(lastTrustedHeight+1, time.Now())
 			if err != nil {
 				c.err <- err
 				continue
