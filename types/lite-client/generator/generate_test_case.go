@@ -96,3 +96,8 @@ func GenerateSingleStepSkippingCases(jsonValList string) {
 	generateJSON(testBatch, "./tests/json/single_step_skipping/commit_tests.json")
 
 }
+
+func GenerateManyHeaderBisectionCases(jsonValList string) {
+	valList := GetValList(jsonValList)
+	caseBisectionVerifyTenHeaders(valList)
+}

@@ -6,6 +6,7 @@ import (
 
 	"github.com/pkg/errors"
 
+	cmn "github.com/tendermint/tendermint/libs/common"
 	"github.com/tendermint/tendermint/libs/log"
 	"github.com/tendermint/tendermint/lite2/provider"
 	"github.com/tendermint/tendermint/lite2/store"
@@ -26,12 +27,12 @@ type TrustOptions struct {
 	// Only trust commits up to this old.
 	// Should be equal to the unbonding period minus a configurable evidence
 	// submission synchrony bound.
-	Period time.Duration
+	Period time.Duration `json:"period"`
 
 	// Header's Height and Hash must both be provided to force the trusting of a
 	// particular header.
-	Height int64
-	Hash   []byte
+	Height int64        `json:"heigth"`
+	Hash   cmn.HexBytes `json:"hash"`
 }
 
 type mode int
