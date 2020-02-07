@@ -46,7 +46,7 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 	// TODO: more cases
 	// We need to come back to this after the commit structure changes
 	caseSingleSeqCommitOneThirdValsDontSign(testBatch, valList)         // error
-	caseSingleSeqCommitLessThanOneThirdValsDontSign(testBatch, valList) // not an error
+	caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(testBatch, valList) // not an error
 
 	generateJSON(testBatch, "./tests/json/single_step_sequential/commit_tests.json")
 
@@ -91,7 +91,7 @@ func GenerateSingleStepSkippingCases(jsonValList string) {
 	testBatch = newBatch("Single Step Skipping-commit")
 
 	caseSingleSkipCommitOneThirdValsDontSign(testBatch, valList)         // error
-	caseSingleSkipCommitLessThanOneThirdValsDontSign(testBatch, valList) // not an error
+	caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(testBatch, valList) // not an error
 
 	generateJSON(testBatch, "./tests/json/single_step_skipping/commit_tests.json")
 

@@ -12,7 +12,13 @@ import (
 
 func TestVerify(t *testing.T) {
 
-	tests := []string{"single_step_sequential/commit_tests.json", "single_step_sequential/header_tests.json", "single_step_sequential/val_set_tests.json"}
+	tests := []string{
+		"single_step_sequential/commit_tests.json",
+		"single_step_sequential/header_tests.json",
+		"single_step_sequential/val_set_tests.json",
+		"single_step_skipping/val_set_tests.json",
+		"single_step_skipping/commit_tests.json",
+	}
 
 	// tests := []string{"single_step_skipping/val_set_tests.json", "single_step_skipping/commit_tests.json"}
 	for _, test := range tests {
@@ -62,4 +68,41 @@ func TestVerify(t *testing.T) {
 
 func TestBisection(t *testing.T) {
 
+	cdc := amino.NewCodec()
+	cryptoAmino.RegisterAmino(cdc)
+
+	cdc.RegisterInterface((*provider.Provider)(nil), nil)
+	cdc.RegisterConcrete(generator.MockProvider{}, "com.tendermint/MockProvider", nil)
+
+	var testBisection generator.TestBisection
+	err := cdc.UnmarshalJSON(data, &testBisection)
+	if err != nil {
+		fmt.Printf("error: %v", err)
+	}
+
+	fmt.Println(testBisection.Description)
+
+	trustedStore := dbs.New(dbm.NewMemDB(), testBisection.Primary.ChainID())
+
+	// var witnesses []provider.Provider
+	witnesses := testBisection.Witnesses
+
+	client, err := lite.NewClient(
+		testBisection.Primary.ChainID(),
+		testBisection.TrustOptions,
+		testBisection.Primary,
+		witnesses,
+		trustedStore,
+		lite.SkippingVerification(testBisection.TrustLevel))
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	height := testBisection.HeightToVerify
+	_, e := client.VerifyHeaderAtHeight(height, testBisection.Now)
+
+	if e != nil {
+		t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testBisection.Description, e, testBisection.ExpectedOutput)
+
+	}
 }

@@ -208,7 +208,7 @@ func caseSingleSeqCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValLi
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func caseSingleSeqCommitLessThanOneThirdValsDontSign(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, less than one-third vals don't sign, no error"
 	initial, input, _, _ := generateGeneralCase(valList, 4)
