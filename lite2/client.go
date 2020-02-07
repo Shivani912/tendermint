@@ -9,6 +9,7 @@ import (
 
 	"github.com/pkg/errors"
 
+	tmbytes "github.com/tendermint/tendermint/libs/bytes"
 	"github.com/tendermint/tendermint/libs/log"
 	tmmath "github.com/tendermint/tendermint/libs/math"
 	tmrand "github.com/tendermint/tendermint/libs/rand"
@@ -36,12 +37,12 @@ type TrustOptions struct {
 	// More specifically, trusting period + time needed to check headers + time
 	// needed to report and punish misbehavior should be less than the unbonding
 	// period.
-	Period time.Duration
+	Period time.Duration `json:"period"`
 
 	// Header's Height and Hash must both be provided to force the trusting of a
 	// particular header.
-	Height int64
-	Hash   []byte
+	Height int64            `json:"height"`
+	Hash   tmbytes.HexBytes `json:"hash"`
 }
 
 type mode byte

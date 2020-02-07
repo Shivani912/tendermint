@@ -1,13 +1,13 @@
 {
  	"description": "Case: Trusted height=1, bisecting to verify height=12, should not expect error",
  	"trust_options": {
- 		"Period": "10800000000000",
- 		"Height": "1",
- 		"Hash": "okWEnBTvhVbL+SWZeQDN1LVRmYH9lqLb6CLl8EgDGr0="
+ 		"period": "10800000000000",
+ 		"height": "1",
+ 		"hash": "A245849C14EF8556CBF925997900CDD4B5519981FD96A2DBE822E5F048031ABD"
  	},
  	"primary": {
- 		"ChainId": "test-chain-01",
- 		"LiteBlocks": [
+ 		"chain_id": "test-chain-01",
+ 		"lite_blocks": [
  			{
  				"signed_header": {
  					"header": {
@@ -1554,8 +1554,8 @@
  		{
  			"type": "com.tendermint/MockProvider",
  			"value": {
- 				"ChainId": "test-chain-01",
- 				"LiteBlocks": [
+ 				"chain_id": "test-chain-01",
+ 				"lite_blocks": [
  					{
  						"signed_header": {
  							"header": {
@@ -3102,8 +3102,8 @@
  	],
  	"height_to_verify": "11",
  	"trust_level": {
- 		"Numerator": "1",
- 		"Denominator": "3"
+ 		"numerator": "1",
+ 		"denominator": "3"
  	},
  	"now": "2019-11-02T15:30:00Z",
  	"expected_output": "no error"

@@ -7,21 +7,19 @@ import (
 	"sort"
 	"time"
 
-	"github.com/tendermint/tendermint/types"
-
 	amino "github.com/tendermint/go-amino"
 	cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	st "github.com/tendermint/tendermint/state"
+	"github.com/tendermint/tendermint/types"
 )
 
 var (
-	genTime, _         = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
-	now, _             = time.Parse(time.RFC3339, "2019-11-02T15:30:00Z")
-	firstBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
-	secondBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
-	thirdBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
-	trustingPeriod     = 3 * time.Hour
-	// testName              = "verify"
+	genTime, _            = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
+	now, _                = time.Parse(time.RFC3339, "2019-11-02T15:30:00Z")
+	firstBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
+	secondBlockTime, _    = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
+	thirdBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
+	trustingPeriod        = 3 * time.Hour
 	expectedOutputNoError = "no error"
 	expectedOutputError   = "error"
 )
@@ -468,7 +466,6 @@ func generateEvidences() []types.Evidence {
 func (valList ValList) Copy() (vl ValList) {
 
 	for i, val := range valList.Validators {
-		// var privVal types.PrivValidator
 		copyVal := *val
 		privVal := valList.PrivVals[i]
 		vl.Validators = append(vl.Validators, &copyVal)

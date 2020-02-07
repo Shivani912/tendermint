@@ -19,7 +19,7 @@ func caseBisectionVerifyTenHeaders(valList ValList) {
 	trustOptions := lite.TrustOptions{
 		Period: trustingPeriod,
 		Height: signedHeader.Header.Height,
-		Hash:   signedHeader.Header.Hash(),
+		Hash:   signedHeader.Commit.BlockID.Hash,
 	}
 
 	firstBlock := LiteBlock{
@@ -32,11 +32,12 @@ func caseBisectionVerifyTenHeaders(valList ValList) {
 	lbs, _, _ := generateNextBlocks(10, state, privVals, lastCommit)
 
 	primary := MockProvider{}.New(signedHeader.Header.ChainID, []LiteBlock{})
-	fmt.Println(primary)
+
 	primary.LiteBlocks = append(primary.LiteBlocks, firstBlock)
 	primary.LiteBlocks = append(primary.LiteBlocks, lbs...)
 
-	witnesses := append([]provider.Provider{}, primary)
+	var witnesses []provider.Provider
+	witnesses = append([]provider.Provider{}, primary)
 
 	heightToVerify := int64(11)
 	trustLevel := lite.DefaultTrustLevel

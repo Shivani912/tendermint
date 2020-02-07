@@ -15,11 +15,13 @@ import (
 
 func TestVerify(t *testing.T) {
 
-	tests := []string{"single_step_sequential/commit_tests.json",
+	tests := []string{
+		"single_step_sequential/commit_tests.json",
 		"single_step_sequential/header_tests.json",
 		"single_step_sequential/val_set_tests.json",
 		"single_step_skipping/val_set_tests.json",
-		"single_step_skipping/commit_tests.json"}
+		"single_step_skipping/commit_tests.json",
+	}
 
 	for _, test := range tests {
 		data := generator.ReadFile("./json/" + test)
@@ -85,11 +87,14 @@ func TestBisection(t *testing.T) {
 
 	trustedStore := dbs.New(dbm.NewMemDB(), testBisection.Primary.ChainID())
 
+	// var witnesses []provider.Provider
+	witnesses := testBisection.Witnesses
+
 	client, err := lite.NewClient(
 		testBisection.Primary.ChainID(),
 		testBisection.TrustOptions,
 		testBisection.Primary,
-		testBisection.Witnesses,
+		witnesses,
 		trustedStore,
 		lite.SkippingVerification(testBisection.TrustLevel))
 	if err != nil {

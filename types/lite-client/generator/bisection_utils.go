@@ -23,8 +23,8 @@ type TestBisection struct {
 }
 
 type MockProvider struct {
-	ChainId    string
-	LiteBlocks []LiteBlock
+	ChainId    string      `json:"chain_id"`
+	LiteBlocks []LiteBlock `json:"lite_blocks"`
 }
 
 func (mp MockProvider) New(chainID string, liteBlocks []LiteBlock) MockProvider {

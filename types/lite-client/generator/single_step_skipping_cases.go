@@ -55,11 +55,14 @@ func caseSingleSkipCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValL
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func caseSingleSkipCommitLessThanOneThirdValsDontSign(testBatch *TestBatch, valList ValList) {
-	description := "Case: Trusted height=1, verifying signed header at height=3 where less than 1/3 vals dont sign, should not expect error"
+func caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(testBatch *TestBatch, valList ValList) {
+	description := "Case: Trusted height=1, verifying signed header at height=3 where more than two-thirds vals did sign, should not expect error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(valList, 4, 1)
-	input[0].SignedHeader.Commit.Signatures[0].BlockIDFlag = types.BlockIDFlagAbsent
+	input[0].SignedHeader.Commit.Signatures[0] = types.CommitSig{
+		BlockIDFlag:      types.BlockIDFlagAbsent,
+		ValidatorAddress: nil,
+	}
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
