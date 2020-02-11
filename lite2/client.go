@@ -31,7 +31,7 @@ type TrustOptions struct {
 
 	// Header's Height and Hash must both be provided to force the trusting of a
 	// particular header.
-	Height int64        `json:"heigth"`
+	Height int64        `json:"height"`
 	Hash   cmn.HexBytes `json:"hash"`
 }
 

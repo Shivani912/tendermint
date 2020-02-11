@@ -15,13 +15,12 @@ import (
 )
 
 var (
-	genTime, _         = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
-	now, _             = time.Parse(time.RFC3339, "2019-11-02T15:30:00Z")
-	firstBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
-	secondBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
-	thirdBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
-	trustingPeriod     = 3 * time.Hour
-	// testName              = "verify"
+	genTime, _            = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
+	now, _                = time.Parse(time.RFC3339, "2019-11-02T15:30:00Z")
+	firstBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
+	secondBlockTime, _    = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
+	thirdBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
+	trustingPeriod        = 3 * time.Hour
 	expectedOutputNoError = "no error"
 	expectedOutputError   = "error"
 )
@@ -212,17 +211,19 @@ func generateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, l
 
 }
 
-func generateNextBlocks(numOfBlocks int, state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit) ([]LiteBlock, st.State, types.PrivValidatorsByAddress) {
+func generateNextBlocks(numOfBlocks int, state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, valList ValList, startIdx []int, endIdx []int, delete []int, blockTime time.Time) ([]LiteBlock, []st.State, types.PrivValidatorsByAddress) {
 	var liteBlocks []LiteBlock
-	blockTime := thirdBlockTime
+	var states []st.State
 	for i := 0; i < numOfBlocks; i++ {
-		liteblock, st, pvs := generateNextBlock(state, privVals, lastCommit, blockTime)
+		liteblock, st, pvs := generateNextBlockWithNextValsUpdate(state, privVals, lastCommit, valList, startIdx[i], endIdx[i], delete[i], blockTime)
 		liteBlocks = append(liteBlocks, liteblock)
 		state = st
 		privVals = pvs
-		blockTime = blockTime.Add(1 * time.Second)
+		lastCommit = liteblock.SignedHeader.Commit
+		states = append(states, state)
+		blockTime = blockTime.Add(5 * time.Second)
 	}
-	return liteBlocks, state, privVals
+	return liteBlocks, states, privVals
 }
 
 // Similar to generateNextBlock
@@ -468,7 +469,6 @@ func generateEvidences() []types.Evidence {
 func (valList ValList) Copy() (vl ValList) {
 
 	for i, val := range valList.Validators {
-		// var privVal types.PrivValidator
 		copyVal := *val
 		privVal := valList.PrivVals[i]
 		vl.Validators = append(vl.Validators, &copyVal)

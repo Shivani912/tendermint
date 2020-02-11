@@ -88,7 +88,6 @@ func TestBisection(t *testing.T) {
 	trustedStore := dbs.New(dbm.NewMemDB(), testBisection.Primary.ChainID())
 
 	trustLevel := float32(testBisection.TrustLevel.Numerator) / float32(testBisection.TrustLevel.Denominator)
-	fmt.Println(trustLevel)
 	client, err := lite.NewClient(
 		testBisection.Primary.ChainID(),
 		testBisection.TrustOptions,
