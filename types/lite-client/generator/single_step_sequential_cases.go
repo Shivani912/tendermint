@@ -9,8 +9,6 @@ import (
 var (
 	str32byte = "----This is a 32-byte string----"
 	str64byte = []byte{206, 129, 9, 176, 142, 141, 188, 30, 197, 158, 80, 135, 172, 5, 239, 44, 219, 46, 60, 239, 9, 65, 151, 236, 221, 44, 72, 253, 191, 95, 20, 67, 175, 2, 133, 74, 3, 84, 20, 60, 142, 1, 0, 75, 129, 148, 2, 206, 180, 49, 223, 47, 41, 189, 149, 230, 247, 16, 48, 228, 39, 91, 154, 6}
-
-	//"----------This is a 64-byte long long long long string----------"
 )
 
 // HEADER - BEGIN
@@ -330,20 +328,26 @@ func caseSingleSeqValidatorSetWrongValidatorSet(testBatch *TestBatch, valList Va
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func caseSingleSeqValidatorSetReplaceValidator(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetFaultySigner(testBatch *TestBatch, valList ValList) {
 
 	copyValList := valList.Copy()
 	var input []LiteBlock
-	description := "Case: one lite block, replacing a validator in validator set, expects error"
+	description := "Case: one lite block, faulty signer (not present in validator set), expects error"
 
-	signedHeader, state, privVals := generateFirstBlock(copyValList, 3, firstBlockTime)
+	signedHeader, state, privVals := generateFirstBlock(copyValList, 4, firstBlockTime)
 	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 
-	privVals[0] = copyValList.PrivVals[4]
-	state.Validators.Validators[0] = copyValList.Validators[4]
-	state.NextValidators = state.Validators
-
 	liteBlock, state, _ := generateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
+	liteBlock.ValidatorSet = *types.NewValidatorSet(copyValList.Validators[:3])
+	liteBlock.SignedHeader.Header.ValidatorsHash = liteBlock.ValidatorSet.Hash()
+	liteBlock.SignedHeader.Commit.BlockID.Hash = liteBlock.SignedHeader.Header.Hash()
+	liteBlock.SignedHeader.Commit.Precommits = liteBlock.SignedHeader.Commit.Precommits[1:4]
+	//precommit block id = commit block id
+	for _, p := range liteBlock.SignedHeader.Commit.Precommits {
+		p.BlockID.Hash = liteBlock.SignedHeader.Commit.BlockID.Hash
+	}
+	initial.NextValidatorSet = liteBlock.ValidatorSet
+
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
