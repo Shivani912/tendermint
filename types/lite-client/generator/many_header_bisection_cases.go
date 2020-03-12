@@ -12,7 +12,7 @@ import (
 )
 
 func caseBisectionVerifyTenHeaders(valList ValList) {
-	description := "Case: Trusted height=1, bisecting to verify height=12, should not expect error"
+	description := "Case: Trusted height=1, bisecting to verify height=11, should not expect error"
 
 	signedHeader, state, privVals := generateFirstBlock(valList, 3, firstBlockTime)
 
@@ -29,7 +29,13 @@ func caseBisectionVerifyTenHeaders(valList ValList) {
 	}
 
 	lastCommit := signedHeader.Commit
-	lbs, _, _ := generateNextBlocks(10, state, privVals, lastCommit)
+
+	// TODO: Improve the way we make changes to valset
+	// possibly a `ValSetChanges` struct that includes the below info
+	start := []int{4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
+	end := []int{5, 6, 7, 8, 9, 10, 11, 12, 13, 14}
+	delete := []int{0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0}
+	lbs, _, _ := generateNextBlocks(10, state, privVals, lastCommit, valList, start, end, delete, thirdBlockTime)
 
 	primary := MockProvider{}.New(signedHeader.Header.ChainID, []LiteBlock{})
 
