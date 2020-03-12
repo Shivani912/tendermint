@@ -87,7 +87,6 @@ func TestBisection(t *testing.T) {
 
 	trustedStore := dbs.New(dbm.NewMemDB(), testBisection.Primary.ChainID())
 
-	// var witnesses []provider.Provider
 	witnesses := testBisection.Witnesses
 
 	client, err := lite.NewClient(

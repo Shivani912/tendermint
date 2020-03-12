@@ -1,5 +1,5 @@
 {
- 	"description": "Case: Trusted height=1, bisecting to verify height=12, should not expect error",
+ 	"description": "Case: Trusted height=1, bisecting to verify height=11, should not expect error",
  	"trust_options": {
  		"period": "10800000000000",
  		"height": "1",
@@ -116,7 +116,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "132"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -125,7 +125,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "32"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -134,7 +134,7 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "-68"
  						}
  					],
  					"proposer": {
@@ -144,7 +144,7 @@
  							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "132"
  					}
  				}
  			},
@@ -168,7 +168,7 @@
  						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
  						"data_hash": "",
  						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"next_validators_hash": "86CF04BC640E4D506F967A6028958A4ACEF791959F2BB924364B47B1835CBCB1",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
@@ -179,10 +179,10 @@
  						"height": "2",
  						"round": "1",
  						"block_id": {
- 							"hash": "BF9535C5A5FEFB00719BAB70B177C0D4EA3E18E433E91E396EC61ADE2CE12161",
+ 							"hash": "F94CF9DDCCEC6FFC657BC2FA1BC7E3D9F992FCEA6FF7BDD5CDF1ED7D37E94F57",
  							"parts": {
  								"total": "1",
- 								"hash": "1DC8F8E942E7FDFB42A83B3E308FCBD6CC7602F60FB7812DC91F91A6AFAE295A"
+ 								"hash": "B8EE22FC6524CD4A890FDDAD3AF7AE64BFF52790BF08B89352220639414C43F4"
  							}
  						},
  						"signatures": [
@@ -190,19 +190,19 @@
  								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
  								"timestamp": "2019-11-02T15:04:20Z",
- 								"signature": "CnQaGjYQlKJ8XMqPq75eU/+bEpOvtOx8hM8B+8rqdBoLNF3JoHxZg1U9TWQQE3PM4dQHsr9bodQHB8ACdIHMBA=="
+ 								"signature": "oC11BSIW+7JJWTsAed8pwSOsyieGuz6KN0TnTnZFdHCo00lQSYvrRIp+IpT6IvtXanFK+NnuE6M2X0IjfizOCg=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
  								"timestamp": "2019-11-02T15:04:20Z",
- 								"signature": "4/X1ki1ateRFv4mPb/ZEnJD/2dOvkQVWFiMCk2uRnixpQdgk0tviGq4DR1TRS21XdPW6NjZEbygfviZXxNWvBg=="
+ 								"signature": "bswFPg9c9+6wnlwgEiP8+vC3XcmoK5z2D6fcuCZqF5jy5HRgZK/84zvUyjPl/D7H8A2nrskUp56EeiMzCpi6Ag=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  								"timestamp": "2019-11-02T15:04:20Z",
- 								"signature": "h9sn/7XYZT4Knp8mc4rZJJX1FTvPM0ocTWN8wX0gwXCrPKUcDMnpnG2GKu9Rdjr7uQrhj1t7Q1N2KP1f3e1oAA=="
+ 								"signature": "2Lb5Wrl59L3uvVgfSt05oZnjqNUFGsw8oW16LXItReD2R5I/wxdIqajwvikuBWtx7s9M3E6iN79UKV7C/BjRCg=="
  							}
  						]
  					}
@@ -256,7 +256,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "7"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -265,7 +265,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "-43"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -274,17 +274,26 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "157"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-118"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "32"
  					}
  				}
  			},
@@ -297,52 +306,58 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "3",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:20Z",
  						"last_block_id": {
- 							"hash": "BF9535C5A5FEFB00719BAB70B177C0D4EA3E18E433E91E396EC61ADE2CE12161",
+ 							"hash": "F94CF9DDCCEC6FFC657BC2FA1BC7E3D9F992FCEA6FF7BDD5CDF1ED7D37E94F57",
  							"parts": {
  								"total": "1",
- 								"hash": "1DC8F8E942E7FDFB42A83B3E308FCBD6CC7602F60FB7812DC91F91A6AFAE295A"
+ 								"hash": "B8EE22FC6524CD4A890FDDAD3AF7AE64BFF52790BF08B89352220639414C43F4"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "4FFE3225634984655332283600514FDE83256759073920115949C54C1045BDBA",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "86CF04BC640E4D506F967A6028958A4ACEF791959F2BB924364B47B1835CBCB1",
+ 						"next_validators_hash": "84310EEEA89504D2517370EAEDD97054F78A520CC00DE8317AAFA536B4450B17",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2"
  					},
  					"commit": {
  						"height": "3",
  						"round": "1",
  						"block_id": {
- 							"hash": "E56DEC6C1AF5879B55DB7288CE698E7C67BAD20011371BF1EC53845079583524",
+ 							"hash": "1F03F1996D09D5B6FB897B10EF8EE4176234B0C33D15B4A6AC99977E650892ED",
  							"parts": {
  								"total": "1",
- 								"hash": "E7198B911EF65EA64C7A1601504F116213E27AE32A5D2BD6B5BDBFB3F28A69DE"
+ 								"hash": "8E0D098598A64E62FC4488AB69887A2A507A6E11243195E6C5184E9B97EBA684"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:21Z",
- 								"signature": "MkrO1wEu3Ki47lOebXKY7qY1C8jpWvPZcyFk4akuvmKC3h7u8//X5gcbOWeBP4mJqxngMHTHcO7ZYWWFs8hyBw=="
+ 								"timestamp": "2019-11-02T15:04:25Z",
+ 								"signature": "864QgDBZWT0ZBaxZzNX5Rj8LfiPmmdGXmwk4Ga7k8DtJkArK9myetGomzOd1Zb8uRytgnnnjfyA1FtJzr7dfDw=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:21Z",
- 								"signature": "Cw2emNgp7j/7Ak6NjWQtdLRvdiz+BC3vbX6ZsOPXqhmQauNmwRjlaDRsle+jZoNK54HaQ8KlWzI73+qDBob9Ag=="
+ 								"timestamp": "2019-11-02T15:04:25Z",
+ 								"signature": "UjvV1BKbXJ5DyYMhJ1PGk1Jbefvasa7vGBeqXL/5YS5Cx1laq4TaO7MPYnfCTlRUz76nTp+SljUH0HdlwgbGDw=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:21Z",
- 								"signature": "1wzirt6AC+uUSvQXeaxNxlIqUMM4eMFYGX9GSSRFuBi/yjm43HOjxcBwIBwYYjQrYj7wXaCex7zf3Jg1/nBtBw=="
+ 								"timestamp": "2019-11-02T15:04:25Z",
+ 								"signature": "Ydsa2udMBpoZjDDPwNblWSJTOYtub2iiyoB3zO1tWWEHEl45dg9EinfXPwVWbDIu5u8P50z5ac6nOjDio4NSDA=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 								"timestamp": "2019-11-02T15:04:25Z",
+ 								"signature": "e00td/9vuq3feV5/WWT3a2L8+MkBDo1XJEtmU7DxuLTHcnrK+MI0UW55Fq60Kjjyr1a6FkmYo6bb1G1eLOc5Cw=="
  							}
  						]
  					}
@@ -356,7 +371,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "57"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -365,7 +380,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "7"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -374,17 +389,26 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "7"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-68"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "7"
  					}
  				},
  				"next_validator_set": {
@@ -396,7 +420,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "113"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -405,7 +429,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "63"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -414,17 +438,35 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "13"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-12"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-175"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "-68"
  					}
  				}
  			},
@@ -437,52 +479,64 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "4",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:25Z",
  						"last_block_id": {
- 							"hash": "E56DEC6C1AF5879B55DB7288CE698E7C67BAD20011371BF1EC53845079583524",
+ 							"hash": "1F03F1996D09D5B6FB897B10EF8EE4176234B0C33D15B4A6AC99977E650892ED",
  							"parts": {
  								"total": "1",
- 								"hash": "E7198B911EF65EA64C7A1601504F116213E27AE32A5D2BD6B5BDBFB3F28A69DE"
+ 								"hash": "8E0D098598A64E62FC4488AB69887A2A507A6E11243195E6C5184E9B97EBA684"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "09BCA20D70C2699DD754392899032082A401A818EE8AA9681DF06F1698E89173",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "84310EEEA89504D2517370EAEDD97054F78A520CC00DE8317AAFA536B4450B17",
+ 						"next_validators_hash": "76E3CBAAB40D2A0333D0E8BFBCCAF5E803F4AF8DC8CD67C487551EFA6A181699",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  					},
  					"commit": {
  						"height": "4",
  						"round": "1",
  						"block_id": {
- 							"hash": "F7FDF401DC66513170DA249FB4395774ADCFC7955C5542D975D1AF9690B2FFBD",
+ 							"hash": "672AF9799829A13382D6CF9660EDFBD0BF6FDB041D7D96A0FCC345AAFD7CC6F6",
  							"parts": {
  								"total": "1",
- 								"hash": "7034701122166E1B425C03A60617463B05623F90C1E60AA1126927BD42C6C77D"
+ 								"hash": "12D64B2031CBE7FCF89BDC3A8755DDE64615B988B665EA12C65B2639BBE2C6AC"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:22Z",
- 								"signature": "4X0aEZr/V9DuXnJyP6710nACZMrkKyCdm9sUi7UW1v2Ffk+HNfCxZD1Hjw/syqZaruMRK7HokrhB1G7KsNmqCw=="
+ 								"timestamp": "2019-11-02T15:04:30Z",
+ 								"signature": "AU5rdH8c6i80CkrLus5jOOez/sTTHykWwJJh7wdBaEGNtlLXu46KqP+T2x7UTVRWcnZC2CIYTHu6eBB4l+foCA=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:22Z",
- 								"signature": "czeX6a3XT/dogZSluRuLbADGYxaF8yL1zg0BVQP/lAnIjlSgGMHro8sMYIpmpg7JSBDUoghf54YPGtJ9kgTICw=="
+ 								"timestamp": "2019-11-02T15:04:30Z",
+ 								"signature": "ourkLKWWn/gPVxdt6d2VYRR6lNhwVlI15aQVCE1OaWkw0fGlcKufGgK1S8Lr/0BKmVVNRb3PO5aQn9//ZQQaAw=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:22Z",
- 								"signature": "h4Q+BKZQ7vUi98+1OrndMzzBPBwu+tWpu6BRwVPU0RVclHtZy714e1n8sNAAZrRmUsNI85LGLBIMBESg7eywAw=="
+ 								"timestamp": "2019-11-02T15:04:30Z",
+ 								"signature": "CMbV3sERFwNXuWl5dH3QkWDd9keW4Xznyq6rYb/0rl0RoRTwoMVeCA44tAs5XmxgxT5f2UR+Ws7gPID7/1R8Ag=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 								"timestamp": "2019-11-02T15:04:30Z",
+ 								"signature": "4RVum6lartWtOjHmqKbv0mp3KnGIrBLWt90NRrriSf3Aze5BhOjapQ0OQNsC0PddQJk8r2d+xI1hLk4ydSGHCQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 								"timestamp": "2019-11-02T15:04:30Z",
+ 								"signature": "tgF9uNHP1Zv0EV0eMrKdJH2gMFu6thJc7XdcFwzDKUz0DHii23dExUDkmP0y2noelLRvLGTt+/ERPtLAIiKbBA=="
  							}
  						]
  					}
@@ -496,7 +550,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-87"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -505,7 +559,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "113"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -514,17 +568,35 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "63"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "38"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-125"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-87"
  					}
  				},
  				"next_validator_set": {
@@ -536,7 +608,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "-81"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -545,7 +617,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "169"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -554,7 +626,34 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "119"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "94"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-69"
+ 						},
+ 						{
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-231"
  						}
  					],
  					"proposer": {
@@ -564,7 +663,7 @@
  							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "132"
  					}
  				}
  			},
@@ -577,18 +676,18 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "5",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:30Z",
  						"last_block_id": {
- 							"hash": "F7FDF401DC66513170DA249FB4395774ADCFC7955C5542D975D1AF9690B2FFBD",
+ 							"hash": "672AF9799829A13382D6CF9660EDFBD0BF6FDB041D7D96A0FCC345AAFD7CC6F6",
  							"parts": {
  								"total": "1",
- 								"hash": "7034701122166E1B425C03A60617463B05623F90C1E60AA1126927BD42C6C77D"
+ 								"hash": "12D64B2031CBE7FCF89BDC3A8755DDE64615B988B665EA12C65B2639BBE2C6AC"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "7BCB6C34CDFB844D5B0F6FAAA9170CB4D0CAD861AC1037D59A1C2C2DEDC3AE9E",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "76E3CBAAB40D2A0333D0E8BFBCCAF5E803F4AF8DC8CD67C487551EFA6A181699",
+ 						"next_validators_hash": "DE8061D044516741CBB0F3E3B38D1757A090801BE9B5FC020874A2AC0C7DE427",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
@@ -599,30 +698,48 @@
  						"height": "5",
  						"round": "1",
  						"block_id": {
- 							"hash": "C86DBB96B6CA1C6F9F087A0A57F878DE51DC1B27319CAFCA772811CCABF545A7",
+ 							"hash": "837B6848C13413CD364722F0E4FF5D70A92AFE0BE4CB79CC4EF55E4289501802",
  							"parts": {
  								"total": "1",
- 								"hash": "218BC58A76FDF4F1B11908DCE950DD0DE765BFDDBFF584E1919B4FBD89036B29"
+ 								"hash": "C83881A4B1619667BF23FF3191DBB8F2CDB3C7F4A1E89C7BC145E0DB28697A61"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:23Z",
- 								"signature": "fw3r3/6wLv2Md+AwlrRy6beZSTWE9XsCrb4ZHQ3OspiV64ZEwdHuVGMsgmOO7t8YFH2laeijrQULtC1miaAUAA=="
+ 								"timestamp": "2019-11-02T15:04:35Z",
+ 								"signature": "elKsgU8mQ0jPubc3up/rzIeo//7gE80JG7wIwj+adY7SrViqwTw1qTnOtiUx8jKLfazb3LBQsSdX/Rpha7b3AQ=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:23Z",
- 								"signature": "G+91BtS0EQq7BVBQERTzWlM3ALlrTdP9PMnfcglYa69QTVrIxYOUgFL0vUdnbBNF6TDbbfYzU62UVPhb7U1tAQ=="
+ 								"timestamp": "2019-11-02T15:04:35Z",
+ 								"signature": "1yhqeNuJ+BM2KJCZiHglIcZfhzDxgef7N3QIV/CYQ6RHWtcJ71v9+U8gTVq14Cyc5TW7OnGBFBZjIC/VDOe5Aw=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:23Z",
- 								"signature": "kp8FtGd/LV7CSmkk1J+j7RKCT2IxyxF3TVEbjVG3ehskL2uSp4A+3ocZJiK+g3jkAbU+71exbQg3CyhmzcBuDw=="
+ 								"timestamp": "2019-11-02T15:04:35Z",
+ 								"signature": "72oQFPvQ1H0HUtwe8VqDXAesHZ8/BAo2CqrUXiee6SwbPMsyqWr+IEF/qFpDzBQ03n2nh9KvKpuqO/HLzZYiBA=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 								"timestamp": "2019-11-02T15:04:35Z",
+ 								"signature": "aootekFx/GXPXmo1sQ754WwYWQ2g9FJiP2Y907BTuRwO6sp2Mm+OcJ9Fn8+LOmimyF7C29X6YlfNCEkRZPUDAg=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 								"timestamp": "2019-11-02T15:04:35Z",
+ 								"signature": "kGikgfIwXILNX0+gzKfrn2NoROFpaSMUL1bK8xozXv0VPqqbKYn1NfnN7nCoC8sGt0Ksg6thzm1bFSWm/EaBCQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 								"timestamp": "2019-11-02T15:04:35Z",
+ 								"signature": "TiCsuY+ZaRqYAF+xxvDkthnoAHE2XVawCIMwqn/6UXOJl00wvrp+UHptwC5MiWLuakWE29p8fw/Fu+JWTOmKBw=="
  							}
  						]
  					}
@@ -636,7 +753,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-31"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -645,7 +762,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-81"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -654,7 +771,34 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "169"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "144"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-19"
+ 						},
+ 						{
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-181"
  						}
  					],
  					"proposer": {
@@ -664,7 +808,7 @@
  							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-81"
  					}
  				},
  				"next_validator_set": {
@@ -676,7 +820,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "25"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -685,7 +829,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "-75"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -694,17 +838,53 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "225"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "200"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "37"
+ 						},
+ 						{
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-125"
+ 						},
+ 						{
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-287"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "32"
  					}
  				}
  			},
@@ -717,52 +897,76 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "6",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:35Z",
  						"last_block_id": {
- 							"hash": "C86DBB96B6CA1C6F9F087A0A57F878DE51DC1B27319CAFCA772811CCABF545A7",
+ 							"hash": "837B6848C13413CD364722F0E4FF5D70A92AFE0BE4CB79CC4EF55E4289501802",
  							"parts": {
  								"total": "1",
- 								"hash": "218BC58A76FDF4F1B11908DCE950DD0DE765BFDDBFF584E1919B4FBD89036B29"
+ 								"hash": "C83881A4B1619667BF23FF3191DBB8F2CDB3C7F4A1E89C7BC145E0DB28697A61"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "64C90855F5332D0EC64BA4D343D76BFD94D7D1423F489EAE693F4195871692B9",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "DE8061D044516741CBB0F3E3B38D1757A090801BE9B5FC020874A2AC0C7DE427",
+ 						"next_validators_hash": "5EB64A484C5AE149E3B40742C25083A32A9EA6566141D5DC8DEB301EFD9AE70C",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2"
  					},
  					"commit": {
  						"height": "6",
  						"round": "1",
  						"block_id": {
- 							"hash": "CB139C4EF48BAE1007BB3CF4E39131C3B27782CB8D12E1690C916C4CFEA359E0",
+ 							"hash": "A3B3E8BF28A04B9804F4A7C215DAC09D9BC5769AE611CB2689071E1EC1F2B3F0",
  							"parts": {
  								"total": "1",
- 								"hash": "9C6CEEFF8397D19C6AB5AD3F00608D3152090A9B645D3C3CC9D8E66C8B319034"
+ 								"hash": "B97094CF1619C47BCE430848D17EAA41830B48BFEA00380B22C760B0D3A4DDB6"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:24Z",
- 								"signature": "YvwXaGkdBUuacRQUP3HNFnhKofTYp2WcHLjFtIHDlpAK3PrlYv/EtrqSM8nvRBnF6PGFbFVCi/x7NUdY7VJ5Ag=="
+ 								"timestamp": "2019-11-02T15:04:40Z",
+ 								"signature": "OJfWN6bOWePw4+/RmYaAG0/7okaq99exCUeqHwGxVb+CqadcS5uG+/iV5cNuVHeO6ITvzHwWObDudAkwdFfhAw=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:24Z",
- 								"signature": "noxiAKIzeSwifWOW9sIkWOSmp+jl4tIRTO5/Ao7MUiwBLDoPj1zAMZ8hmhIJ8EbgAgYXY/1qUDZ7AaRgRsRICw=="
+ 								"timestamp": "2019-11-02T15:04:40Z",
+ 								"signature": "2bSFqNMVz4Cc7sDgsI6P/l56pgbL5VuI6nXdZpS+prSEDxz9tNWt6bW07ChxDHoK4doJSA8jwmK5ytI0ZXquCg=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:24Z",
- 								"signature": "8XtkfviFRM72SV0VR4Cfn05bwT/Af8084FMOXJkuFzVKE2MAF02T4s6Tko+rgS7bxdqIpVzGrWadSO64cgndAg=="
+ 								"timestamp": "2019-11-02T15:04:40Z",
+ 								"signature": "BakhuVInG+3LAReTsZu9Htz4zZdRzDn4E9nARNdfzRmIrkN32H7qh03Nhb0AEwZK++oEoXgjEyT2+l8+KnGzBw=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 								"timestamp": "2019-11-02T15:04:40Z",
+ 								"signature": "QJxNPDmsB0ftJVYHhczcKCp4wHjlH1BDDXEyOy1JM9el5wfpMwdy/H9cw36FQJTt3Snh13sBv/OXzDKrOiKRAg=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 								"timestamp": "2019-11-02T15:04:40Z",
+ 								"signature": "1RbA/jp13+RSjKzGqjE7OQTP5eGmeH4M8H9zJ62X/AcqPkgL+74TYDpjk6dU5OeOjdCX6NUReQRmqfUSpRBwCA=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 								"timestamp": "2019-11-02T15:04:40Z",
+ 								"signature": "8H34XQSUG6RtfJSI+FHdLdBpB0lvxDQVU+rEgzE1vWHjEiIpII17JBcTg/qA+hdr87Q9P/ZDoXtpOgOifVDbBg=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 								"timestamp": "2019-11-02T15:04:40Z",
+ 								"signature": "71JYLhk/BFzxp6n7ob6/HZRZ+Te7PQLLWbNhs/s90jZZBEnOcyzALH+Hd5D+ePEvpiLFGBiWZw7xW7LRTuzqAQ=="
  							}
  						]
  					}
@@ -776,7 +980,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "75"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -785,7 +989,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-25"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -794,17 +998,53 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "-75"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "250"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "87"
+ 						},
+ 						{
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-75"
+ 						},
+ 						{
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-237"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-75"
  					}
  				},
  				"next_validator_set": {
@@ -816,7 +1056,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "132"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -825,7 +1065,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "32"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -834,17 +1074,62 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "-68"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "307"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "144"
+ 						},
+ 						{
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-18"
+ 						},
+ 						{
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-180"
+ 						},
+ 						{
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-343"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "-68"
  					}
  				}
  			},
@@ -857,52 +1142,82 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "7",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:40Z",
  						"last_block_id": {
- 							"hash": "CB139C4EF48BAE1007BB3CF4E39131C3B27782CB8D12E1690C916C4CFEA359E0",
+ 							"hash": "A3B3E8BF28A04B9804F4A7C215DAC09D9BC5769AE611CB2689071E1EC1F2B3F0",
  							"parts": {
  								"total": "1",
- 								"hash": "9C6CEEFF8397D19C6AB5AD3F00608D3152090A9B645D3C3CC9D8E66C8B319034"
+ 								"hash": "B97094CF1619C47BCE430848D17EAA41830B48BFEA00380B22C760B0D3A4DDB6"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "DEEF3FD4B84F729489A5A9E7684924AAF2B736BB35B5EDF538EE44FCEA7185C1",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "5EB64A484C5AE149E3B40742C25083A32A9EA6566141D5DC8DEB301EFD9AE70C",
+ 						"next_validators_hash": "CE2324B20BB73E18C1C4B55C276D23FA77B01D432A277F2C92AA1F296074672E",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295"
  					},
  					"commit": {
  						"height": "7",
  						"round": "1",
  						"block_id": {
- 							"hash": "22D13748C59A4A6D05B38FBFF520F6F6BA7BD74DA1ECBDD8419CF9B196DD9E5A",
+ 							"hash": "B5D64A76A3990C85C9421BDB5D7E6EF413753A60984437C6B0B3D25833A4B06D",
  							"parts": {
  								"total": "1",
- 								"hash": "A862597A9288A057560DA73B642C7E1588C6D62BE1C89DBF9FD81C2E8FFA9E46"
+ 								"hash": "74A1EF2FF0421EF4CDEFA78B912FEE21180BB425CF9C7EA61EB3F8F50F5EBCF4"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
  								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:25Z",
- 								"signature": "MaRCwtgV6SddAq9fba7pG58+dZ5ATTMkeZyrrCX8Ab51LlD6yauhOvHmJK7f6TY4Bcbc4VosqNbPhiyJv1IoAQ=="
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "QQ6ca1R08U74VBGk1DusKqU9XYr1bTxEV9W7yw8TOtEbOfJMtZjCPPImw2ZCMHgYQ3eS3VZ4b4q5yRTPoEToCg=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:25Z",
- 								"signature": "LlcpnCjnK5Ld1TFNZ3W9eYqiu/K+VoUtMSgMuZqxGYvLUtIbsbTO6kmIT22cYRAENBmPpslzjC4DU8CdTB2rCg=="
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "ZeVzfpDcKfyLAHgG/3maQO5wXz20mcLQJH32U1z8wZIOTItm6Ax+Jq2p/0efJQop7eStCzbTHOBlW238aE7kBQ=="
  							},
  							{
  								"block_id_flag": 2,
  								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:25Z",
- 								"signature": "ngdj5pSXgWuma9z1QIvf/l/G8ukOgQcMPn29XTUfmz10YRDtQ7yw4TjY8q7E2BzLQ0NOeMvUBkUmvuoTPtf2Cw=="
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "fx9OULDn/K/uWubIBOlm1wfD1bDiTcP2Y5dB9hgHq5aItSEn3xXtvhyavTwulzfCTEyLs2mN2zAsAamh02szAg=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "Vl9/m2FCtPgZ6uxs+QY1/YsKc2PWazB3PaIvfyC2dUEi0EfwbWpXNCmhrQVcgMb1uWqmKH9bNT9SMjNfFoU4Dg=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "9ClAf+5RFLudsStAmjzc/kthx3paNggAj8PKG3V37zjtDbcd9OW8V8NnObrJGPTM7RMbqqMDCqA+yCoEJ07uCQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "tPNbF06w+VIHCWqcvFumy6MCQRIo46Bw4C4g1dLbnrIfXSm6Gb2QmOeHdwwV47dOA2DYUhOOJNKvYC/5Ay5eBA=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "TRIQswkOiok987Cw92MDIaj3qJ9ZniKWt0CvYyo74HJT9jblnerixgXmAwCWJ/TYH0/ot+5/d2GqsIKo4prcBQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 								"timestamp": "2019-11-02T15:04:45Z",
+ 								"signature": "DkfNnHqvu88Km1pZdAgv/H2vyTSNdPGDVLPIg/uP75zjK45LzkU53a/kybG2gpmlgkhQc9sULghSzpaZhrDACg=="
  							}
  						]
  					}
@@ -916,7 +1231,7 @@
  								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "182"
  						},
  						{
  							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -925,7 +1240,7 @@
  								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "82"
  						},
  						{
  							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -934,57 +1249,111 @@
  								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "-18"
+ 						},
+ 						{
+ 							"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-43"
+ 						},
+ 						{
+ 							"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "194"
+ 						},
+ 						{
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "32"
+ 						},
+ 						{
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-130"
+ 						},
+ 						{
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-293"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-43"
  					}
  				},
  				"next_validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "-28"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "91"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "10"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-72"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "47"
  					}
  				}
  			},
@@ -997,52 +1366,58 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "8",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:45Z",
  						"last_block_id": {
- 							"hash": "22D13748C59A4A6D05B38FBFF520F6F6BA7BD74DA1ECBDD8419CF9B196DD9E5A",
+ 							"hash": "B5D64A76A3990C85C9421BDB5D7E6EF413753A60984437C6B0B3D25833A4B06D",
  							"parts": {
  								"total": "1",
- 								"hash": "A862597A9288A057560DA73B642C7E1588C6D62BE1C89DBF9FD81C2E8FFA9E46"
+ 								"hash": "74A1EF2FF0421EF4CDEFA78B912FEE21180BB425CF9C7EA61EB3F8F50F5EBCF4"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "C5A53938A6562E1B7A33E30E02B7E53F0D0F61AB3CF140E25E4F63CCAEF8A063",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "CE2324B20BB73E18C1C4B55C276D23FA77B01D432A277F2C92AA1F296074672E",
+ 						"next_validators_hash": "22CBF8AFC01B94B064A160454DEF981A297D19A0DE45CBF5E7181430B55B1E15",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "074D8A3973885CD484ED4904DC82ED812773C5BA"
  					},
  					"commit": {
  						"height": "8",
  						"round": "1",
  						"block_id": {
- 							"hash": "5F999308B9914142AA6573D3A7F0B07F3FA77399B28427F82DF1D665AE0DA7C9",
+ 							"hash": "9D7D5F809296A172E6E474B240C07865200B14A864AD48B5503009E456E9FD0A",
  							"parts": {
  								"total": "1",
- 								"hash": "2617C0EBB0BD7D99F7EC481B80D51F5A4E53AE8473A2251BE6D8CECAC0C4EABB"
+ 								"hash": "6498562121BFDA33F46027D132F748701F32DB3C9CA7085DB3449D2173E215E9"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
- 								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:26Z",
- 								"signature": "ln7MNv7KjeG10NLvGJsL8DUq1T5X95inuA/HtJVnfr5zlWKweupDB7LZUY9GrHu6Hccs1VJZ3kdvlsJWC5DqAw=="
+ 								"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 								"timestamp": "2019-11-02T15:04:50Z",
+ 								"signature": "eURSBFt5fMaFwigFGlH0JP+1vMApBlEb9faMitl8WohMtEaW6XMJIT9I8V05SsyjpIQplZE1jzVB9hBD7Um0Aw=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:26Z",
- 								"signature": "6hD5WWdd+c5tnE6+qV7CHezP0mIVqqJPSqhRobv+Ll+xN2utR5eaXOZ7oY69dCdpPnABe6Y9o11IY/ZmBzMJCw=="
+ 								"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 								"timestamp": "2019-11-02T15:04:50Z",
+ 								"signature": "iXPpw5H6QRAQgz5vStYmyY+Fd5BdFBCFDDZcNqQ+eyjnfQcPjWXGjbAlKvLrnMRrhe8pBoQSaUkFRq4YPtqdDQ=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:26Z",
- 								"signature": "d2QDf4qmXDMZXkPInuN+8nhVGhKh7xN4e2yKa3S2Fp5qw8FZ9/EU1/7qJI06K38ntdTjgJPkMOf9yP2exS0PDg=="
+ 								"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 								"timestamp": "2019-11-02T15:04:50Z",
+ 								"signature": "apzurLkfvH6DInwpidG69rUKiYTUGjxV1JEa8rQVCq86VltlOAUVs9NEWmW3bJ1l91X+aUYvhs2xSFAdTgv0AQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 								"timestamp": "2019-11-02T15:04:50Z",
+ 								"signature": "l+sldOyQI/S8azd1HdLYTSoWiW40AIiVOjI1UQk6W4sGE2PbV/EmBPZnjskBGSB5B/cnlAbxXAKt57K8zoW0Ag=="
  							}
  						]
  					}
@@ -1050,81 +1425,108 @@
  				"validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "22"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-59"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "60"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-22"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-59"
  					}
  				},
  				"next_validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "78"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "-53"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "116"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "34"
+ 						},
+ 						{
+ 							"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-175"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "266"
  					}
  				}
  			},
@@ -1137,52 +1539,64 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "9",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:50Z",
  						"last_block_id": {
- 							"hash": "5F999308B9914142AA6573D3A7F0B07F3FA77399B28427F82DF1D665AE0DA7C9",
+ 							"hash": "9D7D5F809296A172E6E474B240C07865200B14A864AD48B5503009E456E9FD0A",
  							"parts": {
  								"total": "1",
- 								"hash": "2617C0EBB0BD7D99F7EC481B80D51F5A4E53AE8473A2251BE6D8CECAC0C4EABB"
+ 								"hash": "6498562121BFDA33F46027D132F748701F32DB3C9CA7085DB3449D2173E215E9"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "E327351A80167AA54813CC982BD8E1E05EF2450BAF7F9391BF6C1D9EA9EEB35C",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "22CBF8AFC01B94B064A160454DEF981A297D19A0DE45CBF5E7181430B55B1E15",
+ 						"next_validators_hash": "0CAE0A78090F929A9B15A531520B8C2366532582DD182E6F8A72C45050569045",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E"
  					},
  					"commit": {
  						"height": "9",
  						"round": "1",
  						"block_id": {
- 							"hash": "3E9EC2960BFA5A89C0DC4D5C8C83257A6DE0C3355AB273D0E15FFFFDC576EF8D",
+ 							"hash": "CE4D7757F3A0FBDA83F24FFE3E1E72D19D37EC6A87DAF9A2B3B07641858D9115",
  							"parts": {
  								"total": "1",
- 								"hash": "8EB4D08C3BFCA20D4A1B6EB3C4164F4D9A851B3F281DA55B5AA1267AC028B97B"
+ 								"hash": "E068DD05F99A2370478A3F2D9410ED79272A7B2E62C2650D7553B5A9FD535B9C"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
- 								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:27Z",
- 								"signature": "H36SIuYMjUO8LrP4YMc7WvsNV+s1LkuaH+GpNMrTeRQ3Fz2Bj9ur8tGAmvh9bZObmcEYLJyBm1F3n9mJWtTyBg=="
+ 								"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 								"timestamp": "2019-11-02T15:04:55Z",
+ 								"signature": "jMxAjP3Hmo2NP/qQeXMJR/jTE8R9qmAuNxo5C20JwRVlay2lscifMgC/gHLu/Fhb0Ugtq4ulXRlB1LAr1kTKBA=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:27Z",
- 								"signature": "xaIPMFRZi+c5G128vmRmAhScxBebA2pT1IzE3CcO1J9zNrid+mVb8LbM8a0U8CCuZwAu/jUFHRaxw9End1/LCQ=="
+ 								"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 								"timestamp": "2019-11-02T15:04:55Z",
+ 								"signature": "7sgG0t9bzeBKfDXbWsnmqyjIy9Hea4KdLEbpwzR4NXBaTUxB7lfSRxMvLgAg7Uy0kM2qh9iFYZat+mJLkySIBA=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:27Z",
- 								"signature": "/2bQ5V3fEc/sRAcPlMunpA5c89d0LXGD3PwfHWB7Ga4k24g+Nda1ccM4/6Cib+MHsfpMn/Vk2OJwLp34LveFBg=="
+ 								"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 								"timestamp": "2019-11-02T15:04:55Z",
+ 								"signature": "6AIPV69Ydk4AXRA14hnvye86Va7fCz6vD9sk5oMqs/K+BOUbpwoJLKmnlXjtET1JyhcDtpUzdVnGGdkyAZnvCQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 								"timestamp": "2019-11-02T15:04:55Z",
+ 								"signature": "c6P5JZHQLxdz50I7OrCccoF2N1Ugyia4ZTDIvCdsiKHGGnKSN77tCAzh3foSKH68N2bZqxfHNkq7FgcKiHGlAg=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 								"timestamp": "2019-11-02T15:04:55Z",
+ 								"signature": "EHToE8VQa6Rvvqbo5K/sDxNF3x5a9WI++iHaPMON7ZtSNItaR3C7LB/ropvr2fHyfkOosF2Rx1MYHDHgX7DoDg=="
  							}
  						]
  					}
@@ -1190,81 +1604,126 @@
  				"validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "128"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-3"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "-84"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "84"
+ 						},
+ 						{
+ 							"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-125"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-84"
  					}
  				},
  				"next_validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "185"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "54"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "-77"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "141"
+ 						},
+ 						{
+ 							"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-68"
+ 						},
+ 						{
+ 							"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-230"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "135"
  					}
  				}
  			},
@@ -1277,52 +1736,70 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "10",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:04:55Z",
  						"last_block_id": {
- 							"hash": "3E9EC2960BFA5A89C0DC4D5C8C83257A6DE0C3355AB273D0E15FFFFDC576EF8D",
+ 							"hash": "CE4D7757F3A0FBDA83F24FFE3E1E72D19D37EC6A87DAF9A2B3B07641858D9115",
  							"parts": {
  								"total": "1",
- 								"hash": "8EB4D08C3BFCA20D4A1B6EB3C4164F4D9A851B3F281DA55B5AA1267AC028B97B"
+ 								"hash": "E068DD05F99A2370478A3F2D9410ED79272A7B2E62C2650D7553B5A9FD535B9C"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "784E5DB2B042F3D7CFA844EF64D666E22DA972EBC4E95BE8DE0BC1D71BB40011",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "0CAE0A78090F929A9B15A531520B8C2366532582DD182E6F8A72C45050569045",
+ 						"next_validators_hash": "C601A532E0241BAE677C8DCFF5B7F38D9585CA8BC297312308CEB3518F020965",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F"
  					},
  					"commit": {
  						"height": "10",
  						"round": "1",
  						"block_id": {
- 							"hash": "3B718016111C5FEA18FD6C99CDEAF824FA497B822AE7D27F697EB9270FBF5589",
+ 							"hash": "7D81CE4A6EE0F69C1B9E63F29D892345DEBD9007FDA5A4E325B3BC6B1FA177AC",
  							"parts": {
  								"total": "1",
- 								"hash": "02EAAC90DB0117F35292096557FDDC8DD2ECE8A3B4BB98DC9BE4D50F8E1A0050"
+ 								"hash": "45EB7B1E7E0B7950BEBFE86A3A2235507B49B8897FC27FBF01EB9AF59CC0D092"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
- 								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:28Z",
- 								"signature": "opUG12VSciuZ5Zam1NmtCJG1Nf14/z64mHRlEKuOlU8I9yyd4NkgjXmkB5UEDSUliLGb+dLCCXUug7yMGjlABg=="
+ 								"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 								"timestamp": "2019-11-02T15:05:00Z",
+ 								"signature": "F4s3f8JCr5vr95J8TSuf3a7P1AjULxUpw6PZ5qVjS3a6YSGCQsb6w8+1MHqcLoHQDQ/D1XnphsC84IBYEe0qCg=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:28Z",
- 								"signature": "vir7GMtOw4bcCmjv5tFH9AGtsjnwKxyV98/znOWWpq7LrSLxd/JyZH7g/IAxdw7STySbvl1OMMcjOFmfsXazDQ=="
+ 								"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 								"timestamp": "2019-11-02T15:05:00Z",
+ 								"signature": "ncngKWn/h2ZryPqnyU1hT61PYqTH98RcqBJSY/o9FavLt9UTgJNu/B8WSXBn3wANIOd6TxZcw5J0MCNEZSHbBA=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:28Z",
- 								"signature": "MYr1w3O8P+MwPOEv6rLZRVvJcR2ReCq1X1NUc/YDlWcJMYqmJllFwnu7mrI+xC/2ApO8B0/fdO0G6bd6xC3pBw=="
+ 								"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 								"timestamp": "2019-11-02T15:05:00Z",
+ 								"signature": "7H/Zfmr8nUIg08otWyApCcP07tOnUrALKwhJQ622dgqvSlTXVolINl6QOX16Mi2d+slUBT5eh8pEl+ZRsUfiDQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 								"timestamp": "2019-11-02T15:05:00Z",
+ 								"signature": "LrrHpnHIu3+UUopZHAEbu6sioBPmcDDqGrE1RLE3MkXczM/xBRxlhRhj4NNXhYzyKOp9KHPdPeBF6GQ1kLRYAA=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 								"timestamp": "2019-11-02T15:05:00Z",
+ 								"signature": "tSE+LeMZIDSz2uhWsikCXrHhD5dNtDm+8OoOmEsMl26Jer1dPo/qOVmcQ4S3Jq/XbHj5x76xK0GpUiNorCkfAw=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 								"timestamp": "2019-11-02T15:05:00Z",
+ 								"signature": "B+fwlOoE0Lrin0xnixX0EGiOdqHMtNq5sV82jwUmhav5fp3o1cyqqg4GnBxHBHS0bINPrs1kDdsCsnE3ewp+AQ=="
  							}
  						]
  					}
@@ -1330,81 +1807,144 @@
  				"validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-65"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "104"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "-27"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "191"
+ 						},
+ 						{
+ 							"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-18"
+ 						},
+ 						{
+ 							"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-180"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-65"
  					}
  				},
  				"next_validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "-59"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "160"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "29"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "247"
+ 						},
+ 						{
+ 							"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "38"
+ 						},
+ 						{
+ 							"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-124"
+ 						},
+ 						{
+ 							"address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "17lBalGeyg7iPCeZZ5qqQo0IG10IqHdoejLCdRxwI3w="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-287"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "47"
  					}
  				}
  			},
@@ -1417,52 +1957,76 @@
  						},
  						"chain_id": "test-chain-01",
  						"height": "11",
- 						"time": "2019-11-02T15:04:10Z",
+ 						"time": "2019-11-02T15:05:00Z",
  						"last_block_id": {
- 							"hash": "3B718016111C5FEA18FD6C99CDEAF824FA497B822AE7D27F697EB9270FBF5589",
+ 							"hash": "7D81CE4A6EE0F69C1B9E63F29D892345DEBD9007FDA5A4E325B3BC6B1FA177AC",
  							"parts": {
  								"total": "1",
- 								"hash": "02EAAC90DB0117F35292096557FDDC8DD2ECE8A3B4BB98DC9BE4D50F8E1A0050"
+ 								"hash": "45EB7B1E7E0B7950BEBFE86A3A2235507B49B8897FC27FBF01EB9AF59CC0D092"
  							}
  						},
- 						"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 						"last_commit_hash": "C12FD28C7CF84C4F9026ADD6245FC36EAAB6AEEF3281DF1B12FBDBA173BB021D",
  						"data_hash": "",
- 						"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 						"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 						"validators_hash": "C601A532E0241BAE677C8DCFF5B7F38D9585CA8BC297312308CEB3518F020965",
+ 						"next_validators_hash": "506F6B241E239AC122B73A50F411232C280B02E081C39110B2614259DDFD2BB4",
  						"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  						"app_hash": "6170705F68617368",
  						"last_results_hash": "",
  						"evidence_hash": "",
- 						"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 						"proposer_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E"
  					},
  					"commit": {
  						"height": "11",
  						"round": "1",
  						"block_id": {
- 							"hash": "6CBCA9E042415EAF610041CB3302504904DD7443FAF6CDF5BF6D656C7E167904",
+ 							"hash": "56E16D083C2891BE451CBA57582519AE0ADEB25848420354E634007CA50F7A5A",
  							"parts": {
  								"total": "1",
- 								"hash": "0A75CFDC47C85826D06F1CBC4014B7C9D498E51CB5D8CF47F97CC985AED49EDE"
+ 								"hash": "0D97F9B2A1B0A31767A9E7A99950EDD274135FD8DC7B4314AB6432E218119039"
  							}
  						},
  						"signatures": [
  							{
  								"block_id_flag": 2,
- 								"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 								"timestamp": "2019-11-02T15:04:29Z",
- 								"signature": "4dGpz6T7cW/qwqII0o/jb0DjE35l6z4XaAPDIYcXlr3X8Jri88bDLsc4s3/aTh238MbwnRnALcAWbTNsZEveBw=="
+ 								"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 								"timestamp": "2019-11-02T15:05:05Z",
+ 								"signature": "DdPeJgilQOquTxOpRwE/rAnKLNlQs7+OS2EJ0W9Y9qc8PEg1D6qIIEwiIGziKWTK1vxneURJ20XuoOk1ITZnCQ=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 								"timestamp": "2019-11-02T15:04:29Z",
- 								"signature": "LFvLPsGI1MhPtpRK/zLaDBnYjInPCi0WIzcboX87R/dAGtlByKXH+cHN1q1u7YASfqnvvd+75pyLKUTpnri1AA=="
+ 								"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 								"timestamp": "2019-11-02T15:05:05Z",
+ 								"signature": "jayGihjDIRZ7U9iG8NOuxaJKYG6kOb0Ht8qqtpAk7C3VN/Vxv3KHf22Me0hd1ypix+sH5d1sRYlw7OCBAco7Dw=="
  							},
  							{
  								"block_id_flag": 2,
- 								"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 								"timestamp": "2019-11-02T15:04:29Z",
- 								"signature": "sSxrkjIpd4nzuyiVjeBPFGj7g8zKJ3/7a13svhs1xkiuIT98es4e7pNZaADvrMTWlvm7svhz7yaoOsVbf/tCCg=="
+ 								"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 								"timestamp": "2019-11-02T15:05:05Z",
+ 								"signature": "Rtibk5kJmjXsUGShE0qmUg9Z76pqSJerOXlIRF/ybOPdGwGzURAASWOML5uwFLlKPxWr9WkB4lDIEokXPn0WAg=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 								"timestamp": "2019-11-02T15:05:05Z",
+ 								"signature": "9/yv1Kx4mwT6aYGBcsoRo4JnioxvgcNSf12/paNogEjkl6QB+U/ijPf6IJwCKBl2qIIZDBq4lbn+e4hC4YOgDA=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 								"timestamp": "2019-11-02T15:05:05Z",
+ 								"signature": "0/XGe5mHaIWtdgwsLTVyggOdyA+RksVYZIlNxDoSeiL3d98OgwE/nuM6ON427IgcIQpi9tEc1ZZNdGRJA6mqBQ=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 								"timestamp": "2019-11-02T15:05:05Z",
+ 								"signature": "8X7GJqhRL4EGIWdu1l57cRNet2ZAiR/osJzPsB28ijZm0eaHhM4+8+qrGQ5oeTl1C5VQXsRGheaSlLElmEzDBw=="
+ 							},
+ 							{
+ 								"block_id_flag": 2,
+ 								"validator_address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 								"timestamp": "2019-11-02T15:05:05Z",
+ 								"signature": "GiI/SCyumVTdJpWJjHNL8wnRfR0zJ85Or4CUfkPLWLOSnu3i2L+RHS0rubxLddCf5RRVzv1vTt9ZoEYITInoCQ=="
  							}
  						]
  					}
@@ -1470,81 +2034,162 @@
  				"validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "-9"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-50"
+ 							"proposer_priority": "210"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "100"
+ 							"proposer_priority": "79"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-53"
+ 						},
+ 						{
+ 							"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "88"
+ 						},
+ 						{
+ 							"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-74"
+ 						},
+ 						{
+ 							"address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "17lBalGeyg7iPCeZZ5qqQo0IG10IqHdoejLCdRxwI3w="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-237"
  						}
  					],
  					"proposer": {
- 						"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 						"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 							"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-50"
+ 						"proposer_priority": "-53"
  					}
  				},
  				"next_validator_set": {
  					"validators": [
  						{
- 							"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 							"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 								"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "-100"
+ 							"proposer_priority": "47"
  						},
  						{
- 							"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 							"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 								"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "266"
  						},
  						{
- 							"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 							"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  							"pub_key": {
  								"type": "tendermint/PubKeyEd25519",
- 								"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 								"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  							},
  							"voting_power": "50",
- 							"proposer_priority": "50"
+ 							"proposer_priority": "135"
+ 						},
+ 						{
+ 							"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-47"
+ 						},
+ 						{
+ 							"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "144"
+ 						},
+ 						{
+ 							"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-18"
+ 						},
+ 						{
+ 							"address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "17lBalGeyg7iPCeZZ5qqQo0IG10IqHdoejLCdRxwI3w="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-181"
+ 						},
+ 						{
+ 							"address": "16E8EE7E867E20343ED67A83386B798BBC8CB7EA",
+ 							"pub_key": {
+ 								"type": "tendermint/PubKeyEd25519",
+ 								"value": "M0PtCXbgOaR3ldg6Wcpro1dnJiF86c2HwuG0lop+vhg="
+ 							},
+ 							"voting_power": "50",
+ 							"proposer_priority": "-344"
  						}
  					],
  					"proposer": {
- 						"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 						"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
  						"pub_key": {
  							"type": "tendermint/PubKeyEd25519",
- 							"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 							"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
  						},
  						"voting_power": "50",
- 						"proposer_priority": "-100"
+ 						"proposer_priority": "-47"
  					}
  				}
  			}
@@ -1664,7 +2309,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "132"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -1673,7 +2318,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "32"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -1682,7 +2327,7 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "-68"
  								}
  							],
  							"proposer": {
@@ -1692,7 +2337,7 @@
  									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "132"
  							}
  						}
  					},
@@ -1716,7 +2361,7 @@
  								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
  								"data_hash": "",
  								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"next_validators_hash": "86CF04BC640E4D506F967A6028958A4ACEF791959F2BB924364B47B1835CBCB1",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
@@ -1727,10 +2372,10 @@
  								"height": "2",
  								"round": "1",
  								"block_id": {
- 									"hash": "BF9535C5A5FEFB00719BAB70B177C0D4EA3E18E433E91E396EC61ADE2CE12161",
+ 									"hash": "F94CF9DDCCEC6FFC657BC2FA1BC7E3D9F992FCEA6FF7BDD5CDF1ED7D37E94F57",
  									"parts": {
  										"total": "1",
- 										"hash": "1DC8F8E942E7FDFB42A83B3E308FCBD6CC7602F60FB7812DC91F91A6AFAE295A"
+ 										"hash": "B8EE22FC6524CD4A890FDDAD3AF7AE64BFF52790BF08B89352220639414C43F4"
  									}
  								},
  								"signatures": [
@@ -1738,19 +2383,19 @@
  										"block_id_flag": 2,
  										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
  										"timestamp": "2019-11-02T15:04:20Z",
- 										"signature": "CnQaGjYQlKJ8XMqPq75eU/+bEpOvtOx8hM8B+8rqdBoLNF3JoHxZg1U9TWQQE3PM4dQHsr9bodQHB8ACdIHMBA=="
+ 										"signature": "oC11BSIW+7JJWTsAed8pwSOsyieGuz6KN0TnTnZFdHCo00lQSYvrRIp+IpT6IvtXanFK+NnuE6M2X0IjfizOCg=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
  										"timestamp": "2019-11-02T15:04:20Z",
- 										"signature": "4/X1ki1ateRFv4mPb/ZEnJD/2dOvkQVWFiMCk2uRnixpQdgk0tviGq4DR1TRS21XdPW6NjZEbygfviZXxNWvBg=="
+ 										"signature": "bswFPg9c9+6wnlwgEiP8+vC3XcmoK5z2D6fcuCZqF5jy5HRgZK/84zvUyjPl/D7H8A2nrskUp56EeiMzCpi6Ag=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  										"timestamp": "2019-11-02T15:04:20Z",
- 										"signature": "h9sn/7XYZT4Knp8mc4rZJJX1FTvPM0ocTWN8wX0gwXCrPKUcDMnpnG2GKu9Rdjr7uQrhj1t7Q1N2KP1f3e1oAA=="
+ 										"signature": "2Lb5Wrl59L3uvVgfSt05oZnjqNUFGsw8oW16LXItReD2R5I/wxdIqajwvikuBWtx7s9M3E6iN79UKV7C/BjRCg=="
  									}
  								]
  							}
@@ -1804,7 +2449,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "7"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -1813,7 +2458,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "-43"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -1822,17 +2467,26 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "157"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-118"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "32"
  							}
  						}
  					},
@@ -1845,52 +2499,58 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "3",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:20Z",
  								"last_block_id": {
- 									"hash": "BF9535C5A5FEFB00719BAB70B177C0D4EA3E18E433E91E396EC61ADE2CE12161",
+ 									"hash": "F94CF9DDCCEC6FFC657BC2FA1BC7E3D9F992FCEA6FF7BDD5CDF1ED7D37E94F57",
  									"parts": {
  										"total": "1",
- 										"hash": "1DC8F8E942E7FDFB42A83B3E308FCBD6CC7602F60FB7812DC91F91A6AFAE295A"
+ 										"hash": "B8EE22FC6524CD4A890FDDAD3AF7AE64BFF52790BF08B89352220639414C43F4"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "4FFE3225634984655332283600514FDE83256759073920115949C54C1045BDBA",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "86CF04BC640E4D506F967A6028958A4ACEF791959F2BB924364B47B1835CBCB1",
+ 								"next_validators_hash": "84310EEEA89504D2517370EAEDD97054F78A520CC00DE8317AAFA536B4450B17",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2"
  							},
  							"commit": {
  								"height": "3",
  								"round": "1",
  								"block_id": {
- 									"hash": "E56DEC6C1AF5879B55DB7288CE698E7C67BAD20011371BF1EC53845079583524",
+ 									"hash": "1F03F1996D09D5B6FB897B10EF8EE4176234B0C33D15B4A6AC99977E650892ED",
  									"parts": {
  										"total": "1",
- 										"hash": "E7198B911EF65EA64C7A1601504F116213E27AE32A5D2BD6B5BDBFB3F28A69DE"
+ 										"hash": "8E0D098598A64E62FC4488AB69887A2A507A6E11243195E6C5184E9B97EBA684"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
  										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:21Z",
- 										"signature": "MkrO1wEu3Ki47lOebXKY7qY1C8jpWvPZcyFk4akuvmKC3h7u8//X5gcbOWeBP4mJqxngMHTHcO7ZYWWFs8hyBw=="
+ 										"timestamp": "2019-11-02T15:04:25Z",
+ 										"signature": "864QgDBZWT0ZBaxZzNX5Rj8LfiPmmdGXmwk4Ga7k8DtJkArK9myetGomzOd1Zb8uRytgnnnjfyA1FtJzr7dfDw=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:21Z",
- 										"signature": "Cw2emNgp7j/7Ak6NjWQtdLRvdiz+BC3vbX6ZsOPXqhmQauNmwRjlaDRsle+jZoNK54HaQ8KlWzI73+qDBob9Ag=="
+ 										"timestamp": "2019-11-02T15:04:25Z",
+ 										"signature": "UjvV1BKbXJ5DyYMhJ1PGk1Jbefvasa7vGBeqXL/5YS5Cx1laq4TaO7MPYnfCTlRUz76nTp+SljUH0HdlwgbGDw=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:21Z",
- 										"signature": "1wzirt6AC+uUSvQXeaxNxlIqUMM4eMFYGX9GSSRFuBi/yjm43HOjxcBwIBwYYjQrYj7wXaCex7zf3Jg1/nBtBw=="
+ 										"timestamp": "2019-11-02T15:04:25Z",
+ 										"signature": "Ydsa2udMBpoZjDDPwNblWSJTOYtub2iiyoB3zO1tWWEHEl45dg9EinfXPwVWbDIu5u8P50z5ac6nOjDio4NSDA=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 										"timestamp": "2019-11-02T15:04:25Z",
+ 										"signature": "e00td/9vuq3feV5/WWT3a2L8+MkBDo1XJEtmU7DxuLTHcnrK+MI0UW55Fq60Kjjyr1a6FkmYo6bb1G1eLOc5Cw=="
  									}
  								]
  							}
@@ -1904,7 +2564,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "57"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -1913,7 +2573,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "7"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -1922,17 +2582,26 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "7"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-68"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "7"
  							}
  						},
  						"next_validator_set": {
@@ -1944,7 +2613,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "113"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -1953,7 +2622,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "63"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -1962,17 +2631,35 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "13"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-12"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-175"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "-68"
  							}
  						}
  					},
@@ -1985,52 +2672,64 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "4",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:25Z",
  								"last_block_id": {
- 									"hash": "E56DEC6C1AF5879B55DB7288CE698E7C67BAD20011371BF1EC53845079583524",
+ 									"hash": "1F03F1996D09D5B6FB897B10EF8EE4176234B0C33D15B4A6AC99977E650892ED",
  									"parts": {
  										"total": "1",
- 										"hash": "E7198B911EF65EA64C7A1601504F116213E27AE32A5D2BD6B5BDBFB3F28A69DE"
+ 										"hash": "8E0D098598A64E62FC4488AB69887A2A507A6E11243195E6C5184E9B97EBA684"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "09BCA20D70C2699DD754392899032082A401A818EE8AA9681DF06F1698E89173",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "84310EEEA89504D2517370EAEDD97054F78A520CC00DE8317AAFA536B4450B17",
+ 								"next_validators_hash": "76E3CBAAB40D2A0333D0E8BFBCCAF5E803F4AF8DC8CD67C487551EFA6A181699",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33"
  							},
  							"commit": {
  								"height": "4",
  								"round": "1",
  								"block_id": {
- 									"hash": "F7FDF401DC66513170DA249FB4395774ADCFC7955C5542D975D1AF9690B2FFBD",
+ 									"hash": "672AF9799829A13382D6CF9660EDFBD0BF6FDB041D7D96A0FCC345AAFD7CC6F6",
  									"parts": {
  										"total": "1",
- 										"hash": "7034701122166E1B425C03A60617463B05623F90C1E60AA1126927BD42C6C77D"
+ 										"hash": "12D64B2031CBE7FCF89BDC3A8755DDE64615B988B665EA12C65B2639BBE2C6AC"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
  										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:22Z",
- 										"signature": "4X0aEZr/V9DuXnJyP6710nACZMrkKyCdm9sUi7UW1v2Ffk+HNfCxZD1Hjw/syqZaruMRK7HokrhB1G7KsNmqCw=="
+ 										"timestamp": "2019-11-02T15:04:30Z",
+ 										"signature": "AU5rdH8c6i80CkrLus5jOOez/sTTHykWwJJh7wdBaEGNtlLXu46KqP+T2x7UTVRWcnZC2CIYTHu6eBB4l+foCA=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:22Z",
- 										"signature": "czeX6a3XT/dogZSluRuLbADGYxaF8yL1zg0BVQP/lAnIjlSgGMHro8sMYIpmpg7JSBDUoghf54YPGtJ9kgTICw=="
+ 										"timestamp": "2019-11-02T15:04:30Z",
+ 										"signature": "ourkLKWWn/gPVxdt6d2VYRR6lNhwVlI15aQVCE1OaWkw0fGlcKufGgK1S8Lr/0BKmVVNRb3PO5aQn9//ZQQaAw=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:22Z",
- 										"signature": "h4Q+BKZQ7vUi98+1OrndMzzBPBwu+tWpu6BRwVPU0RVclHtZy714e1n8sNAAZrRmUsNI85LGLBIMBESg7eywAw=="
+ 										"timestamp": "2019-11-02T15:04:30Z",
+ 										"signature": "CMbV3sERFwNXuWl5dH3QkWDd9keW4Xznyq6rYb/0rl0RoRTwoMVeCA44tAs5XmxgxT5f2UR+Ws7gPID7/1R8Ag=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 										"timestamp": "2019-11-02T15:04:30Z",
+ 										"signature": "4RVum6lartWtOjHmqKbv0mp3KnGIrBLWt90NRrriSf3Aze5BhOjapQ0OQNsC0PddQJk8r2d+xI1hLk4ydSGHCQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 										"timestamp": "2019-11-02T15:04:30Z",
+ 										"signature": "tgF9uNHP1Zv0EV0eMrKdJH2gMFu6thJc7XdcFwzDKUz0DHii23dExUDkmP0y2noelLRvLGTt+/ERPtLAIiKbBA=="
  									}
  								]
  							}
@@ -2044,7 +2743,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-87"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -2053,7 +2752,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "113"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -2062,17 +2761,35 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "63"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "38"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-125"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-87"
  							}
  						},
  						"next_validator_set": {
@@ -2084,7 +2801,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "-81"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -2093,7 +2810,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "169"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -2102,7 +2819,34 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "119"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "94"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-69"
+ 								},
+ 								{
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-231"
  								}
  							],
  							"proposer": {
@@ -2112,7 +2856,7 @@
  									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "132"
  							}
  						}
  					},
@@ -2125,18 +2869,18 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "5",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:30Z",
  								"last_block_id": {
- 									"hash": "F7FDF401DC66513170DA249FB4395774ADCFC7955C5542D975D1AF9690B2FFBD",
+ 									"hash": "672AF9799829A13382D6CF9660EDFBD0BF6FDB041D7D96A0FCC345AAFD7CC6F6",
  									"parts": {
  										"total": "1",
- 										"hash": "7034701122166E1B425C03A60617463B05623F90C1E60AA1126927BD42C6C77D"
+ 										"hash": "12D64B2031CBE7FCF89BDC3A8755DDE64615B988B665EA12C65B2639BBE2C6AC"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "7BCB6C34CDFB844D5B0F6FAAA9170CB4D0CAD861AC1037D59A1C2C2DEDC3AE9E",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "76E3CBAAB40D2A0333D0E8BFBCCAF5E803F4AF8DC8CD67C487551EFA6A181699",
+ 								"next_validators_hash": "DE8061D044516741CBB0F3E3B38D1757A090801BE9B5FC020874A2AC0C7DE427",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
@@ -2147,30 +2891,48 @@
  								"height": "5",
  								"round": "1",
  								"block_id": {
- 									"hash": "C86DBB96B6CA1C6F9F087A0A57F878DE51DC1B27319CAFCA772811CCABF545A7",
+ 									"hash": "837B6848C13413CD364722F0E4FF5D70A92AFE0BE4CB79CC4EF55E4289501802",
  									"parts": {
  										"total": "1",
- 										"hash": "218BC58A76FDF4F1B11908DCE950DD0DE765BFDDBFF584E1919B4FBD89036B29"
+ 										"hash": "C83881A4B1619667BF23FF3191DBB8F2CDB3C7F4A1E89C7BC145E0DB28697A61"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
  										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:23Z",
- 										"signature": "fw3r3/6wLv2Md+AwlrRy6beZSTWE9XsCrb4ZHQ3OspiV64ZEwdHuVGMsgmOO7t8YFH2laeijrQULtC1miaAUAA=="
+ 										"timestamp": "2019-11-02T15:04:35Z",
+ 										"signature": "elKsgU8mQ0jPubc3up/rzIeo//7gE80JG7wIwj+adY7SrViqwTw1qTnOtiUx8jKLfazb3LBQsSdX/Rpha7b3AQ=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:23Z",
- 										"signature": "G+91BtS0EQq7BVBQERTzWlM3ALlrTdP9PMnfcglYa69QTVrIxYOUgFL0vUdnbBNF6TDbbfYzU62UVPhb7U1tAQ=="
+ 										"timestamp": "2019-11-02T15:04:35Z",
+ 										"signature": "1yhqeNuJ+BM2KJCZiHglIcZfhzDxgef7N3QIV/CYQ6RHWtcJ71v9+U8gTVq14Cyc5TW7OnGBFBZjIC/VDOe5Aw=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:23Z",
- 										"signature": "kp8FtGd/LV7CSmkk1J+j7RKCT2IxyxF3TVEbjVG3ehskL2uSp4A+3ocZJiK+g3jkAbU+71exbQg3CyhmzcBuDw=="
+ 										"timestamp": "2019-11-02T15:04:35Z",
+ 										"signature": "72oQFPvQ1H0HUtwe8VqDXAesHZ8/BAo2CqrUXiee6SwbPMsyqWr+IEF/qFpDzBQ03n2nh9KvKpuqO/HLzZYiBA=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 										"timestamp": "2019-11-02T15:04:35Z",
+ 										"signature": "aootekFx/GXPXmo1sQ754WwYWQ2g9FJiP2Y907BTuRwO6sp2Mm+OcJ9Fn8+LOmimyF7C29X6YlfNCEkRZPUDAg=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 										"timestamp": "2019-11-02T15:04:35Z",
+ 										"signature": "kGikgfIwXILNX0+gzKfrn2NoROFpaSMUL1bK8xozXv0VPqqbKYn1NfnN7nCoC8sGt0Ksg6thzm1bFSWm/EaBCQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 										"timestamp": "2019-11-02T15:04:35Z",
+ 										"signature": "TiCsuY+ZaRqYAF+xxvDkthnoAHE2XVawCIMwqn/6UXOJl00wvrp+UHptwC5MiWLuakWE29p8fw/Fu+JWTOmKBw=="
  									}
  								]
  							}
@@ -2184,7 +2946,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-31"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -2193,7 +2955,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-81"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -2202,7 +2964,34 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "169"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "144"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-19"
+ 								},
+ 								{
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-181"
  								}
  							],
  							"proposer": {
@@ -2212,7 +3001,7 @@
  									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-81"
  							}
  						},
  						"next_validator_set": {
@@ -2224,7 +3013,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "25"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -2233,7 +3022,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "-75"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -2242,17 +3031,53 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "225"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "200"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "37"
+ 								},
+ 								{
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-125"
+ 								},
+ 								{
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-287"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "32"
  							}
  						}
  					},
@@ -2265,52 +3090,76 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "6",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:35Z",
  								"last_block_id": {
- 									"hash": "C86DBB96B6CA1C6F9F087A0A57F878DE51DC1B27319CAFCA772811CCABF545A7",
+ 									"hash": "837B6848C13413CD364722F0E4FF5D70A92AFE0BE4CB79CC4EF55E4289501802",
  									"parts": {
  										"total": "1",
- 										"hash": "218BC58A76FDF4F1B11908DCE950DD0DE765BFDDBFF584E1919B4FBD89036B29"
+ 										"hash": "C83881A4B1619667BF23FF3191DBB8F2CDB3C7F4A1E89C7BC145E0DB28697A61"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "64C90855F5332D0EC64BA4D343D76BFD94D7D1423F489EAE693F4195871692B9",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "DE8061D044516741CBB0F3E3B38D1757A090801BE9B5FC020874A2AC0C7DE427",
+ 								"next_validators_hash": "5EB64A484C5AE149E3B40742C25083A32A9EA6566141D5DC8DEB301EFD9AE70C",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2"
  							},
  							"commit": {
  								"height": "6",
  								"round": "1",
  								"block_id": {
- 									"hash": "CB139C4EF48BAE1007BB3CF4E39131C3B27782CB8D12E1690C916C4CFEA359E0",
+ 									"hash": "A3B3E8BF28A04B9804F4A7C215DAC09D9BC5769AE611CB2689071E1EC1F2B3F0",
  									"parts": {
  										"total": "1",
- 										"hash": "9C6CEEFF8397D19C6AB5AD3F00608D3152090A9B645D3C3CC9D8E66C8B319034"
+ 										"hash": "B97094CF1619C47BCE430848D17EAA41830B48BFEA00380B22C760B0D3A4DDB6"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
  										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:24Z",
- 										"signature": "YvwXaGkdBUuacRQUP3HNFnhKofTYp2WcHLjFtIHDlpAK3PrlYv/EtrqSM8nvRBnF6PGFbFVCi/x7NUdY7VJ5Ag=="
+ 										"timestamp": "2019-11-02T15:04:40Z",
+ 										"signature": "OJfWN6bOWePw4+/RmYaAG0/7okaq99exCUeqHwGxVb+CqadcS5uG+/iV5cNuVHeO6ITvzHwWObDudAkwdFfhAw=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:24Z",
- 										"signature": "noxiAKIzeSwifWOW9sIkWOSmp+jl4tIRTO5/Ao7MUiwBLDoPj1zAMZ8hmhIJ8EbgAgYXY/1qUDZ7AaRgRsRICw=="
+ 										"timestamp": "2019-11-02T15:04:40Z",
+ 										"signature": "2bSFqNMVz4Cc7sDgsI6P/l56pgbL5VuI6nXdZpS+prSEDxz9tNWt6bW07ChxDHoK4doJSA8jwmK5ytI0ZXquCg=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:24Z",
- 										"signature": "8XtkfviFRM72SV0VR4Cfn05bwT/Af8084FMOXJkuFzVKE2MAF02T4s6Tko+rgS7bxdqIpVzGrWadSO64cgndAg=="
+ 										"timestamp": "2019-11-02T15:04:40Z",
+ 										"signature": "BakhuVInG+3LAReTsZu9Htz4zZdRzDn4E9nARNdfzRmIrkN32H7qh03Nhb0AEwZK++oEoXgjEyT2+l8+KnGzBw=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 										"timestamp": "2019-11-02T15:04:40Z",
+ 										"signature": "QJxNPDmsB0ftJVYHhczcKCp4wHjlH1BDDXEyOy1JM9el5wfpMwdy/H9cw36FQJTt3Snh13sBv/OXzDKrOiKRAg=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 										"timestamp": "2019-11-02T15:04:40Z",
+ 										"signature": "1RbA/jp13+RSjKzGqjE7OQTP5eGmeH4M8H9zJ62X/AcqPkgL+74TYDpjk6dU5OeOjdCX6NUReQRmqfUSpRBwCA=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 										"timestamp": "2019-11-02T15:04:40Z",
+ 										"signature": "8H34XQSUG6RtfJSI+FHdLdBpB0lvxDQVU+rEgzE1vWHjEiIpII17JBcTg/qA+hdr87Q9P/ZDoXtpOgOifVDbBg=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 										"timestamp": "2019-11-02T15:04:40Z",
+ 										"signature": "71JYLhk/BFzxp6n7ob6/HZRZ+Te7PQLLWbNhs/s90jZZBEnOcyzALH+Hd5D+ePEvpiLFGBiWZw7xW7LRTuzqAQ=="
  									}
  								]
  							}
@@ -2324,7 +3173,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "75"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -2333,7 +3182,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-25"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -2342,17 +3191,53 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "-75"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "250"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "87"
+ 								},
+ 								{
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-75"
+ 								},
+ 								{
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-237"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-75"
  							}
  						},
  						"next_validator_set": {
@@ -2364,7 +3249,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "132"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -2373,7 +3258,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "32"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -2382,17 +3267,62 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "-68"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "307"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "144"
+ 								},
+ 								{
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-18"
+ 								},
+ 								{
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-180"
+ 								},
+ 								{
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-343"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "-68"
  							}
  						}
  					},
@@ -2405,52 +3335,82 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "7",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:40Z",
  								"last_block_id": {
- 									"hash": "CB139C4EF48BAE1007BB3CF4E39131C3B27782CB8D12E1690C916C4CFEA359E0",
+ 									"hash": "A3B3E8BF28A04B9804F4A7C215DAC09D9BC5769AE611CB2689071E1EC1F2B3F0",
  									"parts": {
  										"total": "1",
- 										"hash": "9C6CEEFF8397D19C6AB5AD3F00608D3152090A9B645D3C3CC9D8E66C8B319034"
+ 										"hash": "B97094CF1619C47BCE430848D17EAA41830B48BFEA00380B22C760B0D3A4DDB6"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "DEEF3FD4B84F729489A5A9E7684924AAF2B736BB35B5EDF538EE44FCEA7185C1",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "5EB64A484C5AE149E3B40742C25083A32A9EA6566141D5DC8DEB301EFD9AE70C",
+ 								"next_validators_hash": "CE2324B20BB73E18C1C4B55C276D23FA77B01D432A277F2C92AA1F296074672E",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295"
  							},
  							"commit": {
  								"height": "7",
  								"round": "1",
  								"block_id": {
- 									"hash": "22D13748C59A4A6D05B38FBFF520F6F6BA7BD74DA1ECBDD8419CF9B196DD9E5A",
+ 									"hash": "B5D64A76A3990C85C9421BDB5D7E6EF413753A60984437C6B0B3D25833A4B06D",
  									"parts": {
  										"total": "1",
- 										"hash": "A862597A9288A057560DA73B642C7E1588C6D62BE1C89DBF9FD81C2E8FFA9E46"
+ 										"hash": "74A1EF2FF0421EF4CDEFA78B912FEE21180BB425CF9C7EA61EB3F8F50F5EBCF4"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
  										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:25Z",
- 										"signature": "MaRCwtgV6SddAq9fba7pG58+dZ5ATTMkeZyrrCX8Ab51LlD6yauhOvHmJK7f6TY4Bcbc4VosqNbPhiyJv1IoAQ=="
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "QQ6ca1R08U74VBGk1DusKqU9XYr1bTxEV9W7yw8TOtEbOfJMtZjCPPImw2ZCMHgYQ3eS3VZ4b4q5yRTPoEToCg=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:25Z",
- 										"signature": "LlcpnCjnK5Ld1TFNZ3W9eYqiu/K+VoUtMSgMuZqxGYvLUtIbsbTO6kmIT22cYRAENBmPpslzjC4DU8CdTB2rCg=="
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "ZeVzfpDcKfyLAHgG/3maQO5wXz20mcLQJH32U1z8wZIOTItm6Ax+Jq2p/0efJQop7eStCzbTHOBlW238aE7kBQ=="
  									},
  									{
  										"block_id_flag": 2,
  										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:25Z",
- 										"signature": "ngdj5pSXgWuma9z1QIvf/l/G8ukOgQcMPn29XTUfmz10YRDtQ7yw4TjY8q7E2BzLQ0NOeMvUBkUmvuoTPtf2Cw=="
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "fx9OULDn/K/uWubIBOlm1wfD1bDiTcP2Y5dB9hgHq5aItSEn3xXtvhyavTwulzfCTEyLs2mN2zAsAamh02szAg=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "Vl9/m2FCtPgZ6uxs+QY1/YsKc2PWazB3PaIvfyC2dUEi0EfwbWpXNCmhrQVcgMb1uWqmKH9bNT9SMjNfFoU4Dg=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "9ClAf+5RFLudsStAmjzc/kthx3paNggAj8PKG3V37zjtDbcd9OW8V8NnObrJGPTM7RMbqqMDCqA+yCoEJ07uCQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "tPNbF06w+VIHCWqcvFumy6MCQRIo46Bw4C4g1dLbnrIfXSm6Gb2QmOeHdwwV47dOA2DYUhOOJNKvYC/5Ay5eBA=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "TRIQswkOiok987Cw92MDIaj3qJ9ZniKWt0CvYyo74HJT9jblnerixgXmAwCWJ/TYH0/ot+5/d2GqsIKo4prcBQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 										"timestamp": "2019-11-02T15:04:45Z",
+ 										"signature": "DkfNnHqvu88Km1pZdAgv/H2vyTSNdPGDVLPIg/uP75zjK45LzkU53a/kybG2gpmlgkhQc9sULghSzpaZhrDACg=="
  									}
  								]
  							}
@@ -2464,7 +3424,7 @@
  										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "182"
  								},
  								{
  									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
@@ -2473,7 +3433,7 @@
  										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "82"
  								},
  								{
  									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
@@ -2482,57 +3442,111 @@
  										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "-18"
+ 								},
+ 								{
+ 									"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-43"
+ 								},
+ 								{
+ 									"address": "04D58F15E56D6531CED6FFEFB17512E30AD8F219",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "e7XdW4ExhnQ6hDwS0B239yJV80+6uhAq5G6zIZJnbwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "194"
+ 								},
+ 								{
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "32"
+ 								},
+ 								{
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-130"
+ 								},
+ 								{
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-293"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "044EB1BB5D4C1CDB90029648439AEB10431FF295",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "Wc790fkCDAi7LvZ4UIBAIJSNI+Rp2aU80/8l+idZ/wI="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-43"
  							}
  						},
  						"next_validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "-28"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "91"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "10"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-72"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "47"
  							}
  						}
  					},
@@ -2545,52 +3559,58 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "8",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:45Z",
  								"last_block_id": {
- 									"hash": "22D13748C59A4A6D05B38FBFF520F6F6BA7BD74DA1ECBDD8419CF9B196DD9E5A",
+ 									"hash": "B5D64A76A3990C85C9421BDB5D7E6EF413753A60984437C6B0B3D25833A4B06D",
  									"parts": {
  										"total": "1",
- 										"hash": "A862597A9288A057560DA73B642C7E1588C6D62BE1C89DBF9FD81C2E8FFA9E46"
+ 										"hash": "74A1EF2FF0421EF4CDEFA78B912FEE21180BB425CF9C7EA61EB3F8F50F5EBCF4"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "C5A53938A6562E1B7A33E30E02B7E53F0D0F61AB3CF140E25E4F63CCAEF8A063",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "CE2324B20BB73E18C1C4B55C276D23FA77B01D432A277F2C92AA1F296074672E",
+ 								"next_validators_hash": "22CBF8AFC01B94B064A160454DEF981A297D19A0DE45CBF5E7181430B55B1E15",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "074D8A3973885CD484ED4904DC82ED812773C5BA"
  							},
  							"commit": {
  								"height": "8",
  								"round": "1",
  								"block_id": {
- 									"hash": "5F999308B9914142AA6573D3A7F0B07F3FA77399B28427F82DF1D665AE0DA7C9",
+ 									"hash": "9D7D5F809296A172E6E474B240C07865200B14A864AD48B5503009E456E9FD0A",
  									"parts": {
  										"total": "1",
- 										"hash": "2617C0EBB0BD7D99F7EC481B80D51F5A4E53AE8473A2251BE6D8CECAC0C4EABB"
+ 										"hash": "6498562121BFDA33F46027D132F748701F32DB3C9CA7085DB3449D2173E215E9"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
- 										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:26Z",
- 										"signature": "ln7MNv7KjeG10NLvGJsL8DUq1T5X95inuA/HtJVnfr5zlWKweupDB7LZUY9GrHu6Hccs1VJZ3kdvlsJWC5DqAw=="
+ 										"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 										"timestamp": "2019-11-02T15:04:50Z",
+ 										"signature": "eURSBFt5fMaFwigFGlH0JP+1vMApBlEb9faMitl8WohMtEaW6XMJIT9I8V05SsyjpIQplZE1jzVB9hBD7Um0Aw=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:26Z",
- 										"signature": "6hD5WWdd+c5tnE6+qV7CHezP0mIVqqJPSqhRobv+Ll+xN2utR5eaXOZ7oY69dCdpPnABe6Y9o11IY/ZmBzMJCw=="
+ 										"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 										"timestamp": "2019-11-02T15:04:50Z",
+ 										"signature": "iXPpw5H6QRAQgz5vStYmyY+Fd5BdFBCFDDZcNqQ+eyjnfQcPjWXGjbAlKvLrnMRrhe8pBoQSaUkFRq4YPtqdDQ=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:26Z",
- 										"signature": "d2QDf4qmXDMZXkPInuN+8nhVGhKh7xN4e2yKa3S2Fp5qw8FZ9/EU1/7qJI06K38ntdTjgJPkMOf9yP2exS0PDg=="
+ 										"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 										"timestamp": "2019-11-02T15:04:50Z",
+ 										"signature": "apzurLkfvH6DInwpidG69rUKiYTUGjxV1JEa8rQVCq86VltlOAUVs9NEWmW3bJ1l91X+aUYvhs2xSFAdTgv0AQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 										"timestamp": "2019-11-02T15:04:50Z",
+ 										"signature": "l+sldOyQI/S8azd1HdLYTSoWiW40AIiVOjI1UQk6W4sGE2PbV/EmBPZnjskBGSB5B/cnlAbxXAKt57K8zoW0Ag=="
  									}
  								]
  							}
@@ -2598,81 +3618,108 @@
  						"validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "22"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-59"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "60"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-22"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-59"
  							}
  						},
  						"next_validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "78"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "-53"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "116"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "34"
+ 								},
+ 								{
+ 									"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-175"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "266"
  							}
  						}
  					},
@@ -2685,52 +3732,64 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "9",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:50Z",
  								"last_block_id": {
- 									"hash": "5F999308B9914142AA6573D3A7F0B07F3FA77399B28427F82DF1D665AE0DA7C9",
+ 									"hash": "9D7D5F809296A172E6E474B240C07865200B14A864AD48B5503009E456E9FD0A",
  									"parts": {
  										"total": "1",
- 										"hash": "2617C0EBB0BD7D99F7EC481B80D51F5A4E53AE8473A2251BE6D8CECAC0C4EABB"
+ 										"hash": "6498562121BFDA33F46027D132F748701F32DB3C9CA7085DB3449D2173E215E9"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "E327351A80167AA54813CC982BD8E1E05EF2450BAF7F9391BF6C1D9EA9EEB35C",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "22CBF8AFC01B94B064A160454DEF981A297D19A0DE45CBF5E7181430B55B1E15",
+ 								"next_validators_hash": "0CAE0A78090F929A9B15A531520B8C2366532582DD182E6F8A72C45050569045",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E"
  							},
  							"commit": {
  								"height": "9",
  								"round": "1",
  								"block_id": {
- 									"hash": "3E9EC2960BFA5A89C0DC4D5C8C83257A6DE0C3355AB273D0E15FFFFDC576EF8D",
+ 									"hash": "CE4D7757F3A0FBDA83F24FFE3E1E72D19D37EC6A87DAF9A2B3B07641858D9115",
  									"parts": {
  										"total": "1",
- 										"hash": "8EB4D08C3BFCA20D4A1B6EB3C4164F4D9A851B3F281DA55B5AA1267AC028B97B"
+ 										"hash": "E068DD05F99A2370478A3F2D9410ED79272A7B2E62C2650D7553B5A9FD535B9C"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
- 										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:27Z",
- 										"signature": "H36SIuYMjUO8LrP4YMc7WvsNV+s1LkuaH+GpNMrTeRQ3Fz2Bj9ur8tGAmvh9bZObmcEYLJyBm1F3n9mJWtTyBg=="
+ 										"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 										"timestamp": "2019-11-02T15:04:55Z",
+ 										"signature": "jMxAjP3Hmo2NP/qQeXMJR/jTE8R9qmAuNxo5C20JwRVlay2lscifMgC/gHLu/Fhb0Ugtq4ulXRlB1LAr1kTKBA=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:27Z",
- 										"signature": "xaIPMFRZi+c5G128vmRmAhScxBebA2pT1IzE3CcO1J9zNrid+mVb8LbM8a0U8CCuZwAu/jUFHRaxw9End1/LCQ=="
+ 										"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 										"timestamp": "2019-11-02T15:04:55Z",
+ 										"signature": "7sgG0t9bzeBKfDXbWsnmqyjIy9Hea4KdLEbpwzR4NXBaTUxB7lfSRxMvLgAg7Uy0kM2qh9iFYZat+mJLkySIBA=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:27Z",
- 										"signature": "/2bQ5V3fEc/sRAcPlMunpA5c89d0LXGD3PwfHWB7Ga4k24g+Nda1ccM4/6Cib+MHsfpMn/Vk2OJwLp34LveFBg=="
+ 										"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 										"timestamp": "2019-11-02T15:04:55Z",
+ 										"signature": "6AIPV69Ydk4AXRA14hnvye86Va7fCz6vD9sk5oMqs/K+BOUbpwoJLKmnlXjtET1JyhcDtpUzdVnGGdkyAZnvCQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 										"timestamp": "2019-11-02T15:04:55Z",
+ 										"signature": "c6P5JZHQLxdz50I7OrCccoF2N1Ugyia4ZTDIvCdsiKHGGnKSN77tCAzh3foSKH68N2bZqxfHNkq7FgcKiHGlAg=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 										"timestamp": "2019-11-02T15:04:55Z",
+ 										"signature": "EHToE8VQa6Rvvqbo5K/sDxNF3x5a9WI++iHaPMON7ZtSNItaR3C7LB/ropvr2fHyfkOosF2Rx1MYHDHgX7DoDg=="
  									}
  								]
  							}
@@ -2738,81 +3797,126 @@
  						"validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "128"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-3"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "-84"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "84"
+ 								},
+ 								{
+ 									"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-125"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-84"
  							}
  						},
  						"next_validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "185"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "54"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "-77"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "141"
+ 								},
+ 								{
+ 									"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-68"
+ 								},
+ 								{
+ 									"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-230"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "135"
  							}
  						}
  					},
@@ -2825,52 +3929,70 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "10",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:04:55Z",
  								"last_block_id": {
- 									"hash": "3E9EC2960BFA5A89C0DC4D5C8C83257A6DE0C3355AB273D0E15FFFFDC576EF8D",
+ 									"hash": "CE4D7757F3A0FBDA83F24FFE3E1E72D19D37EC6A87DAF9A2B3B07641858D9115",
  									"parts": {
  										"total": "1",
- 										"hash": "8EB4D08C3BFCA20D4A1B6EB3C4164F4D9A851B3F281DA55B5AA1267AC028B97B"
+ 										"hash": "E068DD05F99A2370478A3F2D9410ED79272A7B2E62C2650D7553B5A9FD535B9C"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "784E5DB2B042F3D7CFA844EF64D666E22DA972EBC4E95BE8DE0BC1D71BB40011",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "0CAE0A78090F929A9B15A531520B8C2366532582DD182E6F8A72C45050569045",
+ 								"next_validators_hash": "C601A532E0241BAE677C8DCFF5B7F38D9585CA8BC297312308CEB3518F020965",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F"
  							},
  							"commit": {
  								"height": "10",
  								"round": "1",
  								"block_id": {
- 									"hash": "3B718016111C5FEA18FD6C99CDEAF824FA497B822AE7D27F697EB9270FBF5589",
+ 									"hash": "7D81CE4A6EE0F69C1B9E63F29D892345DEBD9007FDA5A4E325B3BC6B1FA177AC",
  									"parts": {
  										"total": "1",
- 										"hash": "02EAAC90DB0117F35292096557FDDC8DD2ECE8A3B4BB98DC9BE4D50F8E1A0050"
+ 										"hash": "45EB7B1E7E0B7950BEBFE86A3A2235507B49B8897FC27FBF01EB9AF59CC0D092"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
- 										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:28Z",
- 										"signature": "opUG12VSciuZ5Zam1NmtCJG1Nf14/z64mHRlEKuOlU8I9yyd4NkgjXmkB5UEDSUliLGb+dLCCXUug7yMGjlABg=="
+ 										"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 										"timestamp": "2019-11-02T15:05:00Z",
+ 										"signature": "F4s3f8JCr5vr95J8TSuf3a7P1AjULxUpw6PZ5qVjS3a6YSGCQsb6w8+1MHqcLoHQDQ/D1XnphsC84IBYEe0qCg=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:28Z",
- 										"signature": "vir7GMtOw4bcCmjv5tFH9AGtsjnwKxyV98/znOWWpq7LrSLxd/JyZH7g/IAxdw7STySbvl1OMMcjOFmfsXazDQ=="
+ 										"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 										"timestamp": "2019-11-02T15:05:00Z",
+ 										"signature": "ncngKWn/h2ZryPqnyU1hT61PYqTH98RcqBJSY/o9FavLt9UTgJNu/B8WSXBn3wANIOd6TxZcw5J0MCNEZSHbBA=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:28Z",
- 										"signature": "MYr1w3O8P+MwPOEv6rLZRVvJcR2ReCq1X1NUc/YDlWcJMYqmJllFwnu7mrI+xC/2ApO8B0/fdO0G6bd6xC3pBw=="
+ 										"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 										"timestamp": "2019-11-02T15:05:00Z",
+ 										"signature": "7H/Zfmr8nUIg08otWyApCcP07tOnUrALKwhJQ622dgqvSlTXVolINl6QOX16Mi2d+slUBT5eh8pEl+ZRsUfiDQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 										"timestamp": "2019-11-02T15:05:00Z",
+ 										"signature": "LrrHpnHIu3+UUopZHAEbu6sioBPmcDDqGrE1RLE3MkXczM/xBRxlhRhj4NNXhYzyKOp9KHPdPeBF6GQ1kLRYAA=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 										"timestamp": "2019-11-02T15:05:00Z",
+ 										"signature": "tSE+LeMZIDSz2uhWsikCXrHhD5dNtDm+8OoOmEsMl26Jer1dPo/qOVmcQ4S3Jq/XbHj5x76xK0GpUiNorCkfAw=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 										"timestamp": "2019-11-02T15:05:00Z",
+ 										"signature": "B+fwlOoE0Lrin0xnixX0EGiOdqHMtNq5sV82jwUmhav5fp3o1cyqqg4GnBxHBHS0bINPrs1kDdsCsnE3ewp+AQ=="
  									}
  								]
  							}
@@ -2878,81 +4000,144 @@
  						"validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-65"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "104"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "-27"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "191"
+ 								},
+ 								{
+ 									"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-18"
+ 								},
+ 								{
+ 									"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-180"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-65"
  							}
  						},
  						"next_validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "-59"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "160"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "29"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "247"
+ 								},
+ 								{
+ 									"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "38"
+ 								},
+ 								{
+ 									"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-124"
+ 								},
+ 								{
+ 									"address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "17lBalGeyg7iPCeZZ5qqQo0IG10IqHdoejLCdRxwI3w="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-287"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "47"
  							}
  						}
  					},
@@ -2965,52 +4150,76 @@
  								},
  								"chain_id": "test-chain-01",
  								"height": "11",
- 								"time": "2019-11-02T15:04:10Z",
+ 								"time": "2019-11-02T15:05:00Z",
  								"last_block_id": {
- 									"hash": "3B718016111C5FEA18FD6C99CDEAF824FA497B822AE7D27F697EB9270FBF5589",
+ 									"hash": "7D81CE4A6EE0F69C1B9E63F29D892345DEBD9007FDA5A4E325B3BC6B1FA177AC",
  									"parts": {
  										"total": "1",
- 										"hash": "02EAAC90DB0117F35292096557FDDC8DD2ECE8A3B4BB98DC9BE4D50F8E1A0050"
+ 										"hash": "45EB7B1E7E0B7950BEBFE86A3A2235507B49B8897FC27FBF01EB9AF59CC0D092"
  									}
  								},
- 								"last_commit_hash": "CE50B907C13B48572BD2EFA1FED9A9341B7F680F3EC3F562ED0A8E745D6F528E",
+ 								"last_commit_hash": "C12FD28C7CF84C4F9026ADD6245FC36EAAB6AEEF3281DF1B12FBDBA173BB021D",
  								"data_hash": "",
- 								"validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
- 								"next_validators_hash": "C403871B77A3295FFF1EE321424FC969EFAD87EF16740DF28A1B6CA62CA0977C",
+ 								"validators_hash": "C601A532E0241BAE677C8DCFF5B7F38D9585CA8BC297312308CEB3518F020965",
+ 								"next_validators_hash": "506F6B241E239AC122B73A50F411232C280B02E081C39110B2614259DDFD2BB4",
  								"consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
  								"app_hash": "6170705F68617368",
  								"last_results_hash": "",
  								"evidence_hash": "",
- 								"proposer_address": "026CC7B6F3E62F789DBECEC59766888B5464737D"
+ 								"proposer_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E"
  							},
  							"commit": {
  								"height": "11",
  								"round": "1",
  								"block_id": {
- 									"hash": "6CBCA9E042415EAF610041CB3302504904DD7443FAF6CDF5BF6D656C7E167904",
+ 									"hash": "56E16D083C2891BE451CBA57582519AE0ADEB25848420354E634007CA50F7A5A",
  									"parts": {
  										"total": "1",
- 										"hash": "0A75CFDC47C85826D06F1CBC4014B7C9D498E51CB5D8CF47F97CC985AED49EDE"
+ 										"hash": "0D97F9B2A1B0A31767A9E7A99950EDD274135FD8DC7B4314AB6432E218119039"
  									}
  								},
  								"signatures": [
  									{
  										"block_id_flag": 2,
- 										"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 										"timestamp": "2019-11-02T15:04:29Z",
- 										"signature": "4dGpz6T7cW/qwqII0o/jb0DjE35l6z4XaAPDIYcXlr3X8Jri88bDLsc4s3/aTh238MbwnRnALcAWbTNsZEveBw=="
+ 										"validator_address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
+ 										"timestamp": "2019-11-02T15:05:05Z",
+ 										"signature": "DdPeJgilQOquTxOpRwE/rAnKLNlQs7+OS2EJ0W9Y9qc8PEg1D6qIIEwiIGziKWTK1vxneURJ20XuoOk1ITZnCQ=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
- 										"timestamp": "2019-11-02T15:04:29Z",
- 										"signature": "LFvLPsGI1MhPtpRK/zLaDBnYjInPCi0WIzcboX87R/dAGtlByKXH+cHN1q1u7YASfqnvvd+75pyLKUTpnri1AA=="
+ 										"validator_address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
+ 										"timestamp": "2019-11-02T15:05:05Z",
+ 										"signature": "jayGihjDIRZ7U9iG8NOuxaJKYG6kOb0Ht8qqtpAk7C3VN/Vxv3KHf22Me0hd1ypix+sH5d1sRYlw7OCBAco7Dw=="
  									},
  									{
  										"block_id_flag": 2,
- 										"validator_address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
- 										"timestamp": "2019-11-02T15:04:29Z",
- 										"signature": "sSxrkjIpd4nzuyiVjeBPFGj7g8zKJ3/7a13svhs1xkiuIT98es4e7pNZaADvrMTWlvm7svhz7yaoOsVbf/tCCg=="
+ 										"validator_address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
+ 										"timestamp": "2019-11-02T15:05:05Z",
+ 										"signature": "Rtibk5kJmjXsUGShE0qmUg9Z76pqSJerOXlIRF/ybOPdGwGzURAASWOML5uwFLlKPxWr9WkB4lDIEokXPn0WAg=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 										"timestamp": "2019-11-02T15:05:05Z",
+ 										"signature": "9/yv1Kx4mwT6aYGBcsoRo4JnioxvgcNSf12/paNogEjkl6QB+U/ijPf6IJwCKBl2qIIZDBq4lbn+e4hC4YOgDA=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 										"timestamp": "2019-11-02T15:05:05Z",
+ 										"signature": "0/XGe5mHaIWtdgwsLTVyggOdyA+RksVYZIlNxDoSeiL3d98OgwE/nuM6ON427IgcIQpi9tEc1ZZNdGRJA6mqBQ=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 										"timestamp": "2019-11-02T15:05:05Z",
+ 										"signature": "8X7GJqhRL4EGIWdu1l57cRNet2ZAiR/osJzPsB28ijZm0eaHhM4+8+qrGQ5oeTl1C5VQXsRGheaSlLElmEzDBw=="
+ 									},
+ 									{
+ 										"block_id_flag": 2,
+ 										"validator_address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 										"timestamp": "2019-11-02T15:05:05Z",
+ 										"signature": "GiI/SCyumVTdJpWJjHNL8wnRfR0zJ85Or4CUfkPLWLOSnu3i2L+RHS0rubxLddCf5RRVzv1vTt9ZoEYITInoCQ=="
  									}
  								]
  							}
@@ -3018,81 +4227,162 @@
  						"validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "-9"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-50"
+ 									"proposer_priority": "210"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "100"
+ 									"proposer_priority": "79"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-53"
+ 								},
+ 								{
+ 									"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "88"
+ 								},
+ 								{
+ 									"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-74"
+ 								},
+ 								{
+ 									"address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "17lBalGeyg7iPCeZZ5qqQo0IG10IqHdoejLCdRxwI3w="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-237"
  								}
  							],
  							"proposer": {
- 								"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 								"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 									"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-50"
+ 								"proposer_priority": "-53"
  							}
  						},
  						"next_validator_set": {
  							"validators": [
  								{
- 									"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 									"address": "06C9F55B64064F2FC983A2A3BA5BFE8085E4CD7F",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 										"value": "Eh62iQ5J/OUTqF55Xq3fkl0MyzBdCsdRJdnc/N0Xrwo="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "-100"
+ 									"proposer_priority": "47"
  								},
  								{
- 									"address": "026CC7B6F3E62F789DBECEC59766888B5464737D",
+ 									"address": "074D8A3973885CD484ED4904DC82ED812773C5BA",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "+vlsKpn6ojn+UoTZl+w+fxeqm6xvUfBokTcKfcG3au4="
+ 										"value": "XCK6BWW7PWfsMof+x3lYRaNKbtP9J2WoOUztl9TAumA="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "266"
  								},
  								{
- 									"address": "03A238BCAF7D1626DFE8A4AFB9448D00B7A3D2E2",
+ 									"address": "0859D2467F0DA63744B220E6E270DD3F0EEAC10E",
  									"pub_key": {
  										"type": "tendermint/PubKeyEd25519",
- 										"value": "b6hwk3pjiOTJfLVCcLDA3I3lO71zWJ0VSded5LUl9T0="
+ 										"value": "I44Rs7aDNyhp+m0Tx8v5h5+PadBk0hrnGRxjjRcUN1M="
  									},
  									"voting_power": "50",
- 									"proposer_priority": "50"
+ 									"proposer_priority": "135"
+ 								},
+ 								{
+ 									"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-47"
+ 								},
+ 								{
+ 									"address": "0EC358ED84E4F9088BB57617024D49E834322B54",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "/ruq8Sh5Uw9wfjlgz7365lP3V4UKMHijoZl+d3I76Bc="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "144"
+ 								},
+ 								{
+ 									"address": "0F7E62DD0AB86CB03DA87EB9969B558AFE04CC6B",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "xsPsE8CiTwD9ZF1hVyOC3Pbucfk3pXhhA0T7OK/epNg="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-18"
+ 								},
+ 								{
+ 									"address": "104776A7532559122F43A5763A13FA7E747AA44C",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "17lBalGeyg7iPCeZZ5qqQo0IG10IqHdoejLCdRxwI3w="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-181"
+ 								},
+ 								{
+ 									"address": "16E8EE7E867E20343ED67A83386B798BBC8CB7EA",
+ 									"pub_key": {
+ 										"type": "tendermint/PubKeyEd25519",
+ 										"value": "M0PtCXbgOaR3ldg6Wcpro1dnJiF86c2HwuG0lop+vhg="
+ 									},
+ 									"voting_power": "50",
+ 									"proposer_priority": "-344"
  								}
  							],
  							"proposer": {
- 								"address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
+ 								"address": "0D7350841ACB4A53C7717C7E5776A5E0DB6D596E",
  								"pub_key": {
  									"type": "tendermint/PubKeyEd25519",
- 									"value": "OAaNq3DX/15fGJP2MI6bujt1GRpvjwrqIevChirJsbc="
+ 									"value": "x0lc+iqSimWb7E5qjqGjhhcGfHvInloqPqcKeFs94Lo="
  								},
  								"voting_power": "50",
- 								"proposer_priority": "-100"
+ 								"proposer_priority": "-47"
  							}
  						}
  					}

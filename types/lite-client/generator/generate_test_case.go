@@ -13,7 +13,6 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 	caseSingleSeqValidatorSetOf1(testBatch, valList)
 	caseSingleSeqValidatorSetOf8(testBatch, valList)
 	caseSingleSeqValidatorSetOf128(testBatch, valList)
-	// caseSingleSeqValidatorSetEmpty(testBatch, valList)
 
 	caseSingleSeqValidatorSetAddTwiceVals(testBatch, valList)
 	caseSingleSeqValidatorSetRemoveHalfVals(testBatch, valList)
@@ -25,21 +24,18 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 	caseSingleSeqValidatorSetChangesLessThanOneThird(testBatch, valList)
 	caseSingleSeqValidatorSetChangesMoreThanTwoThirds(testBatch, valList)
 	caseSingleSeqValidatorSetWrongValidatorSet(testBatch, valList)
-	caseSingleSeqValidatorSetReplaceValidator(testBatch, valList)
+	caseSingleSeqValidatorSetFaultySigner(testBatch, valList)
 	caseSingleSeqValidatorSetChangeValidatorPower(testBatch, valList)
 
 	generateJSON(testBatch, "./tests/json/single_step_sequential/val_set_tests.json")
 
 	// Commit
 	testBatch = newBatch("Single Step Sequential-commit")
-	// caseSingleSeqCommitEmpty(testBatch, valList)
 	caseSingleSeqCommitWrongHeaderHash(testBatch, valList)
 	caseSingleSeqCommitWrongPartsHeaderCount(testBatch, valList)
 	caseSingleSeqCommitWrongPartsHeaderHash(testBatch, valList)
-	// caseSingleSeqCommitWrongVoteType(testBatch, valList)
 	caseSingleSeqCommitWrongVoteHeight(testBatch, valList)
 	caseSingleSeqCommitWrongVoteRound(testBatch, valList)
-	// caseSingleSeqCommitWrongVoteBlockID(testBatch, valList)
 	caseSingleSeqCommitWrongVoteTimestamp(testBatch, valList)
 	caseSingleSeqCommitWrongVoteSignature(testBatch, valList)
 
@@ -52,7 +48,6 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 
 	// Header
 	testBatch = newBatch("Single Step Sequential-header")
-	// caseSingleSeqHeaderEmpty(testBatch, valList)
 	caseSingleSeqHeaderWrongLastCommitHash(testBatch, valList)
 	caseSingleSeqHeaderWrongLastResultsHash(testBatch, valList)
 	caseSingleSeqHeaderWrongLastBlockID(testBatch, valList)

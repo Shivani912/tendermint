@@ -332,20 +332,24 @@ func caseSingleSeqValidatorSetWrongValidatorSet(testBatch *TestBatch, valList Va
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func caseSingleSeqValidatorSetReplaceValidator(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetFaultySigner(testBatch *TestBatch, valList ValList) {
 
 	copyValList := valList.Copy()
 	var input []LiteBlock
-	description := "Case: one lite block, replacing a validator in validator set, expects error"
+	description := "Case: one lite block, faulty signer (not present in validator set), expects error"
 
-	signedHeader, state, privVals := generateFirstBlock(copyValList, 3, firstBlockTime)
+	signedHeader, state, privVals := generateFirstBlock(copyValList, 4, firstBlockTime)
 	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 
-	privVals[0] = copyValList.PrivVals[4]
-	state.Validators.Validators[0] = copyValList.Validators[4]
-	state.NextValidators = state.Validators
-
 	liteBlock, state, _ := generateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
+
+	liteBlock.ValidatorSet = *types.NewValidatorSet(copyValList.Validators[:3])
+	liteBlock.SignedHeader.Header.ValidatorsHash = liteBlock.ValidatorSet.Hash()
+	liteBlock.SignedHeader.Commit.BlockID.Hash = liteBlock.SignedHeader.Header.Hash()
+	liteBlock.SignedHeader.Commit.Signatures = liteBlock.SignedHeader.Commit.Signatures[1:4]
+
+	initial.NextValidatorSet = liteBlock.ValidatorSet
+
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
