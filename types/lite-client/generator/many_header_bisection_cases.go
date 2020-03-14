@@ -14,12 +14,17 @@ import (
 func caseBisectionVerifyTenHeaders(valList ValList) {
 	description := "Case: Trusted height=1, bisecting to verify height=11, should not expect error"
 
-	signedHeader, state, privVals := generateFirstBlock(valList, 3, firstBlockTime)
+	signedHeader, state, privVals := generateFirstBlock(
+		valList.Validators[0:3],
+		valList.PrivVals[0:3],
+		firstBlockTime,
+	)
 
-	trustOptions := lite.TrustOptions{
-		Period: trustingPeriod,
-		Height: signedHeader.Header.Height,
-		Hash:   signedHeader.Commit.BlockID.Hash,
+	trustOptions := TrustOptions{
+		Period:     trustingPeriod,
+		Height:     signedHeader.Header.Height,
+		Hash:       signedHeader.Commit.BlockID.Hash,
+		TrustLevel: lite.DefaultTrustLevel,
 	}
 
 	firstBlock := LiteBlock{
@@ -30,12 +35,34 @@ func caseBisectionVerifyTenHeaders(valList ValList) {
 
 	lastCommit := signedHeader.Commit
 
-	// TODO: Improve the way we make changes to valset
-	// possibly a `ValSetChanges` struct that includes the below info
-	start := []int{4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
-	end := []int{5, 6, 7, 8, 9, 10, 11, 12, 13, 14}
-	delete := []int{0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0}
-	lbs, _, _ := generateNextBlocks(10, state, privVals, lastCommit, valList, start, end, delete, thirdBlockTime)
+	valsArray := [][]*types.Validator{
+		valList.Validators[:4],
+		valList.Validators[:5],
+		valList.Validators[:6],
+		valList.Validators[:7],
+		valList.Validators[:8],
+		valList.Validators[5:9],
+		valList.Validators[5:10],
+		valList.Validators[5:11],
+		valList.Validators[5:12],
+		valList.Validators[5:13],
+	}
+	privValsArray := []types.PrivValidatorsByAddress{
+		valList.PrivVals[:4],
+		valList.PrivVals[:5],
+		valList.PrivVals[:6],
+		valList.PrivVals[:7],
+		valList.PrivVals[:8],
+		valList.PrivVals[5:9],
+		valList.PrivVals[5:10],
+		valList.PrivVals[5:11],
+		valList.PrivVals[5:12],
+		valList.PrivVals[5:13],
+	}
+
+	var valSetChanges ValSetChanges
+	valSetChanges.makeValSetChanges(valsArray, privValsArray)
+	lbs, _, _ := generateNextBlocks(10, state, privVals, lastCommit, valSetChanges, thirdBlockTime)
 
 	primary := MockProvider{}.New(signedHeader.Header.ChainID, []LiteBlock{})
 
@@ -46,7 +73,6 @@ func caseBisectionVerifyTenHeaders(valList ValList) {
 	witnesses = append([]provider.Provider{}, primary)
 
 	heightToVerify := int64(11)
-	trustLevel := lite.DefaultTrustLevel
 
 	expectedOutput := expectedOutputNoError
 
@@ -56,7 +82,6 @@ func caseBisectionVerifyTenHeaders(valList ValList) {
 		Primary:        primary,
 		Witnesses:      witnesses,
 		HeightToVerify: heightToVerify,
-		TrustLevel:     trustLevel,
 		Now:            now,
 		ExpectedOutput: expectedOutput,
 	}

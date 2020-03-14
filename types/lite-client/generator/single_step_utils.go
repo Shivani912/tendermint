@@ -97,12 +97,13 @@ func NewState(chainID string, valSet *types.ValidatorSet) st.State {
 // with the given list of validators and timestamp
 // Thus, It also calls the NewState() to initialize the state
 // Returns the signedHeader and state after the first block is created
-func generateFirstBlock(valList ValList, numOfValz int, now time.Time) (types.SignedHeader, st.State, types.PrivValidatorsByAddress) {
+func generateFirstBlock(
+	vals []*types.Validator,
+	privVals types.PrivValidatorsByAddress,
+	now time.Time,
+) (types.SignedHeader, st.State, types.PrivValidatorsByAddress) {
 
-	valz := valList.Validators[:numOfValz]
-	privVals := valList.PrivVals[:numOfValz]
-
-	valSet := types.NewValidatorSet(valz)
+	valSet := types.NewValidatorSet(vals)
 	state := NewState("test-chain-01", valSet)
 
 	txs := generateTxs()
@@ -129,7 +130,12 @@ func generateFirstBlock(valList ValList, numOfValz int, now time.Time) (types.Si
 // last block id, privVals etc.
 // In case of privVals, it adds the new ones to the list
 // and performs a sort operation on it.
-func updateState(state st.State, blockID types.BlockID, privVals types.PrivValidatorsByAddress, newPrivVals types.PrivValidatorsByAddress) (st.State, types.PrivValidatorsByAddress) {
+func updateState(
+	state st.State,
+	blockID types.BlockID,
+	privVals types.PrivValidatorsByAddress,
+	newPrivVals types.PrivValidatorsByAddress,
+) (st.State, types.PrivValidatorsByAddress) {
 	state.LastBlockHeight++
 	state.LastValidators = state.Validators.Copy()
 	state.Validators = state.NextValidators.Copy()
@@ -210,42 +216,22 @@ func generateNextBlock(state st.State, privVals types.PrivValidatorsByAddress, l
 
 }
 
-func generateNextBlocks(numOfBlocks int, state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, valList ValList, startIdx []int, endIdx []int, delete []int, blockTime time.Time) ([]LiteBlock, []st.State, types.PrivValidatorsByAddress) {
-	var liteBlocks []LiteBlock
-	var states []st.State
-	for i := 0; i < numOfBlocks; i++ {
-		liteblock, st, pvs := generateNextBlockWithNextValsUpdate(state, privVals, lastCommit, valList, startIdx[i], endIdx[i], delete[i], blockTime)
-		liteBlocks = append(liteBlocks, liteblock)
-		state = st
-		privVals = pvs
-		lastCommit = liteblock.SignedHeader.Commit
-		states = append(states, state)
-		blockTime = blockTime.Add(5 * time.Second)
-	}
-	return liteBlocks, states, privVals
-}
-
 // Similar to generateNextBlock
 // It also takes in new validators and privVals to be added to the NextValidatorSet
 // Calls the UpdateWithChangeSet function on state.NextValidatorSet for the same
 // Also, you can specify the number of vals to be deleted from it
-func generateNextBlockWithNextValsUpdate(state st.State, privVals types.PrivValidatorsByAddress, lastCommit *types.Commit, valList ValList, startIdx int, endIdx int, delete int, now time.Time) (LiteBlock, st.State, types.PrivValidatorsByAddress) {
+func generateNextBlockWithNextValsUpdate(
+	state st.State,
+	privVals types.PrivValidatorsByAddress,
+	lastCommit *types.Commit,
+	newVals []*types.Validator,
+	newPrivVals types.PrivValidatorsByAddress,
+	now time.Time,
+) (LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
-	copyValList := valList.Copy()
-	newVals := copyValList.Validators[startIdx:endIdx]
-	newPrivVals := copyValList.PrivVals[startIdx:endIdx]
-	if delete > 0 && delete < len(state.NextValidators.Validators)+len(newVals) {
-		for i := 0; i < delete; i++ {
-			toDelete := *state.NextValidators.Validators[i]
-			toDelete.VotingPower = 0
-			newVals = append(newVals, &toDelete)
-		}
-	}
-	err := state.NextValidators.UpdateWithChangeSet(newVals)
-	if err != nil {
-		fmt.Println(err)
-	}
-	state.NextValidators.IncrementProposerPriority(1)
+	state.NextValidators = types.NewValidatorSet(newVals)
+
+	// state.NextValidators.IncrementProposerPriority(1)
 
 	txs := generateTxs()
 	evidences := generateEvidences()
@@ -365,11 +351,14 @@ func GetValList(file string) ValList {
 
 // Builds a general case containing initial and one lite block in input
 // TODO: change name to genInitialAndInput
-func generateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
+func generateGeneralCase(
+	vals []*types.Validator,
+	privVals types.PrivValidatorsByAddress,
+) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	var input []LiteBlock
 
-	signedHeader, state, privVals := generateFirstBlock(valList, numOfVals, firstBlockTime)
+	signedHeader, state, privVals := generateFirstBlock(vals, privVals, firstBlockTime)
 	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 	liteBlock, state, _ := generateNextBlock(state, privVals, signedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
@@ -377,10 +366,18 @@ func generateGeneralCase(valList ValList, numOfVals int) (Initial, []LiteBlock, 
 	return initial, input, state, privVals
 }
 
-func generateInitialAndInputSkipBlocks(valList ValList, numOfVals, numOfBlocksToSkip int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
+func generateInitialAndInputSkipBlocks(
+	vals []*types.Validator,
+	privVals types.PrivValidatorsByAddress,
+	numOfBlocksToSkip int,
+) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 	var input []LiteBlock
 
-	signedHeader, state, privVals := generateFirstBlock(valList, numOfVals, firstBlockTime)
+	signedHeader, state, privVals := generateFirstBlock(
+		vals,
+		privVals,
+		firstBlockTime,
+	)
 	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 
 	blockTime := secondBlockTime
@@ -397,31 +394,40 @@ func generateInitialAndInputSkipBlocks(valList ValList, numOfVals, numOfBlocksTo
 	return initial, input, state, privVals
 }
 
-func generateAndMakeGeneralTestCase(description string, valList ValList, numOfVals int, expectedOutput string) TestCase {
+func generateAndMakeGeneralTestCase(description string, vals []*types.Validator, privVals types.PrivValidatorsByAddress, expectedOutput string) TestCase {
 
-	initial, input, _, _ := generateGeneralCase(valList, numOfVals)
+	initial, input, _, _ := generateGeneralCase(vals, privVals)
 	return makeTestCase(description, initial, input, expectedOutput)
 }
 
-func generateAndMakeNextValsUpdateTestCase(description string, valList ValList, numOfInitialVals int, numOfValsToAdd int, numOfValsToDelete int, expectedOutput string) TestCase {
+func generateAndMakeNextValsUpdateTestCase(
+	description string,
+	initialVals []*types.Validator,
+	initialPrivVals types.PrivValidatorsByAddress,
+	nextVals []*types.Validator,
+	nextPrivVals types.PrivValidatorsByAddress,
+	expectedOutput string,
+) TestCase {
 
-	copyValList := valList.Copy()
-	initial, input, _, _ := generateNextValsUpdateCase(copyValList, numOfInitialVals, numOfValsToAdd, numOfValsToDelete)
+	initial, input, _, _ := generateNextValsUpdateCase(initialVals, initialPrivVals, nextVals, nextPrivVals)
 	return makeTestCase(description, initial, input, expectedOutput)
 }
 
 // Builds a case where next validator set changes
 // makes initial, and input with 2 lite blocks
-func generateNextValsUpdateCase(valList ValList, numOfInitialVals int, numOfValsToAdd int, numOfValsToDelete int) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
+func generateNextValsUpdateCase(
+	initialVals []*types.Validator,
+	initialPrivVals types.PrivValidatorsByAddress,
+	nextVals []*types.Validator,
+	nextPrivVals types.PrivValidatorsByAddress,
+) (Initial, []LiteBlock, st.State, types.PrivValidatorsByAddress) {
 
 	var input []LiteBlock
 
-	signedHeader, state, privVals := generateFirstBlock(valList, numOfInitialVals, firstBlockTime)
+	signedHeader, state, privVals := generateFirstBlock(initialVals, initialPrivVals, firstBlockTime)
 	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
 
-	startIdx := numOfInitialVals
-	endIdx := startIdx + numOfValsToAdd
-	liteBlock, state, privVals := generateNextBlockWithNextValsUpdate(state, privVals, signedHeader.Commit, valList, startIdx, endIdx, numOfValsToDelete, secondBlockTime)
+	liteBlock, state, privVals := generateNextBlockWithNextValsUpdate(state, privVals, signedHeader.Commit, nextVals, nextPrivVals, secondBlockTime)
 	input = append(input, liteBlock)
 	liteBlock, state, _ = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime)
 	input = append(input, liteBlock)

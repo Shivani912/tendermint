@@ -86,16 +86,21 @@ func TestBisection(t *testing.T) {
 	fmt.Println(testBisection.Description)
 
 	trustedStore := dbs.New(dbm.NewMemDB(), testBisection.Primary.ChainID())
-
 	witnesses := testBisection.Witnesses
+	trustOptions := lite.TrustOptions{
+		Period: testBisection.TrustOptions.Period,
+		Height: testBisection.TrustOptions.Height,
+		Hash:   testBisection.TrustOptions.Hash,
+	}
+	trustLevel := testBisection.TrustOptions.TrustLevel
 
 	client, err := lite.NewClient(
 		testBisection.Primary.ChainID(),
-		testBisection.TrustOptions,
+		trustOptions,
 		testBisection.Primary,
 		witnesses,
 		trustedStore,
-		lite.SkippingVerification(testBisection.TrustLevel))
+		lite.SkippingVerification(trustLevel))
 	if err != nil {
 		fmt.Println(err)
 	}
