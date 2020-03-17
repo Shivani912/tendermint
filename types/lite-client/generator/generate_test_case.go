@@ -96,7 +96,9 @@ func GenerateManyHeaderBisectionCases(jsonValList string) {
 
 	valList := GetValList(jsonValList)
 
-	// testBatch := newBatch("Many header bisection")
-	caseBisectionVerifyTenHeaders(valList)
-	// generateJSON(testBatch, "./tests/json/many_header_bisection/happy_path.json")
+	caseBisectionHappyPath(valList)
+	caseBisectionWorstCase(valList)
+	caseBisectionInvalidValidatorSet(valList)
+	caseBisectionNotEnoughCommits(valList)
+	caseBisectionHeaderOutOfTrustingPeriod(valList)
 }

@@ -69,47 +69,60 @@ func TestVerify(t *testing.T) {
 }
 
 func TestBisection(t *testing.T) {
-	data := generator.ReadFile("./json/many_header_bisection/happy_path.json")
-
-	cdc := amino.NewCodec()
-	cryptoAmino.RegisterAmino(cdc)
-
-	cdc.RegisterInterface((*provider.Provider)(nil), nil)
-	cdc.RegisterConcrete(generator.MockProvider{}, "com.tendermint/MockProvider", nil)
-
-	var testBisection generator.TestBisection
-	err := cdc.UnmarshalJSON(data, &testBisection)
-	if err != nil {
-		fmt.Printf("error: %v", err)
+	tests := []string{
+		"many_header_bisection/happy_path.json",
+		"many_header_bisection/worst_case.json",
+		"many_header_bisection/invalid_validator_set.json",
+		"many_header_bisection/not_enough_commits.json",
+		"many_header_bisection/header_out_of_trusting_period.json",
 	}
 
-	fmt.Println(testBisection.Description)
+	for _, test := range tests {
+		data := generator.ReadFile("./json/" + test)
 
-	trustedStore := dbs.New(dbm.NewMemDB(), testBisection.Primary.ChainID())
-	witnesses := testBisection.Witnesses
-	trustOptions := lite.TrustOptions{
-		Period: testBisection.TrustOptions.Period,
-		Height: testBisection.TrustOptions.Height,
-		Hash:   testBisection.TrustOptions.Hash,
-	}
-	trustLevel := testBisection.TrustOptions.TrustLevel
+		cdc := amino.NewCodec()
+		cryptoAmino.RegisterAmino(cdc)
 
-	client, err := lite.NewClient(
-		testBisection.Primary.ChainID(),
-		trustOptions,
-		testBisection.Primary,
-		witnesses,
-		trustedStore,
-		lite.SkippingVerification(trustLevel))
-	if err != nil {
-		fmt.Println(err)
-	}
+		cdc.RegisterInterface((*provider.Provider)(nil), nil)
+		cdc.RegisterConcrete(generator.MockProvider{}, "com.tendermint/MockProvider", nil)
 
-	height := testBisection.HeightToVerify
-	_, e := client.VerifyHeaderAtHeight(height, testBisection.Now)
+		var testBisection generator.TestBisection
+		e := cdc.UnmarshalJSON(data, &testBisection)
+		if e != nil {
+			fmt.Printf("error: %v", e)
+		}
 
-	if e != nil {
-		t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testBisection.Description, e, testBisection.ExpectedOutput)
+		fmt.Println(testBisection.Description)
 
+		trustedStore := dbs.New(dbm.NewMemDB(), testBisection.Primary.ChainID())
+		witnesses := testBisection.Witnesses
+		trustOptions := lite.TrustOptions{
+			Period: testBisection.TrustOptions.Period,
+			Height: testBisection.TrustOptions.Height,
+			Hash:   testBisection.TrustOptions.Hash,
+		}
+		trustLevel := testBisection.TrustOptions.TrustLevel
+		expectedOutput := testBisection.ExpectedOutput
+
+		client, e := lite.NewClient(
+			testBisection.Primary.ChainID(),
+			trustOptions,
+			testBisection.Primary,
+			witnesses,
+			trustedStore,
+			lite.SkippingVerification(trustLevel))
+		if e != nil {
+			fmt.Println(e)
+		}
+
+		height := testBisection.HeightToVerify
+		_, e = client.VerifyHeaderAtHeight(height, testBisection.Now)
+
+		err := e != nil
+		expectsError := expectedOutput == "error"
+		if (err && !expectsError) || (!err && expectsError) {
+			t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testBisection.Description, e, testBisection.ExpectedOutput)
+
+		}
 	}
 }

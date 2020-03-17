@@ -19,7 +19,7 @@ var (
 	firstBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
 	secondBlockTime, _    = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
 	thirdBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
-	trustingPeriod        = 3 * time.Hour
+	TRUSTING_PERIOD       = 3 * time.Hour
 	expectedOutputNoError = "no error"
 	expectedOutputError   = "error"
 )
@@ -359,7 +359,7 @@ func generateGeneralCase(
 	var input []LiteBlock
 
 	signedHeader, state, privVals := generateFirstBlock(vals, privVals, firstBlockTime)
-	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+	initial := generateInitial(signedHeader, *state.NextValidators, TRUSTING_PERIOD, now)
 	liteBlock, state, _ := generateNextBlock(state, privVals, signedHeader.Commit, secondBlockTime)
 	input = append(input, liteBlock)
 
@@ -378,7 +378,7 @@ func generateInitialAndInputSkipBlocks(
 		privVals,
 		firstBlockTime,
 	)
-	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+	initial := generateInitial(signedHeader, *state.NextValidators, TRUSTING_PERIOD, now)
 
 	blockTime := secondBlockTime
 	for i := 0; i <= numOfBlocksToSkip; i++ {
@@ -425,7 +425,7 @@ func generateNextValsUpdateCase(
 	var input []LiteBlock
 
 	signedHeader, state, privVals := generateFirstBlock(initialVals, initialPrivVals, firstBlockTime)
-	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+	initial := generateInitial(signedHeader, *state.NextValidators, TRUSTING_PERIOD, now)
 
 	liteBlock, state, privVals := generateNextBlockWithNextValsUpdate(state, privVals, signedHeader.Commit, nextVals, nextPrivVals, secondBlockTime)
 	input = append(input, liteBlock)

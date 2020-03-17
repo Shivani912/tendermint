@@ -439,7 +439,7 @@ func caseSingleSeqValidatorSetWrongValidatorSet(testBatch *TestBatch, valList Va
 		valList.PrivVals[:3],
 		firstBlockTime,
 	)
-	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+	initial := generateInitial(signedHeader, *state.NextValidators, TRUSTING_PERIOD, now)
 
 	wrongVals := valList.Validators[3:6]
 	wrongPrivVals := valList.PrivVals[3:6]
@@ -465,7 +465,7 @@ func caseSingleSeqValidatorSetFaultySigner(testBatch *TestBatch, valList ValList
 		copiedValList.PrivVals[:4],
 		firstBlockTime,
 	)
-	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+	initial := generateInitial(signedHeader, *state.NextValidators, TRUSTING_PERIOD, now)
 
 	liteBlock, state, _ := generateNextBlock(state, privVals, initial.SignedHeader.Commit, secondBlockTime)
 
@@ -493,7 +493,7 @@ func caseSingleSeqValidatorSetChangeValidatorPower(testBatch *TestBatch, valList
 		copiedValList.PrivVals[:3],
 		firstBlockTime,
 	)
-	initial := generateInitial(signedHeader, *state.NextValidators, trustingPeriod, now)
+	initial := generateInitial(signedHeader, *state.NextValidators, TRUSTING_PERIOD, now)
 
 	state.Validators.Validators[0].VotingPower++
 	state.NextValidators = state.Validators
