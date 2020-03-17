@@ -2,10 +2,14 @@ package generator
 
 import (
 	"fmt"
+	"io/ioutil"
 	"time"
 
+	amino "github.com/tendermint/go-amino"
+	cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	tmbytes "github.com/tendermint/tendermint/libs/bytes"
 	tmmath "github.com/tendermint/tendermint/libs/math"
+	lite "github.com/tendermint/tendermint/lite2"
 	st "github.com/tendermint/tendermint/state"
 
 	"github.com/tendermint/tendermint/lite2/provider"
@@ -13,13 +17,51 @@ import (
 )
 
 type TestBisection struct {
-	Description    string              `json:"description"`
-	TrustOptions   TrustOptions        `json:"trust_options"`
-	Primary        MockProvider        `json:"primary"`
-	Witnesses      []provider.Provider `json:"witnesses"`
-	HeightToVerify int64               `json:"height_to_verify"`
-	Now            time.Time           `json:"now"`
-	ExpectedOutput string              `json:"expected_output"`
+	Description        string              `json:"description"`
+	TrustOptions       TrustOptions        `json:"trust_options"`
+	Primary            MockProvider        `json:"primary"`
+	Witnesses          []provider.Provider `json:"witnesses"`
+	HeightToVerify     int64               `json:"height_to_verify"`
+	Now                time.Time           `json:"now"`
+	ExpectedOutput     string              `json:"expected_output"`
+	ExpectedBisections int32               `json:"expected_num_of_bisections"`
+}
+
+func (tb TestBisection) make(
+	desc string,
+	trustOpts TrustOptions,
+	primary MockProvider,
+	witnesses []provider.Provider,
+	heightToVerify int64,
+	now time.Time,
+	expectedOutput string,
+	expectedBisections int32,
+) TestBisection {
+	return TestBisection{
+		Description:        desc,
+		TrustOptions:       trustOpts,
+		Primary:            primary,
+		Witnesses:          witnesses,
+		HeightToVerify:     heightToVerify,
+		Now:                now,
+		ExpectedOutput:     expectedOutput,
+		ExpectedBisections: expectedBisections,
+	}
+}
+
+func (testBisection TestBisection) genJSON(file string) {
+	var cdc = amino.NewCodec()
+	cryptoAmino.RegisterAmino(cdc)
+	cdc.RegisterInterface((*types.Evidence)(nil), nil)
+	cdc.RegisterInterface((*provider.Provider)(nil), nil)
+	cdc.RegisterConcrete(MockProvider{}, "com.tendermint/MockProvider", nil)
+
+	b, err := cdc.MarshalJSONIndent(testBisection, " ", "	")
+	if err != nil {
+		fmt.Printf("error: %v", err)
+	}
+
+	_ = ioutil.WriteFile(file, b, 0644)
 }
 
 type TrustOptions struct {
@@ -30,6 +72,20 @@ type TrustOptions struct {
 	// Trusted Header Hash
 	Hash       tmbytes.HexBytes `json:"hash"`
 	TrustLevel tmmath.Fraction  `json:"trust_level"`
+}
+
+func (t TrustOptions) make(
+	sh types.SignedHeader,
+	trustingPeriod time.Duration,
+	trustLevel tmmath.Fraction,
+) TrustOptions {
+	return TrustOptions{
+		Period:     trustingPeriod,
+		Height:     sh.Header.Height,
+		Hash:       sh.Commit.BlockID.Hash,
+		TrustLevel: trustLevel,
+	}
+
 }
 
 type MockProvider struct {
@@ -101,26 +157,105 @@ func generateNextBlocks(
 
 type ValSetChanges []ValList
 
+func (vsc ValSetChanges) getDefault(valList ValList) ValSetChanges {
+	valsArray := [][]*types.Validator{
+		valList.Validators[:2],
+		valList.Validators[:2],
+		valList.Validators[:2],
+		valList.Validators[:2],
+		valList.Validators[:2],
+		valList.Validators[3:5],
+		valList.Validators[3:5],
+		valList.Validators[3:5],
+		valList.Validators[3:5],
+		valList.Validators[3:5],
+		valList.Validators[3:5],
+	}
+	privValsArray := []types.PrivValidatorsByAddress{
+		valList.PrivVals[:2],
+		valList.PrivVals[:2],
+		valList.PrivVals[:2],
+		valList.PrivVals[:2],
+		valList.PrivVals[:2],
+		valList.PrivVals[3:5],
+		valList.PrivVals[3:5],
+		valList.PrivVals[3:5],
+		valList.PrivVals[3:5],
+		valList.PrivVals[3:5],
+		valList.PrivVals[3:5],
+	}
+	return vsc.makeValSetChanges(valsArray, privValsArray)
+}
+
 func (vsc ValSetChanges) makeValSetChangeAtHeight(
 	height int,
 	vals []*types.Validator,
 	privVals types.PrivValidatorsByAddress,
-) {
+) ValSetChanges {
 	vsc[height] = ValList{
 		Validators: vals,
 		PrivVals:   privVals,
 	}
+	return vsc
 }
 
-func (vsc *ValSetChanges) makeValSetChanges(
+func (vsc ValSetChanges) makeValSetChanges(
 	vals [][]*types.Validator,
 	privVals []types.PrivValidatorsByAddress,
-) {
+) ValSetChanges {
 	for i := range vals {
 		v := ValList{
 			Validators: vals[i],
 			PrivVals:   privVals[i],
 		}
-		*vsc = append(*vsc, v)
+		vsc = append(vsc, v)
 	}
+	return vsc
+}
+
+func generateGeneralBisectionCase(
+	description string,
+	valSetChanges ValSetChanges,
+	expectedBisections int32,
+) (TestBisection, []st.State, types.PrivValidatorsByAddress) {
+	signedHeader, state, privVals := generateFirstBlock(
+		valSetChanges[0].Validators,
+		valSetChanges[0].PrivVals,
+		firstBlockTime,
+	)
+
+	trustOptions := TrustOptions{}.make(signedHeader, TRUSTING_PERIOD, lite.DefaultTrustLevel)
+	firstBlock := []LiteBlock{
+		{
+			SignedHeader:     signedHeader,
+			ValidatorSet:     *state.Validators,
+			NextValidatorSet: *state.NextValidators,
+		},
+	}
+
+	lastCommit := signedHeader.Commit
+
+	numOfBlocks := len(valSetChanges) - 1
+	liteBlocks, states, privVals := generateNextBlocks(numOfBlocks, state, privVals, lastCommit, valSetChanges[1:], thirdBlockTime)
+	liteBlocks = append(firstBlock, liteBlocks...)
+
+	primary := MockProvider{}.New(signedHeader.Header.ChainID, liteBlocks)
+
+	var witnesses []provider.Provider
+	witnesses = append([]provider.Provider{}, primary)
+
+	heightToVerify := int64(11)
+
+	testBisection := TestBisection{}.make(
+		description,
+		trustOptions,
+		primary,
+		witnesses,
+		heightToVerify,
+		now,
+		expectedOutputNoError,
+		expectedBisections,
+	)
+
+	return testBisection, states, privVals
 }
