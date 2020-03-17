@@ -56,7 +56,7 @@ func caseBisectionWorstCase(valList ValList) {
 	testBisection, _, _ := generateGeneralBisectionCase(
 		description,
 		valSetChanges,
-		11,
+		10,
 	)
 
 	file := "./tests/json/many_header_bisection/worst_case.json"
