@@ -46,13 +46,12 @@ func TestVerify(t *testing.T) {
 
 			for _, input := range testCase.Input {
 
-				fmt.Println(testCase.Description)
 				newSignedHeader := input.SignedHeader
 				newVals := input.ValidatorSet
 
 				e, str := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
 				err := e != nil
-
+				fmt.Printf("\n%s, \nError: %v \n", testCase.Description, e)
 				if (err && !expectsError) || (!err && expectsError) {
 					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v \n String: %v", testCase.Description, e, expectedOutput, str)
 

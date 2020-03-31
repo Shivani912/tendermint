@@ -1276,9 +1276,7 @@
  										}
  									},
  									"timestamp": "2019-11-02T15:04:15Z",
- 									"validator_address": "01F527D77D3FFCC4FCFF2DDC2952EEA5414F2A33",
- 									"validator_index": "0",
- 									"signature": "zYEJsI6NvB7FnlCHrAXvLNsuPO8JQZfs3SxI/b9fFEOvAoVKA1QUPI4BAEuBlALOtDHfLym9leb3EDDkJ1uaBg=="
+ 									"signature": "6fYvnjuLctO8P361lb4ksyYzl1zHOjIla9MRwuXkpqUp6pGeoylXHaeWUnPP+OFvkUEybEvICtn5+FuD524IAQ=="
  								}
  							]
  						}

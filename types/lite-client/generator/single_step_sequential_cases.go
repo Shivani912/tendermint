@@ -194,11 +194,18 @@ func caseSingleSeqCommitWrongVoteHeight(testBatch *TestBatch, valList ValList) {
 func caseSingleSeqCommitWrongVoteRound(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong vote round, with error"
-	initial, input, _, _ := generateGeneralCase(
+	initial, input, _, privVals := generateGeneralCase(
 		valList.Validators[:1],
 		valList.PrivVals[:1],
 	)
+
 	input[0].SignedHeader.Commit.Round--
+
+	vote := input[0].SignedHeader.Commit.GetVote(0)
+	privVals[0].SignVote(initial.SignedHeader.ChainID, vote)
+
+	input[0].SignedHeader.Commit.Signatures[0].Signature = vote.Signature
+
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
