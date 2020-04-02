@@ -13,6 +13,37 @@ import (
 	"github.com/tendermint/tendermint/crypto/tmhash"
 )
 
+func examplePrevote() *Vote {
+	return exampleVote(byte(PrevoteType))
+}
+
+func examplePrecommit() *Vote {
+	return exampleVote(byte(PrecommitType))
+}
+
+func exampleVote(t byte) *Vote {
+	var stamp, err = time.Parse(TimeFormat, "2017-12-25T03:00:01.234Z")
+	if err != nil {
+		panic(err)
+	}
+
+	return &Vote{
+		Type:      SignedMsgType(t),
+		Height:    12345,
+		Round:     2,
+		Timestamp: stamp,
+		BlockID: BlockID{
+			Hash: tmhash.Sum([]byte("blockID_hash")),
+			PartsHeader: PartSetHeader{
+				Total: 1000000,
+				Hash:  tmhash.Sum([]byte("blockID_part_set_header_hash")),
+			},
+		},
+		ValidatorAddress: crypto.AddressHash([]byte("validator_address")),
+		ValidatorIndex:   56789,
+	}
+}
+
 func TestVoteSignable(t *testing.T) {
 	vote := examplePrecommit()
 	signBytes := vote.SignBytes("test_chain_id")
