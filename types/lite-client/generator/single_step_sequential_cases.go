@@ -13,44 +13,20 @@ var (
 
 // HEADER - BEGIN
 
-func caseSingleSeqHeaderEmpty(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongHeaderSignature(testBatch *TestBatch, valList ValList) {
 
-	description := "Case: one lite block, empty header, with error"
-
-	initial, input, _, _ := generateGeneralCase(
-		valList.Validators[:1],
-		valList.PrivVals[:1],
-	)
-	input[0].SignedHeader.Header = nil
-	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-}
-
-func caseSingleSeqHeaderWrongLastCommitHash(testBatch *TestBatch, valList ValList) {
-
-	description := "Case: one lite block, wrong last commit hash in header, with error"
+	description := "Case: one lite block, wrong header signature, with error"
 
 	initial, input, _, _ := generateGeneralCase(
 		valList.Validators[:1],
 		valList.PrivVals[:1],
 	)
 	input[0].SignedHeader.Header.LastCommitHash = []byte("wrong hash")
+
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func caseSingleSeqHeaderWrongLastResultsHash(testBatch *TestBatch, valList ValList) {
-
-	description := "Case: one lite block, wrong last results hash in header, with error"
-
-	initial, input, _, _ := generateGeneralCase(
-		valList.Validators[:1],
-		valList.PrivVals[:1],
-	)
-	input[0].SignedHeader.Header.LastResultsHash = []byte("wrong hash")
-	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-}
 func caseSingleSeqHeaderWrongLastBlockID(testBatch *TestBatch, valList ValList) {
 
 	description := "Case: one lite block, wrong last block ID in header, with error"
@@ -130,18 +106,6 @@ func caseSingleSeqHeaderWrongNextValSetHash(testBatch *TestBatch, valList ValLis
 }
 
 // COMMIT - BEGIN
-func caseSingleSeqCommitEmpty(testBatch *TestBatch, valList ValList) {
-
-	description := "Case: one lite block, empty commit, with error"
-
-	initial, input, _, _ := generateGeneralCase(
-		valList.Validators[:1],
-		valList.PrivVals[:1],
-	)
-	input[0].SignedHeader.Commit = nil
-	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-}
 
 func caseSingleSeqCommitWrongHeaderHash(testBatch *TestBatch, valList ValList) {
 
@@ -151,30 +115,6 @@ func caseSingleSeqCommitWrongHeaderHash(testBatch *TestBatch, valList ValList) {
 		valList.PrivVals[:1],
 	)
 	input[0].SignedHeader.Commit.BlockID.Hash = []byte(str32byte)
-	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-}
-
-func caseSingleSeqCommitWrongPartsHeaderCount(testBatch *TestBatch, valList ValList) {
-
-	description := "Case: one lite block, wrong PartsHeader.Total, with error"
-	initial, input, _, _ := generateGeneralCase(
-		valList.Validators[:1],
-		valList.PrivVals[:1],
-	)
-	input[0].SignedHeader.Commit.BlockID.PartsHeader.Total += 5
-	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-}
-
-func caseSingleSeqCommitWrongPartsHeaderHash(testBatch *TestBatch, valList ValList) {
-
-	description := "Case: one lite block, wrong PartsHeader.Hash, with error"
-	initial, input, _, _ := generateGeneralCase(
-		valList.Validators[:1],
-		valList.PrivVals[:1],
-	)
-	input[0].SignedHeader.Commit.BlockID.PartsHeader.Hash = []byte(str32byte)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
@@ -191,35 +131,22 @@ func caseSingleSeqCommitWrongVoteHeight(testBatch *TestBatch, valList ValList) {
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
-func caseSingleSeqCommitWrongVoteRound(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitWrongVoteTimestamp(testBatch *TestBatch, valList ValList) {
 
-	description := "Case: one lite block, wrong vote round, with error"
+	description := "Case: one lite block, wrong vote timestamp, with error"
 	initial, input, _, privVals := generateGeneralCase(
 		valList.Validators[:1],
 		valList.PrivVals[:1],
 	)
 
-	input[0].SignedHeader.Commit.Round--
+	wrongTimestamp, _ := time.Parse(time.RFC3339, "2019-11-02T15:01:05Z")
+	input[0].SignedHeader.Commit.Signatures[0].Timestamp = wrongTimestamp
 
 	vote := input[0].SignedHeader.Commit.GetVote(0)
 	privVals[0].SignVote(initial.SignedHeader.ChainID, vote)
 
 	input[0].SignedHeader.Commit.Signatures[0].Signature = vote.Signature
 
-	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-}
-
-func caseSingleSeqCommitWrongVoteTimestamp(testBatch *TestBatch, valList ValList) {
-
-	description := "Case: one lite block, wrong vote timestamp, with error"
-	initial, input, _, _ := generateGeneralCase(
-		valList.Validators[:1],
-		valList.PrivVals[:1],
-	)
-
-	wrongTimestamp, _ := time.Parse(time.RFC3339, "2019-11-02T15:04:05Z")
-	input[0].SignedHeader.Commit.Precommits[0].Timestamp = wrongTimestamp
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
@@ -243,7 +170,10 @@ func caseSingleSeqCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValLi
 		valList.Validators[:3],
 		valList.PrivVals[:3],
 	)
-	input[0].SignedHeader.Commit.Signatures[0].BlockIDFlag = types.BlockIDFlagAbsent
+	input[0].SignedHeader.Commit.Signatures[0] = types.CommitSig{
+		BlockIDFlag:      types.BlockIDFlagAbsent,
+		ValidatorAddress: nil,
+	}
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }

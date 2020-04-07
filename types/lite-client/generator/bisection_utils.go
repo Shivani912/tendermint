@@ -100,6 +100,13 @@ func (mp MockProvider) New(chainID string, liteBlocks []LiteBlock) MockProvider 
 	}
 }
 
+func (mp MockProvider) Copy() MockProvider {
+	return MockProvider{
+		ChainId:    mp.ChainId,
+		LiteBlocks: mp.LiteBlocks,
+	}
+}
+
 func (mp MockProvider) ChainID() string {
 	return mp.ChainId
 }
@@ -136,6 +143,7 @@ func generateNextBlocks(
 ) ([]LiteBlock, []st.State, types.PrivValidatorsByAddress) {
 	var liteBlocks []LiteBlock
 	var states []st.State
+	valSetChanges = append(valSetChanges, valSetChanges[len(valSetChanges)-1])
 	for i := 0; i < numOfBlocks; i++ {
 		liteblock, st, pvs := generateNextBlockWithNextValsUpdate(
 			state,
@@ -213,18 +221,16 @@ func (vsc ValSetChanges) makeValSetChanges(
 	return vsc
 }
 
-func generateGeneralBisectionCase(
+func makeLiteblocks(
 	description string,
 	valSetChanges ValSetChanges,
-	expectedBisections int32,
-) (TestBisection, []st.State, types.PrivValidatorsByAddress) {
+) ([]LiteBlock, []st.State, types.PrivValidatorsByAddress) {
 	signedHeader, state, privVals := generateFirstBlock(
 		valSetChanges[0].Validators,
 		valSetChanges[0].PrivVals,
 		firstBlockTime,
 	)
-
-	trustOptions := TrustOptions{}.make(signedHeader, TRUSTING_PERIOD, lite.DefaultTrustLevel)
+	state.NextValidators = types.NewValidatorSet(valSetChanges[1].Validators)
 	firstBlock := []LiteBlock{
 		{
 			SignedHeader:     signedHeader,
@@ -232,18 +238,55 @@ func generateGeneralBisectionCase(
 			NextValidatorSet: *state.NextValidators,
 		},
 	}
-
 	lastCommit := signedHeader.Commit
-
 	numOfBlocks := len(valSetChanges) - 1
-	liteBlocks, states, privVals := generateNextBlocks(numOfBlocks, state, privVals, lastCommit, valSetChanges[1:], thirdBlockTime)
+	liteBlocks, states, privVals := generateNextBlocks(
+		numOfBlocks,
+		state,
+		privVals,
+		lastCommit,
+		valSetChanges[2:],
+		thirdBlockTime,
+	)
 	liteBlocks = append(firstBlock, liteBlocks...)
+	stateSlice := []st.State{
+		state,
+	}
+	states = append(stateSlice, states...)
+	return liteBlocks, states, privVals
+}
 
-	primary := MockProvider{}.New(signedHeader.Header.ChainID, liteBlocks)
+func generateMultiPeerBisectionCase(
+	description string,
+	primaryValSetChanges ValSetChanges,
+	alternativeValSetChanges ValSetChanges,
+	expectedBisections int32,
+	expectOutput string,
+) (TestBisection, []st.State, types.PrivValidatorsByAddress, []st.State, types.PrivValidatorsByAddress) {
+	testBisection, statesPrimary, privValsPrimary := generateGeneralBisectionCase(
+		description,
+		primaryValSetChanges,
+		expectedBisections)
+
+	liteBlocks, statesAlternative, privValsAlternative := makeLiteblocks(description, alternativeValSetChanges)
+	testBisection.Witnesses[0] = MockProvider{}.New(liteBlocks[0].SignedHeader.Header.ChainID, liteBlocks)
+	testBisection.ExpectedOutput = expectOutput
+	return testBisection, statesPrimary, privValsPrimary, statesAlternative, privValsAlternative
+}
+
+func generateGeneralBisectionCase(
+	description string,
+	valSetChanges ValSetChanges,
+	expectedBisections int32,
+) (TestBisection, []st.State, types.PrivValidatorsByAddress) {
+
+	liteBlocks, states, privVals := makeLiteblocks(description, valSetChanges)
+	primary := MockProvider{}.New(liteBlocks[0].SignedHeader.Header.ChainID, liteBlocks)
 
 	var witnesses []provider.Provider
 	witnesses = append([]provider.Provider{}, primary)
 
+	trustOptions := TrustOptions{}.make(liteBlocks[0].SignedHeader, TRUSTING_PERIOD, lite.DefaultTrustLevel)
 	heightToVerify := int64(11)
 
 	testBisection := TestBisection{}.make(

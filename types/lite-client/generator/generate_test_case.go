@@ -32,15 +32,9 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 	// Commit
 	testBatch = newBatch("Single Step Sequential-commit")
 	caseSingleSeqCommitWrongHeaderHash(testBatch, valList)
-	caseSingleSeqCommitWrongPartsHeaderCount(testBatch, valList)
-	caseSingleSeqCommitWrongPartsHeaderHash(testBatch, valList)
 	caseSingleSeqCommitWrongVoteHeight(testBatch, valList)
-	caseSingleSeqCommitWrongVoteRound(testBatch, valList)
-	caseSingleSeqCommitWrongVoteTimestamp(testBatch, valList)
 	caseSingleSeqCommitWrongVoteSignature(testBatch, valList)
 
-	// TODO: more cases
-	// We need to come back to this after the commit structure changes
 	caseSingleSeqCommitOneThirdValsDontSign(testBatch, valList)         // error
 	caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(testBatch, valList) // not an error
 
@@ -48,8 +42,7 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 
 	// Header
 	testBatch = newBatch("Single Step Sequential-header")
-	caseSingleSeqHeaderWrongLastCommitHash(testBatch, valList)
-	caseSingleSeqHeaderWrongLastResultsHash(testBatch, valList)
+	caseSingleSeqHeaderWrongHeaderSignature(testBatch, valList)
 	caseSingleSeqHeaderWrongLastBlockID(testBatch, valList)
 	caseSingleSeqHeaderWrongChainID(testBatch, valList)
 	caseSingleSeqHeaderWrongHeight(testBatch, valList)
@@ -90,15 +83,27 @@ func GenerateSingleStepSkippingCases(jsonValList string) {
 
 	generateJSON(testBatch, "./tests/json/single_step_skipping/commit_tests.json")
 
+	// Header
+	testBatch = newBatch("Single Step Skipping-header")
+
+	caseSingleSkipHeaderOutOfTrustingPeriod(testBatch, valList)
+
+	generateJSON(testBatch, "./tests/json/single_step_skipping/header_tests.json")
 }
 
 func GenerateManyHeaderBisectionCases(jsonValList string) {
 
 	valList := GetValList(jsonValList)
 
+	// Single-peer
 	caseBisectionHappyPath(valList)
 	caseBisectionWorstCase(valList)
 	caseBisectionInvalidValidatorSet(valList)
 	caseBisectionNotEnoughCommits(valList)
 	caseBisectionHeaderOutOfTrustingPeriod(valList)
+
+	// Multi-peer
+	caseBisectionConflictingValidCommitsFromTheOnlyWitness(valList)
+	caseBisectionConflictingValidCommitsFromOneOfTheWitnesses(valList)
+	caseBisectionConflictingHeaders(valList)
 }

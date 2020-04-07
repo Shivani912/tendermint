@@ -1,6 +1,12 @@
 package generator
 
-import "time"
+import (
+	"time"
+
+	"github.com/tendermint/tendermint/types"
+)
+
+// Validator Set
 
 func caseSingleSkipOneBlock(testBatch *TestBatch, valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=3, should not expect error"
@@ -71,6 +77,8 @@ func caseSingleSkipValidatorSetChangesMoreThanTrustLevel(testBatch *TestBatch, v
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
 
+// Commit
+
 func caseSingleSkipCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=3 where 1/3 vals dont sign, should expect error"
 
@@ -97,5 +105,21 @@ func caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(testBatch *TestBatch, valL
 		ValidatorAddress: nil,
 	}
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
+}
+
+// Header
+
+func caseSingleSkipHeaderOutOfTrustingPeriod(testBatch *TestBatch, valList ValList) {
+	description := "Case: Trusted height=1 but is out of trusting period, verifying signed header at height=5, expects an error"
+
+	initial, input, _, _ := generateInitialAndInputSkipBlocks(
+		valList.Validators[:1],
+		valList.PrivVals[:1],
+		4,
+	)
+	initial.TrustingPeriod = 5 * time.Second
+
+	testCase := makeTestCase(description, initial, input, expectedOutputError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }

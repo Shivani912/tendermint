@@ -129,9 +129,10 @@ func caseBisectionNotEnoughCommits(valList ValList) {
 	}
 
 	valSetChanges = ValSetChanges{}.makeValSetChanges(valsArray, privValsArray)
-	lastCommit := testBisection.Primary.LiteBlocks[4].SignedHeader.Commit
+	last := len(testBisection.Primary.LiteBlocks) - 1
+	lastCommit := testBisection.Primary.LiteBlocks[last].SignedHeader.Commit
 	blockTime := lastCommit.Signatures[0].Timestamp.Add(5 * time.Second)
-	last := len(states) - 1
+	last = len(states) - 1
 	state := states[last]
 	state.Validators = types.NewValidatorSet(copiedValList.Validators[0:1])
 	privVals := copiedValList.PrivVals[0:1]
