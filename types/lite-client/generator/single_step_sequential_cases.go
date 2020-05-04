@@ -192,6 +192,22 @@ func caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(testBatch *TestBatch, valLi
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
 	testBatch.TestCases = append(testBatch.TestCases, testCase)
 }
+func caseSingleSeqCommitNilVote(testBatch *TestBatch, valList ValList) {
+	description := "Case: one lite block, one Nil vote, no error"
+	initial, input, _, privVals := generateGeneralCase(
+		valList.Validators[:4],
+		valList.PrivVals[:4],
+	)
+	input[0].SignedHeader.Commit.Signatures[0].BlockIDFlag = types.BlockIDFlagNil
+
+	vote := input[0].SignedHeader.Commit.GetVote(0)
+	privVals[0].SignVote(initial.SignedHeader.ChainID, vote)
+
+	input[0].SignedHeader.Commit.Signatures[0].Signature = vote.Signature
+
+	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
+	testBatch.TestCases = append(testBatch.TestCases, testCase)
+}
 
 // VALIDATOR SET - BEGIN
 

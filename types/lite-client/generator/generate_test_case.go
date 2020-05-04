@@ -38,6 +38,8 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 	caseSingleSeqCommitOneThirdValsDontSign(testBatch, valList)         // error
 	caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(testBatch, valList) // not an error
 
+	caseSingleSeqCommitNilVote(testBatch, valList)
+
 	generateJSON(testBatch, "./tests/json/single_step_sequential/commit_tests.json")
 
 	// Header

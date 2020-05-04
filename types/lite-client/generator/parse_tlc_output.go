@@ -9,7 +9,8 @@ import (
 )
 
 // This is the information we get from the TLC output
-// It is the minimum details and the rest needs to be mocked out before generating a JSON test case from this
+// It is the minimum details and the rest needs to be mocked out
+// before generating a JSON test case from this
 type tlcOutput struct {
 	Height           int
 	MinTrustedHeight int
