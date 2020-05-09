@@ -2,13 +2,15 @@ package generator
 
 import (
 	"time"
+)
 
-	"github.com/tendermint/tendermint/types"
+const (
+	SINGLE_STEP_SKIPPING_PATH = "./tests/json/single_step/skipping/"
 )
 
 // Validator Set
 
-func caseSingleSkipOneBlock(testBatch *TestBatch, valList ValList) {
+func caseSingleSkipOneBlock(valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=3, should not expect error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(
@@ -17,10 +19,12 @@ func caseSingleSkipOneBlock(testBatch *TestBatch, valList ValList) {
 		1,
 	)
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SKIPPING_PATH + "validator_set/skip_one_block.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSkipFiveBlocks(testBatch *TestBatch, valList ValList) {
+func caseSingleSkipFiveBlocks(valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=7, should not expect error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(
@@ -29,10 +33,12 @@ func caseSingleSkipFiveBlocks(testBatch *TestBatch, valList ValList) {
 		5,
 	)
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SKIPPING_PATH + "validator_set/skip_five_blocks.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSkipValidatorSetChangesLessThanTrustLevel(testBatch *TestBatch, valList ValList) {
+func caseSingleSkipValidatorSetChangesLessThanTrustLevel(valList ValList) {
 	description := "Case: Trusted height=1 verifying signed header at height=7 while valset changes less than default trust level (1/3), should not expect error"
 
 	copyValList := valList.Copy()
@@ -52,10 +58,12 @@ func caseSingleSkipValidatorSetChangesLessThanTrustLevel(testBatch *TestBatch, v
 	liteBlock, state, _ = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime.Add(35*time.Second))
 	input[0] = liteBlock
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SKIPPING_PATH + "validator_set/valset_changes_less_than_trust_level.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSkipValidatorSetChangesMoreThanTrustLevel(testBatch *TestBatch, valList ValList) {
+func caseSingleSkipValidatorSetChangesMoreThanTrustLevel(valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=7 while valset changes more than default trust level (1/3), should expect error"
 
 	copyValList := valList.Copy()
@@ -74,12 +82,14 @@ func caseSingleSkipValidatorSetChangesMoreThanTrustLevel(testBatch *TestBatch, v
 	liteBlock, state, _ = generateNextBlock(state, privVals, liteBlock.SignedHeader.Commit, thirdBlockTime.Add(35*time.Second))
 	input[0] = liteBlock
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SKIPPING_PATH + "validator_set/valset_changes_more_than_trust_level.json"
+	testCase.genJSON(file)
 }
 
 // Commit
 
-func caseSingleSkipCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValList) {
+func caseSingleSkipCommitOneThirdValsDontSign(valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=3 where 1/3 vals dont sign, should expect error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(
@@ -87,12 +97,16 @@ func caseSingleSkipCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValL
 		valList.PrivVals[:3],
 		1,
 	)
-	input[0].SignedHeader.Commit.Signatures[0].BlockIDFlag = types.BlockIDFlagAbsent
+	input[0].SignedHeader.Commit.Signatures[0] = newAbsentCommitSig(
+		input[0].SignedHeader.Commit.Signatures[0].ValidatorAddress,
+	)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SKIPPING_PATH + "commit/one_third_vals_dont_sign.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(testBatch *TestBatch, valList ValList) {
+func caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(valList ValList) {
 	description := "Case: Trusted height=1, verifying signed header at height=3 where more than two-thirds vals did sign, should not expect error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(
@@ -100,17 +114,18 @@ func caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(testBatch *TestBatch, valL
 		valList.PrivVals[:4],
 		1,
 	)
-	input[0].SignedHeader.Commit.Signatures[0] = types.CommitSig{
-		BlockIDFlag:      types.BlockIDFlagAbsent,
-		ValidatorAddress: nil,
-	}
+	input[0].SignedHeader.Commit.Signatures[0] = newAbsentCommitSig(
+		input[0].SignedHeader.Commit.Signatures[0].ValidatorAddress,
+	)
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SKIPPING_PATH + "commit/more_than_two_third_vals_sign.json"
+	testCase.genJSON(file)
 }
 
 // Header
 
-func caseSingleSkipHeaderOutOfTrustingPeriod(testBatch *TestBatch, valList ValList) {
+func caseSingleSkipHeaderOutOfTrustingPeriod(valList ValList) {
 	description := "Case: Trusted height=1 but is out of trusting period, verifying signed header at height=5, expects an error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(
@@ -121,5 +136,7 @@ func caseSingleSkipHeaderOutOfTrustingPeriod(testBatch *TestBatch, valList ValLi
 	initial.TrustingPeriod = 5 * time.Second
 
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SKIPPING_PATH + "header/out_of_trusting_period.json"
+	testCase.genJSON(file)
 }

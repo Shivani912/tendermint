@@ -2,6 +2,8 @@ package tests
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 	"testing"
 
 	amino "github.com/tendermint/go-amino"
@@ -9,59 +11,52 @@ import (
 	lite "github.com/tendermint/tendermint/lite2"
 	"github.com/tendermint/tendermint/lite2/provider"
 	dbs "github.com/tendermint/tendermint/lite2/store/db"
-	generator "github.com/tendermint/tendermint/types/lite-client/generator"
+	"github.com/tendermint/tendermint/types/lite-client/generator"
 	dbm "github.com/tendermint/tm-db"
 )
 
 func TestVerify(t *testing.T) {
 
-	tests := []string{
-		"single_step_sequential/commit_tests.json",
-		"single_step_sequential/header_tests.json",
-		"single_step_sequential/val_set_tests.json",
-		"single_step_skipping/val_set_tests.json",
-		"single_step_skipping/commit_tests.json",
-		"single_step_skipping/header_tests.json",
+	tests, err := getTestPaths("./json/single_step/")
+	if err != nil {
+		fmt.Println(err)
 	}
 
 	for _, test := range tests {
-		data := generator.ReadFile("./json/" + test)
+		data := generator.ReadFile(test)
 
 		cdc := amino.NewCodec()
 		cryptoAmino.RegisterAmino(cdc)
 
-		var testBatch generator.TestBatch
-		err := cdc.UnmarshalJSON(data, &testBatch)
+		var testCase generator.TestCase
+		err := cdc.UnmarshalJSON(data, &testCase)
 		if err != nil {
 			fmt.Printf("error: %v", err)
 		}
 
-		for _, testCase := range testBatch.TestCases {
+		chainID := testCase.Initial.SignedHeader.Header.ChainID
+		trustedSignedHeader := testCase.Initial.SignedHeader
+		trustedNextVals := testCase.Initial.NextValidatorSet
+		trustingPeriod := testCase.Initial.TrustingPeriod
+		now := testCase.Initial.Now
+		trustLevel := lite.DefaultTrustLevel
+		expectedOutput := testCase.ExpectedOutput
+		expectsError := expectedOutput == "error"
 
-			chainID := testCase.Initial.SignedHeader.Header.ChainID
-			trustedSignedHeader := testCase.Initial.SignedHeader
-			trustedNextVals := testCase.Initial.NextValidatorSet
-			trustingPeriod := testCase.Initial.TrustingPeriod
-			now := testCase.Initial.Now
-			trustLevel := lite.DefaultTrustLevel
-			expectedOutput := testCase.ExpectedOutput
-			expectsError := expectedOutput == "error"
+		for _, input := range testCase.Input {
 
-			for _, input := range testCase.Input {
+			newSignedHeader := input.SignedHeader
+			newVals := input.ValidatorSet
 
-				newSignedHeader := input.SignedHeader
-				newVals := input.ValidatorSet
+			e := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
+			err := e != nil
+			fmt.Printf("\n%s, \nError: %v \n", testCase.Description, e)
+			if (err && !expectsError) || (!err && expectsError) {
+				t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, expectedOutput)
 
-				e := lite.Verify(chainID, &trustedSignedHeader, &trustedNextVals, &newSignedHeader, &newVals, trustingPeriod, now, trustLevel)
-				err := e != nil
-				fmt.Printf("\n%s, \nError: %v \n", testCase.Description, e)
-				if (err && !expectsError) || (!err && expectsError) {
-					t.Errorf("\n Failing test: %s \n Error: %v \n Expected error: %v", testCase.Description, e, expectedOutput)
-
-				} else {
-					trustedSignedHeader = newSignedHeader
-					trustedNextVals = input.NextValidatorSet
-				}
+			} else {
+				trustedSignedHeader = newSignedHeader
+				trustedNextVals = input.NextValidatorSet
 			}
 		}
 	}
@@ -69,19 +64,13 @@ func TestVerify(t *testing.T) {
 }
 
 func TestBisection(t *testing.T) {
-	tests := []string{
-		"single_peer_bisection/happy_path.json",
-		"single_peer_bisection/worst_case.json",
-		"single_peer_bisection/invalid_validator_set.json",
-		"single_peer_bisection/not_enough_commits.json",
-		"single_peer_bisection/header_out_of_trusting_period.json",
-		"multi_peer_bisection/conflicting_valid_commits_from_the_only_witness.json",
-		"multi_peer_bisection/conflicting_valid_commits_from_one_of_the_witnesses.json",
-		"multi_peer_bisection/conflicting_headers.json",
+	tests, err := getTestPaths("./json/bisection/")
+	if err != nil {
+		fmt.Println(err)
 	}
 
 	for _, test := range tests {
-		data := generator.ReadFile("./json/" + test)
+		data := generator.ReadFile(test)
 
 		cdc := amino.NewCodec()
 		cryptoAmino.RegisterAmino(cdc)
@@ -128,4 +117,23 @@ func TestBisection(t *testing.T) {
 
 		}
 	}
+}
+
+func getTestPaths(folder string) ([]string, error) {
+	var tests []string
+	err := filepath.Walk(folder, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
+			return err
+		}
+		if !info.IsDir() {
+			tests = append(tests, path)
+		}
+		return nil
+	})
+	if err != nil {
+		fmt.Printf("error: %v", err)
+		return nil, err
+	}
+	return tests, nil
 }

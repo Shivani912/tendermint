@@ -6,6 +6,8 @@ import (
 	"github.com/tendermint/tendermint/types"
 )
 
+const SINGLE_PEER_BISECTION_PATH = "./tests/json/bisection/single_peer/"
+
 func caseBisectionHappyPath(valList ValList) {
 	description := "Case: Trusted height=1, bisecting to verify height=11, should not expect error"
 	valSetChanges := ValSetChanges{}.getDefault(valList.Copy())
@@ -15,7 +17,7 @@ func caseBisectionHappyPath(valList ValList) {
 		int32(2),
 	)
 
-	file := "./tests/json/many_header_bisection/happy_path.json"
+	file := SINGLE_PEER_BISECTION_PATH + "happy_path.json"
 	testBisection.genJSON(file)
 
 }
@@ -59,7 +61,7 @@ func caseBisectionWorstCase(valList ValList) {
 		10,
 	)
 
-	file := "./tests/json/many_header_bisection/worst_case.json"
+	file := SINGLE_PEER_BISECTION_PATH + "worst_case.json"
 	testBisection.genJSON(file)
 }
 
@@ -84,7 +86,7 @@ func caseBisectionInvalidValidatorSet(valList ValList) {
 	testBisection.Primary.LiteBlocks[5] = liteBlock
 	testBisection.ExpectedOutput = expectedOutputError
 
-	file := "./tests/json/many_header_bisection/invalid_validator_set.json"
+	file := SINGLE_PEER_BISECTION_PATH + "invalid_validator_set.json"
 	testBisection.genJSON(file)
 }
 
@@ -142,7 +144,7 @@ func caseBisectionNotEnoughCommits(valList ValList) {
 	testBisection.HeightToVerify = 8
 	testBisection.ExpectedOutput = expectedOutputError
 
-	file := "./tests/json/many_header_bisection/not_enough_commits.json"
+	file := SINGLE_PEER_BISECTION_PATH + "not_enough_commits.json"
 	testBisection.genJSON(file)
 
 }
@@ -159,6 +161,6 @@ func caseBisectionHeaderOutOfTrustingPeriod(valList ValList) {
 	testBisection.TrustOptions.Period = 30 * time.Second
 	testBisection.ExpectedOutput = expectedOutputError
 
-	file := "./tests/json/many_header_bisection/header_out_of_trusting_period.json"
+	file := SINGLE_PEER_BISECTION_PATH + "header_out_of_trusting_period.json"
 	testBisection.genJSON(file)
 }

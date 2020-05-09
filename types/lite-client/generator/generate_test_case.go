@@ -9,56 +9,42 @@ func GenerateSingleStepSequentialCases(jsonValList string) {
 	valList := GetValList(jsonValList)
 
 	// ValidatorSet
-	testBatch := newBatch("Single Step Sequential-validator set")
-	caseSingleSeqValidatorSetOf1(testBatch, valList)
-	caseSingleSeqValidatorSetOf8(testBatch, valList)
-	caseSingleSeqValidatorSetOf128(testBatch, valList)
+	caseSingleSeqValidatorSetOf1(valList)
+	caseSingleSeqValidatorSetOf8(valList)
+	caseSingleSeqValidatorSetOf128(valList)
 
-	caseSingleSeqValidatorSetAddTwiceVals(testBatch, valList)
-	caseSingleSeqValidatorSetRemoveHalfVals(testBatch, valList)
+	caseSingleSeqValidatorSetAddTwiceVals(valList)
+	caseSingleSeqValidatorSetRemoveHalfVals(valList)
 
-	caseSingleSeqValidatorSetChangesOneThird(testBatch, valList)
-	caseSingleSeqValidatorSetChangesHalf(testBatch, valList)
-	caseSingleSeqValidatorSetChangesTwoThirds(testBatch, valList)
-	caseSingleSeqValidatorSetChangesFully(testBatch, valList)
-	caseSingleSeqValidatorSetChangesLessThanOneThird(testBatch, valList)
-	caseSingleSeqValidatorSetChangesMoreThanTwoThirds(testBatch, valList)
-	caseSingleSeqValidatorSetWrongValidatorSet(testBatch, valList)
-	caseSingleSeqValidatorSetFaultySigner(testBatch, valList)
-	caseSingleSeqValidatorSetChangeValidatorPower(testBatch, valList)
-
-	generateJSON(testBatch, "./tests/json/single_step_sequential/val_set_tests.json")
+	caseSingleSeqValidatorSetChangesOneThird(valList)
+	caseSingleSeqValidatorSetChangesHalf(valList)
+	caseSingleSeqValidatorSetChangesTwoThirds(valList)
+	caseSingleSeqValidatorSetChangesFully(valList)
+	caseSingleSeqValidatorSetChangesLessThanOneThird(valList)
+	caseSingleSeqValidatorSetChangesMoreThanTwoThirds(valList)
+	caseSingleSeqValidatorSetWrongValidatorSet(valList)
+	caseSingleSeqValidatorSetFaultySigner(valList)
+	// caseSingleSeqValidatorSetWrongValidatorPower(valList)
 
 	// Commit
-	testBatch = newBatch("Single Step Sequential-commit")
-	caseSingleSeqCommitWrongHeaderHash(testBatch, valList)
-	caseSingleSeqCommitWrongVoteHeight(testBatch, valList)
-	caseSingleSeqCommitWrongVoteSignature(testBatch, valList)
+	caseSingleSeqCommitWrongHeaderHash(valList)
+	caseSingleSeqCommitWrongHeight(valList)
+	caseSingleSeqCommitWrongVoteSignature(valList)
 
-	caseSingleSeqCommitOneThirdValsDontSign(testBatch, valList)         // error
-	caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(testBatch, valList) // not an error
+	caseSingleSeqCommitOneThirdValsDontSign(valList)         // error
+	caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(valList) // not an error
 
-	caseSingleSeqCommitNilVote(testBatch, valList)
-
-	generateJSON(testBatch, "./tests/json/single_step_sequential/commit_tests.json")
+	caseSingleSeqCommitNilVote(valList)
 
 	// Header
-	testBatch = newBatch("Single Step Sequential-header")
-	caseSingleSeqHeaderWrongHeaderSignature(testBatch, valList)
-	caseSingleSeqHeaderWrongLastBlockID(testBatch, valList)
-	caseSingleSeqHeaderWrongChainID(testBatch, valList)
-	caseSingleSeqHeaderWrongHeight(testBatch, valList)
-	caseSingleSeqHeaderWrongTimestamp(testBatch, valList)
-	caseSingleSeqHeaderWrongValSetHash(testBatch, valList)
-	caseSingleSeqHeaderWrongNextValSetHash(testBatch, valList)
+	caseSingleSeqHeaderWrongLastCommitHash(valList)
+	caseSingleSeqHeaderWrongLastBlockID(valList)
+	caseSingleSeqHeaderWrongChainID(valList)
+	caseSingleSeqHeaderWrongHeight(valList)
+	caseSingleSeqHeaderWrongTimestamp(valList)
+	caseSingleSeqHeaderWrongValSetHash(valList)
+	caseSingleSeqHeaderWrongNextValSetHash(valList)
 
-	generateJSON(testBatch, "./tests/json/single_step_sequential/header_tests.json")
-}
-
-func newBatch(name string) *TestBatch {
-	return &TestBatch{
-		BatchName: name,
-	}
 }
 
 // GenerateSingleStepSkippingCases creates three json files each for validator set, commit and header cases
@@ -69,28 +55,20 @@ func GenerateSingleStepSkippingCases(jsonValList string) {
 	valList := GetValList(jsonValList)
 
 	// ValidatorSet
-	testBatch := newBatch("Single Step Skipping-validator set")
-	caseSingleSkipOneBlock(testBatch, valList)
-	caseSingleSkipFiveBlocks(testBatch, valList)
-	caseSingleSkipValidatorSetChangesLessThanTrustLevel(testBatch, valList)
-	caseSingleSkipValidatorSetChangesMoreThanTrustLevel(testBatch, valList)
-
-	generateJSON(testBatch, "./tests/json/single_step_skipping/val_set_tests.json")
+	caseSingleSkipOneBlock(valList)
+	caseSingleSkipFiveBlocks(valList)
+	caseSingleSkipValidatorSetChangesLessThanTrustLevel(valList)
+	caseSingleSkipValidatorSetChangesMoreThanTrustLevel(valList)
 
 	// Commit
-	testBatch = newBatch("Single Step Skipping-commit")
 
-	caseSingleSkipCommitOneThirdValsDontSign(testBatch, valList)         // error
-	caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(testBatch, valList) // not an error
-
-	generateJSON(testBatch, "./tests/json/single_step_skipping/commit_tests.json")
+	caseSingleSkipCommitOneThirdValsDontSign(valList)         // error
+	caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(valList) // not an error
 
 	// Header
-	testBatch = newBatch("Single Step Skipping-header")
 
-	caseSingleSkipHeaderOutOfTrustingPeriod(testBatch, valList)
+	caseSingleSkipHeaderOutOfTrustingPeriod(valList)
 
-	generateJSON(testBatch, "./tests/json/single_step_skipping/header_tests.json")
 }
 
 func GenerateManyHeaderBisectionCases(jsonValList string) {

@@ -6,16 +6,20 @@ import (
 	"github.com/tendermint/tendermint/types"
 )
 
+const (
+	str32byte            = "----This is a 32-byte string----"
+	SINGLE_STEP_SEQ_PATH = "./tests/json/single_step/sequential/"
+)
+
 var (
-	str32byte = "----This is a 32-byte string----"
 	str64byte = []byte{206, 129, 9, 176, 142, 141, 188, 30, 197, 158, 80, 135, 172, 5, 239, 44, 219, 46, 60, 239, 9, 65, 151, 236, 221, 44, 72, 253, 191, 95, 20, 67, 175, 2, 133, 74, 3, 84, 20, 60, 142, 1, 0, 75, 129, 148, 2, 206, 180, 49, 223, 47, 41, 189, 149, 230, 247, 16, 48, 228, 39, 91, 154, 6}
 )
 
-// HEADER - BEGIN
+// HEADER ----->
 
-func caseSingleSeqHeaderWrongHeaderSignature(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongLastCommitHash(valList ValList) {
 
-	description := "Case: one lite block, wrong header signature, with error"
+	description := "Case: one lite block, wrong last commit hash in header, with error"
 
 	initial, input, _, _ := generateGeneralCase(
 		valList.Validators[:1],
@@ -24,10 +28,12 @@ func caseSingleSeqHeaderWrongHeaderSignature(testBatch *TestBatch, valList ValLi
 	input[0].SignedHeader.Header.LastCommitHash = []byte("wrong hash")
 
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "header/wrong_last_commit_hash.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqHeaderWrongLastBlockID(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongLastBlockID(valList ValList) {
 
 	description := "Case: one lite block, wrong last block ID in header, with error"
 
@@ -37,10 +43,12 @@ func caseSingleSeqHeaderWrongLastBlockID(testBatch *TestBatch, valList ValList) 
 	)
 	input[0].SignedHeader.Header.LastBlockID.Hash = []byte("wrong hash")
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "header/wrong_last_block_id.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqHeaderWrongChainID(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongChainID(valList ValList) {
 
 	description := "Case: one lite block, wrong chain ID in header, with error"
 
@@ -50,10 +58,12 @@ func caseSingleSeqHeaderWrongChainID(testBatch *TestBatch, valList ValList) {
 	)
 	input[0].SignedHeader.Header.ChainID = "wrong-chain-id"
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "header/wrong_chain_id.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqHeaderWrongHeight(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongHeight(valList ValList) {
 
 	description := "Case: one lite block, wrong height in header, with error"
 
@@ -63,10 +73,12 @@ func caseSingleSeqHeaderWrongHeight(testBatch *TestBatch, valList ValList) {
 	)
 	input[0].SignedHeader.Header.Height++
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "header/wrong_header_height.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqHeaderWrongTimestamp(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongTimestamp(valList ValList) {
 
 	description := "Case: one lite block, wrong timestamp in header, with error"
 
@@ -76,10 +88,12 @@ func caseSingleSeqHeaderWrongTimestamp(testBatch *TestBatch, valList ValList) {
 	)
 	input[0].SignedHeader.Header.Time = secondBlockTime.Add(1 * time.Minute)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "header/wrong_header_timestamp.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqHeaderWrongValSetHash(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongValSetHash(valList ValList) {
 
 	description := "Case: one lite block, wrong val set hash in header, with error"
 
@@ -89,10 +103,12 @@ func caseSingleSeqHeaderWrongValSetHash(testBatch *TestBatch, valList ValList) {
 	)
 	input[0].SignedHeader.Header.ValidatorsHash = []byte("wrong validator set hash")
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "header/wrong_valset_hash.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqHeaderWrongNextValSetHash(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqHeaderWrongNextValSetHash(valList ValList) {
 
 	description := "Case: one lite block, wrong next val set hash in header, with error"
 
@@ -102,12 +118,14 @@ func caseSingleSeqHeaderWrongNextValSetHash(testBatch *TestBatch, valList ValLis
 	)
 	input[0].SignedHeader.Header.NextValidatorsHash = []byte("wrong next validator set hash")
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "header/wrong_next_valset_hash.json"
+	testCase.genJSON(file)
 }
 
-// COMMIT - BEGIN
+// COMMIT ----->
 
-func caseSingleSeqCommitWrongHeaderHash(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitWrongHeaderHash(valList ValList) {
 
 	description := "Case: one lite block, wrong header hash, with error"
 	initial, input, _, _ := generateGeneralCase(
@@ -116,22 +134,26 @@ func caseSingleSeqCommitWrongHeaderHash(testBatch *TestBatch, valList ValList) {
 	)
 	input[0].SignedHeader.Commit.BlockID.Hash = []byte(str32byte)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/wrong_header_hash.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqCommitWrongVoteHeight(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitWrongHeight(valList ValList) {
 
-	description := "Case: one lite block, wrong vote height, with error"
+	description := "Case: one lite block, wrong commit height, with error"
 	initial, input, _, _ := generateGeneralCase(
 		valList.Validators[:1],
 		valList.PrivVals[:1],
 	)
 	input[0].SignedHeader.Commit.Height--
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/wrong_commit_height.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqCommitWrongVoteTimestamp(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitWrongVoteTimestamp(valList ValList) {
 
 	description := "Case: one lite block, wrong vote timestamp, with error"
 	initial, input, _, privVals := generateGeneralCase(
@@ -148,10 +170,12 @@ func caseSingleSeqCommitWrongVoteTimestamp(testBatch *TestBatch, valList ValList
 	input[0].SignedHeader.Commit.Signatures[0].Signature = vote.Signature
 
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/wrong_vote_timestamp.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqCommitWrongVoteSignature(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitWrongVoteSignature(valList ValList) {
 
 	description := "Case: one lite block, wrong signature in vote, with error"
 	initial, input, _, _ := generateGeneralCase(
@@ -160,40 +184,44 @@ func caseSingleSeqCommitWrongVoteSignature(testBatch *TestBatch, valList ValList
 	)
 	input[0].SignedHeader.Commit.Signatures[0].Signature = []byte(str64byte)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/wrong_vote_signature.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqCommitOneThirdValsDontSign(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitOneThirdValsDontSign(valList ValList) {
 
 	description := "Case: one lite block, one-third vals don't sign, expects error"
 	initial, input, _, _ := generateGeneralCase(
 		valList.Validators[:3],
 		valList.PrivVals[:3],
 	)
-	input[0].SignedHeader.Commit.Signatures[0] = types.CommitSig{
-		BlockIDFlag:      types.BlockIDFlagAbsent,
-		ValidatorAddress: nil,
-	}
+	input[0].SignedHeader.Commit.Signatures[0] = newAbsentCommitSig(
+		input[0].SignedHeader.Commit.Signatures[0].ValidatorAddress,
+	)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/one_third_vals_don't_sign.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqCommitMoreThanTwoThirdsValsDidSign(valList ValList) {
 
-	description := "Case: one lite block, more than two-thirds vals did sign, no error"
+	description := "Case: one lite block, more than two-third vals did sign, no error"
 	initial, input, _, _ := generateGeneralCase(
 		valList.Validators[:4],
 		valList.PrivVals[:4],
 	)
-	input[0].SignedHeader.Commit.Signatures[0] = types.CommitSig{
-		BlockIDFlag:      types.BlockIDFlagAbsent,
-		ValidatorAddress: nil,
-	}
+	input[0].SignedHeader.Commit.Signatures[0] = newAbsentCommitSig(
+		input[0].SignedHeader.Commit.Signatures[0].ValidatorAddress,
+	)
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/more_than_two_third_vals_sign.json"
+	testCase.genJSON(file)
 }
-func caseSingleSeqCommitNilVote(testBatch *TestBatch, valList ValList) {
-	description := "Case: one lite block, one Nil vote, no error"
+func caseSingleSeqCommitNilVote(valList ValList) {
+	description := "Case: one lite block, less than one-third Nil votes, no error"
 	initial, input, _, privVals := generateGeneralCase(
 		valList.Validators[:4],
 		valList.PrivVals[:4],
@@ -206,12 +234,14 @@ func caseSingleSeqCommitNilVote(testBatch *TestBatch, valList ValList) {
 	input[0].SignedHeader.Commit.Signatures[0].Signature = vote.Signature
 
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/less_than_one_third_nil_votes.json"
+	testCase.genJSON(file)
 }
 
-// VALIDATOR SET - BEGIN
+// VALIDATOR SET ---->
 
-func caseSingleSeqValidatorSetOf1(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetOf1(valList ValList) {
 
 	description := "Case: one lite block to fetch, one validator in the set, expects no error"
 	testCase := generateAndMakeGeneralTestCase(
@@ -220,10 +250,11 @@ func caseSingleSeqValidatorSetOf1(testBatch *TestBatch, valList ValList) {
 		valList.PrivVals[:1],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/1_validator.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetOf8(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetOf8(valList ValList) {
 
 	description := "Case: one lite block to fetch, 8 validators in the set, expects no error"
 	testCase := generateAndMakeGeneralTestCase(
@@ -232,10 +263,11 @@ func caseSingleSeqValidatorSetOf8(testBatch *TestBatch, valList ValList) {
 		valList.PrivVals[:8],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/8_validators.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetOf128(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetOf128(valList ValList) {
 
 	description := "Case: one lite block, 128 validators, no error"
 	testCase := generateAndMakeGeneralTestCase(
@@ -244,11 +276,11 @@ func caseSingleSeqValidatorSetOf128(testBatch *TestBatch, valList ValList) {
 		valList.PrivVals[:128],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/128_validators.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetEmpty(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetEmpty(valList ValList) {
 
 	description := "Case: one lite block, empty validator set, expects error"
 	initial, input, _, _ := generateGeneralCase(
@@ -258,11 +290,11 @@ func caseSingleSeqValidatorSetEmpty(testBatch *TestBatch, valList ValList) {
 	input[0].ValidatorSet = *types.NewValidatorSet(nil)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
-
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/empty_valset.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetAddTwiceVals(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetAddTwiceVals(valList ValList) {
 
 	description := "Case: two lite blocks, validator set increases 2x, no error"
 	testCase := generateAndMakeNextValsUpdateTestCase(
@@ -273,10 +305,11 @@ func caseSingleSeqValidatorSetAddTwiceVals(testBatch *TestBatch, valList ValList
 		valList.PrivVals[0:4],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/valset_size_doubles.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetRemoveHalfVals(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetRemoveHalfVals(valList ValList) {
 
 	copiedValList := valList.Copy()
 	description := "Case: two lite blocks, validator set reduces to half, no error"
@@ -288,11 +321,12 @@ func caseSingleSeqValidatorSetRemoveHalfVals(testBatch *TestBatch, valList ValLi
 		copiedValList.PrivVals[0:2],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/valset_size_halves.json"
+	testCase.genJSON(file)
 
 }
 
-func caseSingleSeqValidatorSetChangesOneThird(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetChangesOneThird(valList ValList) {
 
 	copiedValList := valList.Copy()
 	description := "Case: two lite blocks, 1/3 validator set changes, no error"
@@ -304,10 +338,11 @@ func caseSingleSeqValidatorSetChangesOneThird(testBatch *TestBatch, valList ValL
 		copiedValList.PrivVals[1:4],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/one_third_valset_changes.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetChangesHalf(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetChangesHalf(valList ValList) {
 
 	copiedValList := valList.Copy()
 	description := "Case: two lite blocks, 1/2 validator set changes, no error"
@@ -319,10 +354,11 @@ func caseSingleSeqValidatorSetChangesHalf(testBatch *TestBatch, valList ValList)
 		copiedValList.PrivVals[2:6],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/half_valset_changes.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetChangesTwoThirds(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetChangesTwoThirds(valList ValList) {
 
 	copiedValList := valList.Copy()
 	description := "Case: two lite blocks, 2/3 validator set changes, no error"
@@ -334,10 +370,11 @@ func caseSingleSeqValidatorSetChangesTwoThirds(testBatch *TestBatch, valList Val
 		copiedValList.PrivVals[2:5],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/two_thirds_valset_changes.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetChangesFully(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetChangesFully(valList ValList) {
 
 	copiedValList := valList.Copy()
 	description := "Case: two lite blocks, validator set changes completely, no error"
@@ -349,10 +386,11 @@ func caseSingleSeqValidatorSetChangesFully(testBatch *TestBatch, valList ValList
 		copiedValList.PrivVals[5:10],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/valset_changes_fully.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetChangesLessThanOneThird(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetChangesLessThanOneThird(valList ValList) {
 
 	copiedValList := valList.Copy()
 	description := "Case: two lite blocks, less than 1/3 validator set changes, no error"
@@ -364,10 +402,11 @@ func caseSingleSeqValidatorSetChangesLessThanOneThird(testBatch *TestBatch, valL
 		copiedValList.PrivVals[1:5],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/less_than_one_third_valset_changes.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetChangesMoreThanTwoThirds(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetChangesMoreThanTwoThirds(valList ValList) {
 
 	copiedValList := valList.Copy()
 	description := "Case: two lite blocks, more than 2/3 validator set changes, no error"
@@ -379,10 +418,11 @@ func caseSingleSeqValidatorSetChangesMoreThanTwoThirds(testBatch *TestBatch, val
 		copiedValList.PrivVals[3:7],
 		expectedOutputNoError,
 	)
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/more_than_two_thirds_valset_changes.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetWrongValidatorSet(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetWrongValidatorSet(valList ValList) {
 
 	var input []LiteBlock
 	description := "Case: one lite block, wrong validator set, expects error"
@@ -404,10 +444,11 @@ func caseSingleSeqValidatorSetWrongValidatorSet(testBatch *TestBatch, valList Va
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/wrong_valset.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetFaultySigner(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetFaultySigner(valList ValList) {
 
 	copiedValList := valList.Copy()
 	var input []LiteBlock
@@ -432,10 +473,11 @@ func caseSingleSeqValidatorSetFaultySigner(testBatch *TestBatch, valList ValList
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/faulty_signer.json"
+	testCase.genJSON(file)
 }
 
-func caseSingleSeqValidatorSetChangeValidatorPower(testBatch *TestBatch, valList ValList) {
+func caseSingleSeqValidatorSetWrongValidatorPower(valList ValList) {
 
 	copiedValList := valList.Copy()
 	var input []LiteBlock
@@ -455,5 +497,6 @@ func caseSingleSeqValidatorSetChangeValidatorPower(testBatch *TestBatch, valList
 	input = append(input, liteBlock)
 	testCase := makeTestCase(description, initial, input, expectedOutputError)
 
-	testBatch.TestCases = append(testBatch.TestCases, testCase)
+	file := SINGLE_STEP_SEQ_PATH + "validator_set/wrong_validator_power.json"
+	testCase.genJSON(file)
 }

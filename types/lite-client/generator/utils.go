@@ -7,6 +7,8 @@ import (
 	"sort"
 	"time"
 
+	// amino "github.com/tendermint/go-amino"
+	// cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	amino "github.com/tendermint/go-amino"
 	cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	st "github.com/tendermint/tendermint/state"
@@ -14,11 +16,14 @@ import (
 )
 
 var (
-	genTime, _            = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
-	now, _                = time.Parse(time.RFC3339, "2019-11-02T15:30:00Z")
-	firstBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
-	secondBlockTime, _    = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
-	thirdBlockTime, _     = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
+	genTime, _         = time.Parse(time.RFC3339, "2019-11-02T15:04:00Z")
+	now, _             = time.Parse(time.RFC3339, "2019-11-02T15:30:00Z")
+	firstBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:10Z")
+	secondBlockTime, _ = time.Parse(time.RFC3339, "2019-11-02T15:04:15Z")
+	thirdBlockTime, _  = time.Parse(time.RFC3339, "2019-11-02T15:04:20Z")
+)
+
+const (
 	TRUSTING_PERIOD       = 3 * time.Hour
 	expectedOutputNoError = "no error"
 	expectedOutputError   = "error"
@@ -26,10 +31,10 @@ var (
 
 // TestBatch contains a slice of TestCase, for now.
 // It may contain other information in future
-type TestBatch struct {
-	BatchName string     `json:"batch_name"`
-	TestCases []TestCase `json:"test_cases"`
-}
+// type TestBatch struct {
+// 	BatchName string     `json:"batch_name"`
+// 	TestCases []TestCase `json:"test_cases"`
+// }
 
 // TestCase stores all the necessary information to perform the test on the data given
 type TestCase struct {
@@ -37,6 +42,23 @@ type TestCase struct {
 	Initial        Initial     `json:"initial"`
 	Input          []LiteBlock `json:"input"`
 	ExpectedOutput string      `json:"expected_output"`
+}
+
+// genJSON produces the JSON for the given testCase type.
+// The ouput is saved under the specified file parameter
+func (tc TestCase) genJSON(file string) {
+
+	var cdc = amino.NewCodec()
+	cryptoAmino.RegisterAmino(cdc)
+	cdc.RegisterInterface((*types.Evidence)(nil), nil)
+
+	b, err := cdc.MarshalJSONIndent(tc, " ", "	")
+	if err != nil {
+		fmt.Printf("error: %v", err)
+	}
+
+	_ = ioutil.WriteFile(file, b, 0644)
+
 }
 
 // LiteBlock refers to the minimum data a lite client interacts with.
@@ -67,7 +89,7 @@ type ValList struct {
 // NewState is used to initiate a state that will be used and manipulated
 // by functions to create blocks for the "simulated" blockchain
 // It creates an INITIAL state with the given parameters
-func NewState(chainID string, valSet *types.ValidatorSet) st.State {
+func NewState(chainID string, valSet *types.ValidatorSet, nextValSet *types.ValidatorSet) st.State {
 
 	consensusParams := types.ConsensusParams{
 		Block:     types.DefaultBlockParams(),
@@ -81,7 +103,7 @@ func NewState(chainID string, valSet *types.ValidatorSet) st.State {
 		LastBlockID:     types.BlockID{},
 		LastBlockTime:   genTime,
 
-		NextValidators:              valSet,
+		NextValidators:              nextValSet,
 		Validators:                  valSet,
 		LastValidators:              types.NewValidatorSet(nil),
 		LastHeightValidatorsChanged: 1,
@@ -104,8 +126,32 @@ func generateFirstBlock(
 ) (types.SignedHeader, st.State, types.PrivValidatorsByAddress) {
 
 	valSet := types.NewValidatorSet(vals)
-	state := NewState("test-chain-01", valSet)
+	state := NewState("test-chain-01", valSet, valSet)
 
+	return makeBlock(state, privVals, nil, now)
+}
+
+func generateFirstBlockWithNextValsUpdate(
+	vals []*types.Validator,
+	privVals types.PrivValidatorsByAddress,
+	nextVals []*types.Validator,
+	nextPrivVals types.PrivValidatorsByAddress,
+	now time.Time,
+) (types.SignedHeader, st.State, types.PrivValidatorsByAddress) {
+
+	valSet := types.NewValidatorSet(vals)
+	nextValSet := types.NewValidatorSet(nextVals)
+	state := NewState("test-chain-01", valSet, nextValSet)
+
+	return makeBlock(state, privVals, nextPrivVals, now)
+}
+
+func makeBlock(
+	state st.State,
+	privVals types.PrivValidatorsByAddress,
+	nextPrivVals types.PrivValidatorsByAddress,
+	now time.Time,
+) (types.SignedHeader, st.State, types.PrivValidatorsByAddress) {
 	txs := generateTxs()
 	evidences := generateEvidences()
 	lbh := state.LastBlockHeight + 1
@@ -116,7 +162,7 @@ func generateFirstBlock(
 
 	commit := generateCommit(block.Header, partSet, state.Validators, privVals, state.ChainID, now)
 
-	state, privVals = updateState(state, commit.BlockID, privVals, nil)
+	state, privVals = updateState(state, commit.BlockID, privVals, nextPrivVals)
 
 	signedHeader := types.SignedHeader{
 		Header: &block.Header,
@@ -252,23 +298,6 @@ func generateNextBlockWithNextValsUpdate(
 	state, newPrivVals = updateState(state, commit.BlockID, privVals, newPrivVals)
 
 	return liteBlock, state, newPrivVals
-}
-
-// generateJSON produces the JSON for the given testCase type.
-// The ouput is saved under the specified file parameter
-func generateJSON(testCases *TestBatch, file string) {
-
-	var cdc = amino.NewCodec()
-	cryptoAmino.RegisterAmino(cdc)
-	cdc.RegisterInterface((*types.Evidence)(nil), nil)
-
-	b, err := cdc.MarshalJSONIndent(testCases, " ", "	")
-	if err != nil {
-		fmt.Printf("error: %v", err)
-	}
-
-	_ = ioutil.WriteFile(file, b, 0644)
-
 }
 
 // makeTestCase copies over the given parameters to the TestCase struct and returns it
@@ -480,4 +509,15 @@ func (valList ValList) Copy() (vl ValList) {
 		vl.PrivVals = append(vl.PrivVals, privVal)
 	}
 	return
+}
+
+func newAbsentCommitSig(valAddr types.Address) types.CommitSig {
+	return types.CommitSig{
+		BlockIDFlag: types.BlockIDFlagAbsent,
+		// According to the spec an absent CommitSig is expected to have a ValidatorAddress
+		// But the Go implementation isn't following that currently
+		// So, for now, we let it be as it is in Go code
+		// And wait until it changes
+		//ValidatorAddress: valAddr,
+	}
 }

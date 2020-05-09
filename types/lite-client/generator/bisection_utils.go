@@ -225,17 +225,19 @@ func makeLiteblocks(
 	description string,
 	valSetChanges ValSetChanges,
 ) ([]LiteBlock, []st.State, types.PrivValidatorsByAddress) {
-	signedHeader, state, privVals := generateFirstBlock(
+	signedHeader, state, privVals := generateFirstBlockWithNextValsUpdate(
 		valSetChanges[0].Validators,
 		valSetChanges[0].PrivVals,
+		valSetChanges[1].Validators,
+		valSetChanges[1].PrivVals,
 		firstBlockTime,
 	)
-	state.NextValidators = types.NewValidatorSet(valSetChanges[1].Validators)
+
 	firstBlock := []LiteBlock{
 		{
 			SignedHeader:     signedHeader,
-			ValidatorSet:     *state.Validators,
-			NextValidatorSet: *state.NextValidators,
+			ValidatorSet:     *state.LastValidators,
+			NextValidatorSet: *state.Validators,
 		},
 	}
 	lastCommit := signedHeader.Commit

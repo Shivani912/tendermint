@@ -6,6 +6,8 @@ import (
 	"github.com/tendermint/tendermint/types"
 )
 
+const MULTI_PEER_BISECTION_PATH = "./tests/json/bisection/multi_peer/"
+
 func caseBisectionConflictingValidCommitsFromTheOnlyWitness(valList ValList) {
 	description := "Case: Trusted height=1, found conflicting valid commit at height=11 from the only witness available, should expect error"
 	primaryValSetChanges := ValSetChanges{}.getDefault(valList.Copy())
@@ -21,7 +23,7 @@ func caseBisectionConflictingValidCommitsFromTheOnlyWitness(valList ValList) {
 		expectedOutputError,
 	)
 
-	file := "./tests/json/multi_peer_bisection/conflicting_valid_commits_from_the_only_witness.json"
+	file := MULTI_PEER_BISECTION_PATH + "conflicting_valid_commits_from_the_only_witness.json"
 	testBisection.genJSON(file)
 }
 
@@ -42,7 +44,7 @@ func caseBisectionConflictingValidCommitsFromOneOfTheWitnesses(valList ValList) 
 
 	testBisection.Witnesses = append(testBisection.Witnesses, testBisection.Primary)
 
-	file := "./tests/json/multi_peer_bisection/conflicting_valid_commits_from_one_of_the_witnesses.json"
+	file := MULTI_PEER_BISECTION_PATH + "conflicting_valid_commits_from_one_of_the_witnesses.json"
 	testBisection.genJSON(file)
 }
 
@@ -90,6 +92,6 @@ func caseBisectionConflictingHeaders(valList ValList) {
 	testBisection.HeightToVerify = 5
 	testBisection.ExpectedOutput = expectedOutputError
 
-	file := "./tests/json/multi_peer_bisection/conflicting_headers.json"
+	file := MULTI_PEER_BISECTION_PATH + "conflicting_headers.json"
 	testBisection.genJSON(file)
 }
