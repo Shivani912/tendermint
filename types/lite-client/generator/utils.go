@@ -131,6 +131,7 @@ func generateFirstBlock(
 	return makeBlock(state, privVals, nil, now)
 }
 
+//TODO: Comment!
 func generateFirstBlockWithNextValsUpdate(
 	vals []*types.Validator,
 	privVals types.PrivValidatorsByAddress,
@@ -469,7 +470,14 @@ func generateNextValsUpdateCase(
 // validator set, privVals, chain ID and a timestamp to create
 // and return a commit type
 // To be called after MakeBlock()
-func generateCommit(header types.Header, partSet *types.PartSet, valSet *types.ValidatorSet, privVals []types.PrivValidator, chainID string, now time.Time) *types.Commit {
+func generateCommit(
+	header types.Header,
+	partSet *types.PartSet,
+	valSet *types.ValidatorSet,
+	privVals []types.PrivValidator,
+	chainID string,
+	now time.Time,
+) *types.Commit {
 	blockID := types.BlockID{
 		Hash: header.Hash(),
 		PartsHeader: types.PartSetHeader{
@@ -502,11 +510,14 @@ func generateEvidences() []types.Evidence {
 // So to avoid manipulating the original list, we better copy it!
 func (valList ValList) Copy() (vl ValList) {
 
-	for i, val := range valList.Validators {
+	for _, val := range valList.Validators {
 		copyVal := *val
-		privVal := valList.PrivVals[i]
 		vl.Validators = append(vl.Validators, &copyVal)
-		vl.PrivVals = append(vl.PrivVals, privVal)
+	}
+
+	for _, privVal := range valList.PrivVals {
+		copyPrivVal := privVal
+		vl.PrivVals = append(vl.PrivVals, copyPrivVal)
 	}
 	return
 }
@@ -517,7 +528,7 @@ func newAbsentCommitSig(valAddr types.Address) types.CommitSig {
 		// According to the spec an absent CommitSig is expected to have a ValidatorAddress
 		// But the Go implementation isn't following that currently
 		// So, for now, we let it be as it is in Go code
-		// And wait until it changes
-		//ValidatorAddress: valAddr,
+
+		// ValidatorAddress: valAddr,
 	}
 }

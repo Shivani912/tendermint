@@ -65,37 +65,11 @@ func caseBisectionWorstCase(valList ValList) {
 	testBisection.genJSON(file)
 }
 
-func caseBisectionInvalidValidatorSet(valList ValList) {
-	description := "Case: Trusted height = 1, fails at height 6 on finding invalid validator set"
-
-	valSetChanges := ValSetChanges{}.getDefault(valList.Copy())
-	testBisection, states, privVals := generateGeneralBisectionCase(
-		description,
-		valSetChanges,
-		2,
-	)
-	valSet := types.NewValidatorSet(valList.Validators[15:16])
-	lastCommit := testBisection.Primary.LiteBlocks[5].SignedHeader.Commit
-	time := testBisection.Primary.LiteBlocks[5].SignedHeader.Commit.Signatures[0].Timestamp
-
-	state := states[len(states)-1]
-	state.Validators = valSet
-	privVals = valList.PrivVals[15:16]
-	liteBlock, _, _ := generateNextBlock(state, privVals, lastCommit, time)
-
-	testBisection.Primary.LiteBlocks[5] = liteBlock
-	testBisection.ExpectedOutput = expectedOutputError
-
-	file := SINGLE_PEER_BISECTION_PATH + "invalid_validator_set.json"
-	testBisection.genJSON(file)
-}
-
 func caseBisectionNotEnoughCommits(valList ValList) {
 	description := "Case: Trusted height=1, fails at height 6 because more than one-third (trust level) vals didn't sign"
 
-	copiedValList := valList.Copy()
-
 	valsArray := [][]*types.Validator{
+		valList.Validators[:4],
 		valList.Validators[:4],
 		valList.Validators[:4],
 		valList.Validators[:4],
@@ -109,39 +83,24 @@ func caseBisectionNotEnoughCommits(valList ValList) {
 		valList.PrivVals[:4],
 		valList.PrivVals[:4],
 		valList.PrivVals[:4],
+		valList.PrivVals[:3],
 	}
 
 	valSetChanges := ValSetChanges{}.makeValSetChanges(valsArray, privValsArray)
-	testBisection, states, _ := generateGeneralBisectionCase(
+	testBisection, _, _ := generateGeneralBisectionCase(
 		description,
 		valSetChanges,
 		3,
 	)
 
-	valsArray = [][]*types.Validator{
-		copiedValList.Validators[0:1],
-		copiedValList.Validators[0:1],
-		copiedValList.Validators[0:1],
-	}
-
-	privValsArray = []types.PrivValidatorsByAddress{
-		copiedValList.PrivVals[0:1],
-		copiedValList.PrivVals[0:1],
-		copiedValList.PrivVals[0:1],
-	}
-
-	valSetChanges = ValSetChanges{}.makeValSetChanges(valsArray, privValsArray)
 	last := len(testBisection.Primary.LiteBlocks) - 1
-	lastCommit := testBisection.Primary.LiteBlocks[last].SignedHeader.Commit
-	blockTime := lastCommit.Signatures[0].Timestamp.Add(5 * time.Second)
-	last = len(states) - 1
-	state := states[last]
-	state.Validators = types.NewValidatorSet(copiedValList.Validators[0:1])
-	privVals := copiedValList.PrivVals[0:1]
-	liteBlocks, _, _ := generateNextBlocks(3, state, privVals, lastCommit, valSetChanges, blockTime)
-	testBisection.Primary.LiteBlocks = append(testBisection.Primary.LiteBlocks, liteBlocks...)
-	testBisection.Witnesses[0] = testBisection.Primary
-	testBisection.HeightToVerify = 8
+	testBisection.Primary.LiteBlocks[last].SignedHeader.Commit.Signatures[0] = newAbsentCommitSig(
+		testBisection.Primary.LiteBlocks[last].SignedHeader.Commit.Signatures[0].ValidatorAddress,
+	)
+	testBisection.Primary.LiteBlocks[last].SignedHeader.Commit.Signatures[1] = newAbsentCommitSig(
+		testBisection.Primary.LiteBlocks[last].SignedHeader.Commit.Signatures[1].ValidatorAddress,
+	)
+
 	testBisection.ExpectedOutput = expectedOutputError
 
 	file := SINGLE_PEER_BISECTION_PATH + "not_enough_commits.json"

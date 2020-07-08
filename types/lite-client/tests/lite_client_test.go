@@ -10,8 +10,9 @@ import (
 	cryptoAmino "github.com/tendermint/tendermint/crypto/encoding/amino"
 	lite "github.com/tendermint/tendermint/lite2"
 	"github.com/tendermint/tendermint/lite2/provider"
-	dbs "github.com/tendermint/tendermint/lite2/store/db"
 	"github.com/tendermint/tendermint/types/lite-client/generator"
+
+	dbs "github.com/tendermint/tendermint/lite2/store/db"
 	dbm "github.com/tendermint/tm-db"
 )
 
@@ -109,7 +110,9 @@ func TestBisection(t *testing.T) {
 
 		height := testBisection.HeightToVerify
 		_, e = client.VerifyHeaderAtHeight(height, testBisection.Now)
-
+		// ---
+		fmt.Println(e)
+		// ---
 		err := e != nil
 		expectsError := expectedOutput == "error"
 		if (err && !expectsError) || (!err && expectsError) {

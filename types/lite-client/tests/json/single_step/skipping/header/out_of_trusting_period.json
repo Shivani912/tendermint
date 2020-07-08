@@ -1,5 +1,5 @@
 {
- 	"description": "Case: Trusted height=1 but is out of trusting period, verifying signed header at height=5, expects an error",
+ 	"description": "Case: Trusted height=1 but is out of trusting period, verifying signed header at height=6, expects an error",
  	"initial": {
  		"signed_header": {
  			"header": {

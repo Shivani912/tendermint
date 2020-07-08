@@ -226,6 +226,7 @@ func caseSingleSeqCommitNilVote(valList ValList) {
 		valList.Validators[:4],
 		valList.PrivVals[:4],
 	)
+
 	input[0].SignedHeader.Commit.Signatures[0].BlockIDFlag = types.BlockIDFlagNil
 
 	vote := input[0].SignedHeader.Commit.GetVote(0)
@@ -236,6 +237,19 @@ func caseSingleSeqCommitNilVote(valList ValList) {
 	testCase := makeTestCase(description, initial, input, expectedOutputNoError)
 
 	file := SINGLE_STEP_SEQ_PATH + "commit/less_than_one_third_nil_votes.json"
+	testCase.genJSON(file)
+}
+
+func caseSingleSeqCommitNoSignatures(valList ValList) {
+	description := "Case: one lite block, no signatures present in commit, expects error"
+	initial, input, _, _ := generateGeneralCase(
+		valList.Validators[:1],
+		valList.PrivVals[:1],
+	)
+	input[0].SignedHeader.Commit.Signatures = []types.CommitSig{}
+	testCase := makeTestCase(description, initial, input, expectedOutputError)
+
+	file := SINGLE_STEP_SEQ_PATH + "commit/no_signatures.json"
 	testCase.genJSON(file)
 }
 

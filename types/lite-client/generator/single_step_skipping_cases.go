@@ -126,7 +126,7 @@ func caseSingleSkipCommitMoreThanTwoThirdsValsDidSign(valList ValList) {
 // Header
 
 func caseSingleSkipHeaderOutOfTrustingPeriod(valList ValList) {
-	description := "Case: Trusted height=1 but is out of trusting period, verifying signed header at height=5, expects an error"
+	description := "Case: Trusted height=1 but is out of trusting period, verifying signed header at height=6, expects an error"
 
 	initial, input, _, _ := generateInitialAndInputSkipBlocks(
 		valList.Validators[:1],

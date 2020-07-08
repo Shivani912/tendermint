@@ -122,12 +122,12 @@ func (mp MockProvider) SignedHeader(height int64) (*types.SignedHeader, error) {
 }
 func (mp MockProvider) ValidatorSet(height int64) (*types.ValidatorSet, error) {
 	fmt.Printf("\n vs -- req h: %v", height)
+	// if lb.SignedHeader.Header.Height+1 == height {
+	// 		return &lb.NextValidatorSet, nil
+	// 	}
 	for _, lb := range mp.LiteBlocks {
 		if lb.SignedHeader.Header.Height == height {
 			return &lb.ValidatorSet, nil
-		}
-		if lb.SignedHeader.Header.Height+1 == height {
-			return &lb.NextValidatorSet, nil
 		}
 	}
 	return nil, provider.ErrValidatorSetNotFound
@@ -145,17 +145,16 @@ func generateNextBlocks(
 	var states []st.State
 	valSetChanges = append(valSetChanges, valSetChanges[len(valSetChanges)-1])
 	for i := 0; i < numOfBlocks; i++ {
-		liteblock, st, pvs := generateNextBlockWithNextValsUpdate(
+		liteblock, st, _ := generateNextBlockWithNextValsUpdate(
 			state,
-			privVals,
-			lastCommit,
-			valSetChanges[i].Validators,
 			valSetChanges[i].PrivVals,
+			lastCommit,
+			valSetChanges[i+1].Validators,
+			nil,
 			blockTime,
 		)
 		liteBlocks = append(liteBlocks, liteblock)
 		state = st
-		privVals = pvs
 		lastCommit = liteblock.SignedHeader.Commit
 		states = append(states, state)
 		blockTime = blockTime.Add(5 * time.Second)
@@ -222,14 +221,13 @@ func (vsc ValSetChanges) makeValSetChanges(
 }
 
 func makeLiteblocks(
-	description string,
 	valSetChanges ValSetChanges,
 ) ([]LiteBlock, []st.State, types.PrivValidatorsByAddress) {
-	signedHeader, state, privVals := generateFirstBlockWithNextValsUpdate(
+	signedHeader, state, _ := generateFirstBlockWithNextValsUpdate(
 		valSetChanges[0].Validators,
 		valSetChanges[0].PrivVals,
 		valSetChanges[1].Validators,
-		valSetChanges[1].PrivVals,
+		nil,
 		firstBlockTime,
 	)
 
@@ -245,9 +243,9 @@ func makeLiteblocks(
 	liteBlocks, states, privVals := generateNextBlocks(
 		numOfBlocks,
 		state,
-		privVals,
+		valSetChanges[1].PrivVals,
 		lastCommit,
-		valSetChanges[2:],
+		valSetChanges[1:],
 		thirdBlockTime,
 	)
 	liteBlocks = append(firstBlock, liteBlocks...)
@@ -270,7 +268,7 @@ func generateMultiPeerBisectionCase(
 		primaryValSetChanges,
 		expectedBisections)
 
-	liteBlocks, statesAlternative, privValsAlternative := makeLiteblocks(description, alternativeValSetChanges)
+	liteBlocks, statesAlternative, privValsAlternative := makeLiteblocks(alternativeValSetChanges)
 	testBisection.Witnesses[0] = MockProvider{}.New(liteBlocks[0].SignedHeader.Header.ChainID, liteBlocks)
 	testBisection.ExpectedOutput = expectOutput
 	return testBisection, statesPrimary, privValsPrimary, statesAlternative, privValsAlternative
@@ -282,14 +280,14 @@ func generateGeneralBisectionCase(
 	expectedBisections int32,
 ) (TestBisection, []st.State, types.PrivValidatorsByAddress) {
 
-	liteBlocks, states, privVals := makeLiteblocks(description, valSetChanges)
+	liteBlocks, states, privVals := makeLiteblocks(valSetChanges)
 	primary := MockProvider{}.New(liteBlocks[0].SignedHeader.Header.ChainID, liteBlocks)
 
 	var witnesses []provider.Provider
 	witnesses = append([]provider.Provider{}, primary)
 
 	trustOptions := TrustOptions{}.make(liteBlocks[0].SignedHeader, TRUSTING_PERIOD, lite.DefaultTrustLevel)
-	heightToVerify := int64(11)
+	heightToVerify := int64(len(valSetChanges))
 
 	testBisection := TestBisection{}.make(
 		description,

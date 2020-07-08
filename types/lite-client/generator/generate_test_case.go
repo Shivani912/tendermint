@@ -78,7 +78,7 @@ func GenerateManyHeaderBisectionCases(jsonValList string) {
 	// Single-peer
 	caseBisectionHappyPath(valList)
 	caseBisectionWorstCase(valList)
-	caseBisectionInvalidValidatorSet(valList)
+	caseBisectionMaliciousValidatorSet(valList)
 	caseBisectionNotEnoughCommits(valList)
 	caseBisectionHeaderOutOfTrustingPeriod(valList)
 

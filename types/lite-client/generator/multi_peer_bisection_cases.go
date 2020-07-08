@@ -28,7 +28,7 @@ func caseBisectionConflictingValidCommitsFromTheOnlyWitness(valList ValList) {
 }
 
 func caseBisectionConflictingValidCommitsFromOneOfTheWitnesses(valList ValList) {
-	description := "Case: Trusted height=1, found conflicting valid commit at height=11 from only one of the two witnesses, should not expect error"
+	description := "Case: Trusted height=1, found conflicting valid commit at height=11 from only one of the two witnesses, should expect error"
 	primaryValSetChanges := ValSetChanges{}.getDefault(valList.Copy())
 	alternativeValSetChanges := ValSetChanges{}.getDefault(valList.Copy())
 	last := len(alternativeValSetChanges) - 1
@@ -39,7 +39,7 @@ func caseBisectionConflictingValidCommitsFromOneOfTheWitnesses(valList ValList) 
 		primaryValSetChanges,
 		alternativeValSetChanges,
 		2,
-		expectedOutputNoError,
+		expectedOutputError,
 	)
 
 	testBisection.Witnesses = append(testBisection.Witnesses, testBisection.Primary)
@@ -93,5 +93,34 @@ func caseBisectionConflictingHeaders(valList ValList) {
 	testBisection.ExpectedOutput = expectedOutputError
 
 	file := MULTI_PEER_BISECTION_PATH + "conflicting_headers.json"
+	testBisection.genJSON(file)
+}
+
+func caseBisectionMaliciousValidatorSet(valList ValList) {
+	description := "Case: Trusted height = 1, due to malicious validator set it fails to find a witness for it"
+
+	valSetChanges := ValSetChanges{}.getDefault(valList.Copy())
+	testBisection, states, privVals, _, _ := generateMultiPeerBisectionCase(
+		description,
+		valSetChanges,
+		valSetChanges,
+		2,
+		expectedOutputError,
+	)
+
+	lastIndex := len(testBisection.Primary.LiteBlocks) - 2
+	state := states[lastIndex]
+	valSet := types.NewValidatorSet(valList.Validators[:2])
+	privVals = valList.PrivVals[:2]
+	state.Validators = valSet
+
+	lastCommit := testBisection.Primary.LiteBlocks[lastIndex].SignedHeader.Commit
+	time := state.LastBlockTime.Add(5 * time.Second)
+
+	liteBlock, _, _ := generateNextBlock(state, privVals, lastCommit, time)
+
+	testBisection.Primary.LiteBlocks[lastIndex+1] = liteBlock
+
+	file := MULTI_PEER_BISECTION_PATH + "malicious_validator_set.json"
 	testBisection.genJSON(file)
 }
